@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "AboutPage";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<!-- Page Title
+        ============================================= -->
+<section id="page-title" class="page-title-mini" style="margin-top:-6% ">
+    <div class="container clearfix">
+        <h1>@ViewBag.Title</h1>
+        <span>Everything you need to know about our Company</span>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+        </ol>
+    </div>
+</section><!-- #page-title end -->
+<!-- Content
+============================================= -->
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+          
+          @*@Html.Partial("_AboutSlider")*@
+            @{Html.RenderAction("PartialAboutSlider", "About");}
+            
+            @*@Html.Partial("_AboutTeam")*@
+            @{Html.RenderAction("PartialAboutTeam", "About");}
+
+            <div class="row col-mb-50 mb-0">
+                <div class="col-lg-12">
+                    <div class="heading-block fancy-title border-bottom-0 title-bottom-border">
+                        <h4>Why choose <span>Us</span>.</h4>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quidem minus id omnis, nam expedita, ea fuga commodi voluptas iusto, hic autem deleniti dolores explicabo labore enim repellat earum perspiciatis.</p>
+                </div>
+            </div>
+            <div class="heading-block center">
+                <h2>Team</h2>
+                <span>Our Team Members who have contributed immensely to our Growth</span>
+            </div>
+
+           
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="section topmargin-sm footer-stick">
+
+            <h4 class="text-uppercase center">What <span>Clients</span> Say?</h4>
+
+            <div class="fslider testimonial testimonial-full" data-animation="fade" data-arrows="false">
+                <div class="flexslider">
+                    <div class="slider-wrap">
+                        <div class="slide">
+                            <div class="testi-image">
+                                <a href="#"><img src="~/ContentWebsite/images/testimonials/3.jpg" alt="Customer Testimonails"></a>
+                            </div>
+                            <div class="testi-content">
+                                <p>Best Location</p>
+                                <div class="testi-meta">
+                                    Imran
+                                    <span>Customer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="testi-image">
+                                <a href="#"><img src="~/ContentWebsite/images/testimonials/2.jpg" alt="Customer Testimonails"></a>
+                            </div>
+                            <div class="testi-content">
+                                <p> Good Evneronment.</p>
+                                <div class="testi-meta">
+                                    Arsalan
+                                    <span>IT Director</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="testi-image"> 
+                                <a href="#"><img src="~/ContentWebsite/images/testimonials/1.jpg" alt="Customer Testimonails"></a>
+                            </div>
+                            <div class="testi-content">
+                                <p>Great Service</p>
+                                <div class="testi-meta">
+                                    Naeem
+                                    <span>Army Chief</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><!-- #content end -->
+
+

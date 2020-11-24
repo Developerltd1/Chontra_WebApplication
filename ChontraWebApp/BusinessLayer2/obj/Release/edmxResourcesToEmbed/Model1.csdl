@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblEvent">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventDate" Type="DateTime" Precision="0" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyBy_ID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="TitleImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="EventVenue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EventTextDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblGallery">
+    <Key>
+      <PropertyRef Name="GalleryID" />
+    </Key>
+    <Property Name="GalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GalleryImage" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GalleryTitle" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GalleryDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="Alt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblNew">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsTitle" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+    <Property Name="NewsDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NewsPicPath" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPayment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentComments" Type="String" MaxLength="99" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PaymentMode" Type="Int32" Nullable="false" />
+    <Property Name="PaymentType" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSlider">
+    <Key>
+      <PropertyRef Name="SliderID" />
+    </Key>
+    <Property Name="SliderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SliderImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SliderCap1" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="SliderCap2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SliderCap3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTeamMember">
+    <Key>
+      <PropertyRef Name="MemID" />
+    </Key>
+    <Property Name="MemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Qualification" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MemberContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MemberEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MemberAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyBy_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblTestimonial">
+    <Key>
+      <PropertyRef Name="TestimonialID" />
+    </Key>
+    <Property Name="TestimonialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Details" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PicPath" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Desg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rating" Type="Double" />
+  </EntityType>
+  <EntityType Name="tblText">
+    <Key>
+      <PropertyRef Name="TextID" />
+    </Key>
+    <Property Name="TextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TextTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TextPage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TextDetail" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TextType_ID" Type="Byte" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyBy_ID" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="dbSiteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblEvents" EntityType="Self.tblEvent" />
+    <EntitySet Name="tblGalleries" EntityType="Self.tblGallery" />
+    <EntitySet Name="tblNews" EntityType="Self.tblNew" />
+    <EntitySet Name="tblPayments" EntityType="Self.tblPayment" />
+    <EntitySet Name="tblSliders" EntityType="Self.tblSlider" />
+    <EntitySet Name="tblTeamMembers" EntityType="Self.tblTeamMember" />
+    <EntitySet Name="tblTestimonials" EntityType="Self.tblTestimonial" />
+    <EntitySet Name="tblTexts" EntityType="Self.tblText" />
+    <EntitySet Name="tblClients" EntityType="dbSiteModel.tblClient" />
+    <EntitySet Name="tblQuotes" EntityType="dbSiteModel.tblQuote" />
+    <EntitySet Name="tblApplications" EntityType="dbSiteModel.tblApplication" />
+    <EntitySet Name="tblJobs" EntityType="dbSiteModel.tblJob" />
+    <EntitySet Name="tblFacts" EntityType="dbSiteModel.tblFact" />
+    <EntitySet Name="tblContacts" EntityType="dbSiteModel.tblContact" />
+    <EntitySet Name="tblDownloads" EntityType="dbSiteModel.tblDownload" />
+    <EntitySet Name="tblServices" EntityType="dbSiteModel.tblService" />
+  </EntityContainer>
+  <EntityType Name="tblClient">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="Int32" Nullable="false" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ClientLogo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ClientType" Type="Int32" />
+    <Property Name="ShowOnHome" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="EnterByUser_ID" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblQuote">
+    <Key>
+      <PropertyRef Name="QuoteID" />
+    </Key>
+    <Property Name="QuoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromLoc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ToLoc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="QuoteType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="IsRecieved" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblApplication">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Job_ID" Type="Int32" Nullable="false" />
+    <Property Name="ApplicantName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FatherHusbandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CNIC" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Experience" Type="Double" />
+    <Property Name="MailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DomicileDistrict_ID" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDateTime" Type="DateTime" Precision="0" />
+    <Property Name="CheckDateTime" Type="DateTime" Precision="0" />
+    <Property Name="TotalExperience" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CVPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="EnterByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="ModifyByUser_ID" Type="Int32" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblJob">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ClosingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EnterByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ModifyByUser_ID" Type="Int32" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="AdvPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblFact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Counts" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Start" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Speed" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Interval" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblContact">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MobileNo" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="FaxNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="WhatsappNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MailAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EnterBy_ID" Type="Int32" Nullable="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifyBy_ID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblDownload">
+    <Key>
+      <PropertyRef Name="DownloadID" />
+    </Key>
+    <Property Name="DownloadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DownloadTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DownloadPath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EnterByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Details" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblService">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceImagePath" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="B1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="B2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="B3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="B4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="B5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable <BusinessLayerLibrary.GeEventByDate_Result>
+
+@section styles{
+<link rel="stylesheet" href="~/ContentWebsite/css/calendar.css" type="text/css" />
+<!-- NonProfit Demo Specific Stylesheet -->
+<link rel="stylesheet" href="~/ContentWebsite/css/colors.php?color=C6C09C" type="text/css" /> <!-- Theme Color -->
+<link rel="stylesheet" href="~/ContentWebsite/demos/nonprofit/css/fonts.css" type="text/css" />
+<link rel="stylesheet" href="~/ContentWebsite/demos/nonprofit/nonprofit.css" type="text/css" />
+}
+ 
+
+<!-- Calender
+       ============================================= -->
+
+<div class="container clearfix">
+    <div class="single-event">
+        <div class="col-md-12 mt-5">
+            <h4>Today Events Timeline</h4>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Timings</th>
+                            <th>Location</th>
+                            <th>Hall</th>
+                            <th>Events</th>
+                            <th>Event Ceremony</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                        <tr>
+                            <td><span class="badge badge-danger">@item.EventTiming</span></td>
+                            <td>@item.ServicesTitle</td>
+                            <td>@item.ServicesPictureTitle</td>
+                            <td>@item.EventType</td>
+                            <td>@item.CustomerName</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+  <!-- JavaScripts
+============================================= -->
+<script src="https://maps.google.com/maps/api/js?key=YOUR-API-KEY"></script>
+<!-- For Countdown -->
+<script src="~/ContentWebsite/js/components/moment.js"></script>
+}

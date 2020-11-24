@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-12">
+                @{
+                    if (TempData["Statusdetails"] != null)
+                    {
+                        <div class="alert alert-success bg-success text-white border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetails"]
+                        </div>
+
+                    }
+
+                    else if (TempData["Statusdetailserror"] != null)
+                    {
+
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetailserror"]
+                        </div>
+
+                    }
+                    else if (TempData["Exception"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Exception"]
+                        </div>
+                    }
+
+                }
+                <div class="card box-shadow">
+                    <h4 class="card-header">
+                        <i class="mdi mdi-monitor-dashboard"></i> Dashboard
+                    </h4>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="~/ManageUsers/UserIndex" class="btn btn-success" style="height =100%;width:100%">
+                                    <h4><span class="fa fa-home fa-info">Create Users</span></h4>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="~/Products/AddProducts" class="btn btn-info" style="height =100%;width:100%">
+                                    <h4>Add products</h4>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="~/ManageSalesOfficer/AddSaleMan" class="btn btn-danger" style="height =100%;width:100%">
+                                    <h4>Create SalesMan</h4>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="ManageMerchants/MerchantIndex" class="btn btn-dark" style="height =100%;width:100%">
+                                    <h4>Create Merchants</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <p>&nbsp;</p>
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="~/ManageUsers/ViewUsers" class="btn btn-success" style="height =100%;width:100%">
+                                    <h4><span class="fa fa-home fa-info">View Users</span></h4>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="~/Products/GetAllProducts" class="btn btn-info" style="height =100%;width:100%">
+                                    <h4>View products</h4>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="~/ManageSalesOfficer/GetAllSalesMan" class="btn btn-danger" style="height =100%;width:100%">
+                                    <h4>View SalesMan</h4>
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a href="ManageMerchants/Viewmerchants" class="btn btn-dark" style="height =100%;width:100%">
+                                    <h4>View Merchants</h4>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

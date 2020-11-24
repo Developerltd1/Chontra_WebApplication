@@ -1,0 +1,107 @@
+﻿@model IEnumerable <BusinessLayerLibrary.CustomModels.ClsMainModel.ClsPriceMenu>
+@{
+    @ViewBag.Title
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+@section styles{
+}
+
+@section PageTitle {
+    <!-- Page Title
+          ============================================= -->
+    <section id="page-title" class="page-title-mini">
+
+        <div class="container clearfix">
+            <h1>@ViewBag.Title</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">PriceMenu</li>
+            </ol>
+        </div>
+
+    </section><!-- #page-title end -->
+}
+
+
+        <!-- Content
+        ============================================= -->
+        <div class="section parallax mb-0 border-0 dark " style="height: 450px; padding: 120px 0; margin-top: -10%;">
+
+            <div class="vertical-middle center" style="z-index: 2;">
+                <div class="container clearfix fadeInUp animated" data-animate="fadeInUp">
+                    <div class="heading-block border-bottom-0 mb-0">
+                        <h2 style="font-size: 42px;">Beautiful HTML5 Videos</h2>
+                        <span class="d-none d-lg-block">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Powerful Layout with Responsive functionality that can be adapted to any screen size.</span>
+                    </div>
+                    <a href="file:///D:/Application/Web/ASP.NET/MVC/Chontra_WebApplication/ExtraTempletes/NZ_Templete/services-3.html#" class="button button-border button-rounded button-white button-light button-large ml-0 mb-0" style="margin-top: 40px;">Show More</a>
+                </div>
+            </div>
+
+            <div class="video-wrap" style="z-index: 1;">
+                <video poster="~/ContentWebsite/demos/images/videos/explore-poster.jpg" preload="auto" loop="" autoplay="" muted="" style="width: 1349px; height: 758.812px; top: -154.406px;">
+                    <source src="~/ContentWebsite/demos/images/videos/No/explore.mp4" type="video/mp4">
+                    
+                    <source src="~/ContentWebsite/demos/images/videos/explore.webm" type="video/webm">
+                </video>
+                <div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
+            </div>
+
+        </div>
+
+       <div class="row bottommargin-lg align-items-stretch">
+        </div>
+
+    @foreach (var item in Model)
+    {
+        <!--Menu_A-->
+        <div class="container ">
+            <div class="pricing-box pricing-extended row align-items-stretch mb-5 mx-0">
+                <div class="pricing-action-area col-lg d-flex flex-column justify-content-center">
+                    <div class="pricing-meta">
+                        Person
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-unit">RS</span>@item.Price<span class="price-tenure">Incl. of taxes</span>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="file:///D:/Application/Web/ASP.NET/MVC/Chontra_WebApplication/ExtraTempletes/NZ_Templete/services-3.html#" class="button button-3d button-large btn-block m-0">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="pricing-desc col-lg-9 p-4">
+                    <div class="pricing-title ">
+                        <h3>@item.PriceMenuTitle</h3>
+                    </div>
+                    <div class="pricing-features pb-0  ">
+                        <ul class="row ">
+                            <li class="col-md-6"> @item.FoodName1</li>
+                            <li class="col-md-6"> @item.FoodName2</li>
+                            <li class="col-md-6"> @item.FoodName3</li>
+                            <li class="col-md-6"> @item.FoodName4</li>
+                            <li class="col-md-6"> @item.FoodName5</li>
+                            <li class="col-md-6"> @item.FoodName6</li>
+                            <li class="col-md-6"> @item.FoodName7</li>
+                            <li class="col-md-6"> @item.FoodName8</li>
+                            <li class="col-md-6"> @item.FoodName9</li>
+                            <li class="col-md-6"> @item.FoodName10</li>
+                            <li class="col-md-6"> @item.FoodName11</li>
+                            <li class="col-md-6"> @item.FoodName12</li>
+                            <li class="col-md-6"> @item.FoodName13</li>
+                            <li class="col-md-6"> @item.FoodName14</li>
+                            <li class="col-md-6"> @item.FoodName15</li>
+                            <li class="col-md-6"> @item.FoodName16</li>
+                            <li class="col-md-6"> @item.FoodName17</li>
+                            <li class="col-md-6"> @item.FoodName18</li>
+                            <li class="col-md-6"> @item.FoodName19</li>
+                            <li class="col-md-6"> @item.FoodName20</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+ 
+
+@section scripts{
+
+}

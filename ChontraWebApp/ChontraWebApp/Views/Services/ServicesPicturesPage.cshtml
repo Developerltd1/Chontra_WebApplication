@@ -1,0 +1,133 @@
+﻿@model BusinessLayerLibrary.ViewModel.MainViewModels
+@{
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<!-- Page Title
+        ============================================= -->
+<section id="page-title" class="page-title-mini" style="margin-top:-6% ">
+
+    <div class="container clearfix">
+        <h1>@ViewBag.Title</h1>
+        <span>Everything you need to know about our Company</span>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
+
+<div class="content-wrap pb-0">
+    <div class="container clearfix">
+
+        <div class="grid-filter-wrap">
+
+            <!-- Portfolio Filter
+            ============================================= -->
+            <ul class="grid-filter" data-container="#portfolio">
+                <li class="activeFilter"><a href="#" data-filter="*">Show All</a></li>
+                @{
+                    foreach (var item1 in Model.vmListClsEventType)
+                    {
+                      <li><a href="" data-filter=".@item1.EventType">@item1.EventType</a></li>
+                     }
+                 }
+            </ul><!-- .grid-filter end -->
+
+            <div class="grid-shuffle rounded" data-container="#portfolio">
+                <i class="icon-random"></i>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Portfolio Items
+    ============================================= -->
+    <div id="portfolio" class="portfolio row grid-container no-gutters clearfix" data-layout="fitRows">
+        <!--Singal-->
+    @{ 
+        foreach (var item in Model.vmListPicture_N_EventTypeViewModels)
+        {
+          <article class="portfolio-item col-lg-1-5 col-md-4 col-sm-6 col-12 pf-media @item.EventType">
+              <div class="grid-inner">
+                  <div class="portfolio-image">
+                      <a href="portfolio-single.html">
+                          <img src="@item.ServicesPicturePath" alt="Open Imagination">
+                      </a>
+                      <div class="bg-overlay">
+                          <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+                              <a href="@item.ServicesPicturePath" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" data-lightbox="image" title="@item.ServicesPictureTitle"><i class="icon-line-plus"></i></a>
+                              <a href="portfolio-single.html" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350"><i class="icon-line-ellipsis"></i></a>
+                          </div>
+                          <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                      </div>
+                  </div>
+                  <div class="portfolio-desc">
+                      <h3><a href="portfolio-single.html">@item.ServicesPictureTitle</a></h3>
+                      <span><a href="#">@item.ServicesPictureDescription</a> <a href=""></a></span>
+                  </div>
+              </div>
+          </article>
+        }
+    }
+        
+        
+          <!--Multi-->
+        <article class="portfolio-item col-lg-1-5 col-md-4 col-sm-6 col-12 zzz pf-illustrations">
+            <div class="grid-inner">
+                <div class="portfolio-image">
+                    <div class="fslider" data-arrows="false">
+                        <div class="flexslider">
+                            <div class="slider-wrap">
+                                <div class="slide"><a href="portfolio-single-gallery.html"><img src="~/ContentWebsite/images/portfolio/4/6.jpg" alt="Shake It"></a></div>
+                                <div class="slide"><a href="portfolio-single-gallery.html"><img src="~/ContentWebsite/images/portfolio/4/6-1.jpg" alt="Shake It"></a></div>
+                                <div class="slide"><a href="portfolio-single-gallery.html"><img src="~/ContentWebsite/images/portfolio/4/6-2.jpg" alt="Shake It"></a></div>
+                                <div class="slide"><a href="portfolio-single-gallery.html"><img src="~/ContentWebsite/images/portfolio/4/6-3.jpg" alt="Shake It"></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-overlay" data-lightbox="gallery">
+                        <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+                            <a href="~/ContentWebsite/images/portfolio/full/6.jpg" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" data-lightbox="gallery-item"><i class="icon-line-stack-2"></i></a>
+                            <a href="~/ContentWebsite/images/portfolio/full/6-1.jpg" class="d-none" data-lightbox="gallery-item"></a>
+                            <a href="~/ContentWebsite/images/portfolio/full/6-2.jpg" class="d-none" data-lightbox="gallery-item"></a>
+                            <a href="~/ContentWebsite/images/portfolio/full/6-3.jpg" class="d-none" data-lightbox="gallery-item"></a>
+                            <a href="portfolio-single-gallery.html" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350"><i class="icon-line-ellipsis"></i></a>
+                        </div>
+                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                    </div>
+                </div>
+                <div class="portfolio-desc">
+                    <h3><a href="portfolio-single-gallery.html">Shake It!</a></h3>
+                    <span><a href="#">Illustrations</a>, <a href="#">Graphics</a></span>
+                </div>
+            </div>
+        </article>
+        <!--Video-->
+        <article class="portfolio-item col-lg-1-5 col-md-4 col-sm-6 col-12 zzz pf-uielements">
+            <div class="grid-inner">
+                <div class="portfolio-image">
+                    <a href="#">
+                        <img src="~/ContentWebsite/images/portfolio/4/3.jpg" alt="Mac Sunglasses">
+                    </a>
+                    <div class="bg-overlay">
+                        <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+                            <a href="https://vimeo.com/89396394" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" data-lightbox="iframe"><i class="icon-line-play"></i></a>
+                            <a href="portfolio-single.html" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350"><i class="icon-line-ellipsis"></i></a>
+                        </div>
+                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                    </div>
+                </div>
+                <div class="portfolio-desc">
+                    <h3><a href="portfolio-single-video.html">Mac Sunglasses</a></h3>
+                    <span><a href="#">Graphics</a>, <a href="#">UI Elements</a></span>
+                </div>
+            </div>
+        </article>
+        
+    </div><!-- #portfolio end -->
+</div>
+
+

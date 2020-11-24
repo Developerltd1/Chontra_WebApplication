@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BusinessLayerLibrary.CustomModels.ClsMainModel.ClsServices>
+@{
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<!-- Page Title
+        ============================================= -->
+<section id="page-title" class="page-title-mini" style="margin-top:-6% ">
+    
+    <div class="container clearfix">
+        <h1>@ViewBag.Title</h1>
+        <span>Everything you need to know about our Company</span>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+            <div class="row grid-container has-init-isotope" data-layout="masonry" style="overflow: visible; position: relative; height: 529px;">
+               
+           @{ 
+              foreach (var item in Model)
+              {
+                <div class="col-lg-4 mb-4" style="position: absolute; left: 33.3333%; top: 0px;">
+                    <div class="flip-card text-center top-to-bottom">
+                        <div class="flip-card-front dark" style="background-image: url('@item.ServicesMainImage');">
+                            <div class="flip-card-inner">
+                                <div class="card bg-transparent border-0 text-center">
+                                    <div class="card-body">
+                                        <h3 class="card-title">@item.ServicesTitle</h3>
+                                        <p class="card-text font-weight-normal">@item.ServicesDescription</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back" style="background-image: url(&#39;demos/business/images/featured/3.jpg&#39;);">
+                            <div class="flip-card-inner">
+                                <p class="mb-2 text-white">Click here for More Details</p>
+                                <button type="button" class="btn btn-outline-light mt-2" >@Html.ActionLink("Details", "ServicesPicturesPage", new { id = @item.ServicesID })</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+              }
+            }
+             </div>
+        </div>
+    </div>
+</section><!-- #content end -->
+

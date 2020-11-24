@@ -1,0 +1,30 @@
+﻿@model IEnumerable < BusinessLayerLibrary.CustomModels.ClsMainModel.ClsServicesPicture>
+@section styles{
+    <link rel="stylesheet" href="~/ContentWebsite/css/calendar.css" type="text/css" />
+}
+<div class="section mb-0 clearfix" style="margin-top:-1%;">
+    <div class="heading-block center border-bottom-0 mb-0 mx-auto" style="max-width: 640px">
+        <h3 class="nott font-secondary font-weight-normal" style="font-size: 36px;">Gallery</h3>
+    </div>
+</div>
+<div class="masonry-thumbs grid-container grid-6" data-big="3" data-lightbox="gallery">
+    @foreach (var item in Model)
+    {
+     <a class="grid-item" href="@item.ServicesPicturePath" data-lightbox="gallery-item">
+         <div class="grid-inner">
+             <img src="~/ContentWebsite/demos/pet/images/gallery/thumbs/1.jpg" alt="Gallery Thumb 1">
+             <div class="bg-overlay">
+                 <div class="bg-overlay-content dark">
+                     <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                 </div>
+                 <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+             </div>
+         </div>
+     </a>
+    }
+</div>
+
+
+@section scripts{
+  
+}
