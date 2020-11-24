@@ -42,8 +42,29 @@
     <Property Name="CustomerConact" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="CustomerCNIC" Type="varchar" MaxLength="15" />
     <Property Name="CustomerAddress" Type="varchar" MaxLength="99" />
-    <Property Name="EntryDate" Type="datetime" Nullable="false" />
     <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedByUser_ID" Type="int" />
+    <Property Name="ModifiedByDateTime" Type="datetime" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerEventDetails">
+    <Key>
+      <PropertyRef Name="CustomerEventDetailsID" />
+    </Key>
+    <Property Name="CustomerEventDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_ID" Type="int" Nullable="false" />
+    <Property Name="Services_ID" Type="int" Nullable="false" />
+    <Property Name="ServicesPicture_ID" Type="int" Nullable="false" />
+    <Property Name="EventType_ID" Type="int" Nullable="false" />
+    <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Advance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="EntryDateTime" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedByUser_ID" Type="int" />
+    <Property Name="ModifiedByDateTime" Type="datetime" />
     <Property Name="isActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Decoration">
@@ -87,10 +108,15 @@
       <PropertyRef Name="EventTimingID" />
     </Key>
     <Property Name="EventTimingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EventTiming" Type="datetime" Nullable="false" />
+    <Property Name="EventStartTiming" Type="datetime" Nullable="false" />
+    <Property Name="EventEndTiming" Type="datetime" Nullable="false" />
     <Property Name="Customer_ID" Type="int" Nullable="false" />
     <Property Name="ServicesPicture_ID" Type="int" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedByUser_ID" Type="int" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
   </EntityType>
   <EntityType Name="EventType">
     <Key>
@@ -151,11 +177,11 @@
     <Property Name="WebPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Parent_ID" Type="int" />
     <Property Name="PageOrder" Type="int" />
+    <Property Name="MenuTitle" Type="varchar" MaxLength="45" />
+    <Property Name="PageTitle" Type="varchar" MaxLength="100" />
     <Property Name="AreaName" Type="varchar" MaxLength="50" />
     <Property Name="ControllerName" Type="varchar" MaxLength="45" />
     <Property Name="ViewName" Type="varchar" MaxLength="45" />
-    <Property Name="MenuTitle" Type="varchar" MaxLength="45" />
-    <Property Name="PageTitle" Type="varchar" MaxLength="100" />
     <Property Name="Description" Type="varchar" MaxLength="45" />
     <Property Name="MenuColor" Type="varchar" MaxLength="50" />
     <Property Name="IsHorizantal" Type="bit" />
@@ -245,6 +271,8 @@
     <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
   </EntityType>
   <Function Name="GeEventByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetEventTimingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="in_RoleID" Type="int" Mode="In" />
   </Function>
@@ -274,6 +302,7 @@
     <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerEventDetails" EntityType="Self.CustomerEventDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Decoration" EntityType="Self.Decoration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EventGallery" EntityType="Self.EventGallery" Schema="dbo" store:Type="Tables" />

@@ -27,25 +27,26 @@ namespace BusinessLayerLibrary
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<CustomerEventDetail> CustomerEventDetails { get; set; }
+        public virtual DbSet<Decoration> Decorations { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<EventGallery> EventGalleries { get; set; }
+        public virtual DbSet<EventTiming> EventTimings { get; set; }
         public virtual DbSet<EventType> EventTypes { get; set; }
         public virtual DbSet<Membership_Rolepages> Membership_Rolepages { get; set; }
         public virtual DbSet<Membership_RoleUsers> Membership_RoleUsers { get; set; }
+        public virtual DbSet<Membership_Users> Membership_Users { get; set; }
         public virtual DbSet<Membership_Webpages> Membership_Webpages { get; set; }
         public virtual DbSet<Membership_Webpageurls> Membership_Webpageurls { get; set; }
-        public virtual DbSet<Service> Services { get; set; }
-        public virtual DbSet<Stage> Stages { get; set; }
-        public virtual DbSet<Decoration> Decorations { get; set; }
-        public virtual DbSet<ServicesPicture> ServicesPictures { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<EventGallery> EventGalleries { get; set; }
-        public virtual DbSet<Branch> Branches { get; set; }
-        public virtual DbSet<Membership_Users> Membership_Users { get; set; }
-        public virtual DbSet<SubMenu> SubMenus { get; set; }
-        public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<PriceMenu> PriceMenus { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<EventTiming> EventTimings { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServicesPicture> ServicesPictures { get; set; }
+        public virtual DbSet<Slider> Sliders { get; set; }
+        public virtual DbSet<Stage> Stages { get; set; }
+        public virtual DbSet<SubMenu> SubMenus { get; set; }
     
         public virtual ObjectResult<GetSideMenusByRoleID_Result> GetSideMenusByRoleID(Nullable<int> in_RoleID)
         {
@@ -124,6 +125,16 @@ namespace BusinessLayerLibrary
         public virtual ObjectResult<GeEventByDate_Result> GeEventByDate()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeEventByDate_Result>("GeEventByDate");
+        }
+    
+        public virtual ObjectResult<GetAllUsers_Result> GetAllUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllUsers_Result>("GetAllUsers");
+        }
+    
+        public virtual ObjectResult<GetEventTimingDetails_Result> GetEventTimingDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEventTimingDetails_Result>("GetEventTimingDetails");
         }
     }
 }

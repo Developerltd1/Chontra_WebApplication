@@ -78,6 +78,9 @@
     <Compile Include="Customer.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerEventDetail.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomModels\ClsMainModel.cs" />
     <Compile Include="Decoration.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
@@ -95,6 +98,12 @@
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GeEventByDate_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetAllUsers_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetEventTimingDetails_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GetSideMenusByRoleID_Result.cs">

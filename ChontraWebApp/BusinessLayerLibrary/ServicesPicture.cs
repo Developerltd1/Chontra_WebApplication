@@ -14,12 +14,12 @@ namespace BusinessLayerLibrary
     
     public partial class ServicesPicture
     {
-        public int Services_ID { get; set; }
-        public int EventType_ID { get; set; }
         public int ServicesPictureID { get; set; }
         public string ServicesPictureTitle { get; set; }
         public string ServicesPictureDescription { get; set; }
         public string ServicesPicturePath { get; set; }
         public bool isActive { get; set; }
+        public int Services_ID { get; set; }
+        public int EventType_ID { get; set; }
     }
 }

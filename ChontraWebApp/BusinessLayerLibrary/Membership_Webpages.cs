@@ -17,11 +17,11 @@ namespace BusinessLayerLibrary
         public int WebPageID { get; set; }
         public Nullable<int> Parent_ID { get; set; }
         public Nullable<int> PageOrder { get; set; }
+        public string MenuTitle { get; set; }
+        public string PageTitle { get; set; }
         public string AreaName { get; set; }
         public string ControllerName { get; set; }
         public string ViewName { get; set; }
-        public string MenuTitle { get; set; }
-        public string PageTitle { get; set; }
         public string Description { get; set; }
         public string MenuColor { get; set; }
         public Nullable<bool> IsHorizantal { get; set; }
