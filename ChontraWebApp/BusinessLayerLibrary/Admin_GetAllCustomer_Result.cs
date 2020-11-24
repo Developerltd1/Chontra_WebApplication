@@ -10,9 +10,8 @@
 namespace BusinessLayerLibrary
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Admin_GetAllCustomer_Result
     {
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
@@ -20,9 +19,5 @@ namespace BusinessLayerLibrary
         public string CustomerCNIC { get; set; }
         public string CustomerAddress { get; set; }
         public bool isActive { get; set; }
-        public int CreatedByUser_ID { get; set; }
-        public System.DateTime EntryDate { get; set; }
-        public Nullable<int> ModifiedByUser_ID { get; set; }
-        public Nullable<System.DateTime> ModifiedByDateTime { get; set; }
     }
 }

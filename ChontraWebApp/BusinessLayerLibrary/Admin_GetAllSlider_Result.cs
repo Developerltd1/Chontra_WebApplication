@@ -10,18 +10,15 @@
 namespace BusinessLayerLibrary
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Event
+    public partial class Admin_GetAllSlider_Result
     {
-        public int EventID { get; set; }
-        public string EventTitle { get; set; }
-        public string EventDescription { get; set; }
-        public string EventMainPicture { get; set; }
-        public int CreatedByUser_ID { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public int ModifyByUser_ID { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
+        public int SliderID { get; set; }
+        public string SliderTitle { get; set; }
+        public string SliderDecription { get; set; }
+        public string SliderImagePath { get; set; }
         public bool isActive { get; set; }
+        public string SelecPage { get; set; }
+        public bool isVideo { get; set; }
     }
 }

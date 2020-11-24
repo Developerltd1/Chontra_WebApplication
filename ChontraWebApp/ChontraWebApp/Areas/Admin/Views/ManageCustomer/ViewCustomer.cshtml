@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "ViewCustomer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- DataTables -->
+@section styles{
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-sm-12">
+                @*@if (Model != null || Model == null)
+                {*@
+                    <div class="card box-shadow">
+                        <h4 class="card-header">
+                            <i class="mdi mdi-search-web"></i> Board / University
+                            @*@if (ViewBag.CanAdd)
+                            {*@
+
+
+                            <!--Start_Modal-->
+                            <button type="button" class="btn-block">Open Modal</button>
+
+                            <div class="-modal fade" id="myModal" data-url='@Url.Action("AddCustomerPartial","ManageCustomer")' role="dialog"></div>
+                            <!--End_Modal-->
+
+
+
+                                <a class="btn btn-sm float-sm-right btn-success" onclick="location.href='@Url.Action("AddBoard", "Configuration")'">
+                                    <i class="mdi mdi-plus"></i>  Add Board / University
+                                </a>
+                            @*  *@}
+
+                        </h4>
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <table id="tbl" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Board / University Name</th>
+                                            <th>Short Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       @* @{*@
+//int RowNo = 0;
+//foreach (var item in Model)
+//{
+//RowNo += 1;
+                                                <tr>
+                                                    <td>owNo</td>
+                                                    <td>BoardName</td>
+                                                    <td>ShortName</td>
+                                                    <td>
+                                                        @*@if (ViewBag.CanUpdate)
+                                                        {*@
+                                                            @*<a class="btn btn-warning btn-sm mdi mdi-pencil"
+                                                               title="Edit"
+                                                               href='@Url.Action("EditBoard", "Configuration", new { id = Utility.EncryptURL(item.BoardID.ToString()) })'>
+                                                            </a>*@
+                                                       @* }*@
+
+                                                    </td>
+                                                </tr>
+                                            @*}
+                                        }*@
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @* }*@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./Panel Header-->
+
+@section Scripts {
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#5').addClass('mm-active');
+            $('#5 ul').addClass('mm-show');
+            $('#160').addClass('mm-active');
+            $('#tbl').DataTable({
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ]
+            });
+
+
+            $('btn-block').click(function () {
+                var url = $('#myModal').data('url');
+                $get(url,function(data){
+                    @("#myModal").html(data);
+                    @("#myModal").modal('show');
+                });
+            });
+        });
+    </script>
+}

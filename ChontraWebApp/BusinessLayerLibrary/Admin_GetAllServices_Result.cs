@@ -11,13 +11,12 @@ namespace BusinessLayerLibrary
 {
     using System;
     
-    public partial class GeEventByDate_Result
+    public partial class Admin_GetAllServices_Result
     {
+        public int ServicesID { get; set; }
         public string ServicesTitle { get; set; }
-        public string EventType { get; set; }
-        public string ServicesPictureTitle { get; set; }
-        public string CustomerName { get; set; }
-        public System.DateTime EventTiming { get; set; }
-        public int EventTimingID { get; set; }
+        public string ServicesDescription { get; set; }
+        public string ServicesMainImage { get; set; }
+        public bool isActive { get; set; }
     }
 }

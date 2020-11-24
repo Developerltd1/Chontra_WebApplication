@@ -178,7 +178,7 @@ namespace BusinessLayerLibrary
             using (ChontraEntityModel objContext = new ChontraEntityModel())
             {
 
-                var result = objContext.Events
+                var result = objContext.HallEvents
                              .Where(dbr => dbr.isActive.Equals(true))
                              .Select(dbr => new ClsMainModel.ClsEvent
                              {
@@ -195,8 +195,8 @@ namespace BusinessLayerLibrary
             using (ChontraEntityModel objContext = new ChontraEntityModel())
             {
 
-                var result = (from eg in objContext.EventGalleries
-                              join e in objContext.Events on eg.Event_ID equals e.EventID
+                var result = (from eg in objContext.HallEventGalleries
+                              join e in objContext.HallEvents on eg.Event_ID equals e.EventID
                               where eg.isActive == true && eg.Event_ID == _EventID
                               select new ViewModel.MainViewModels.Gallery_N_GalleryDetilsViewModels
                               {

@@ -15,10 +15,12 @@ namespace BusinessLayerLibrary
     public partial class EventTiming
     {
         public int EventTimingID { get; set; }
-        public System.DateTime EventStartTiming { get; set; }
-        public System.DateTime EventEndTiming { get; set; }
+        public System.DateTime EventDateTime { get; set; }
         public int Customer_ID { get; set; }
         public int ServicesPicture_ID { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal Advance { get; set; }
+        public decimal Balance { get; set; }
         public bool isActive { get; set; }
         public int CreatedByUser_ID { get; set; }
         public System.DateTime CreatedDateTime { get; set; }

@@ -27,15 +27,17 @@
       <Parameter Name="RoleID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GeEventByDate" ReturnType="Collection(ChontraEntityDBModel.GeEventByDate_Result)" />
+    <FunctionImport Name="GetAllUsers" ReturnType="Collection(ChontraEntityDBModel.GetAllUsers_Result)" />
+    <FunctionImport Name="GetEventTimingDetails" ReturnType="Collection(ChontraEntityDBModel.GetEventTimingDetails_Result)" />
     <EntitySet Name="Branches" EntityType="ChontraEntityDBModel.Branch" />
     <EntitySet Name="Contacts" EntityType="ChontraEntityDBModel.Contact" />
     <EntitySet Name="Customers" EntityType="ChontraEntityDBModel.Customer" />
-    <EntitySet Name="CustomerEventDetails" EntityType="ChontraEntityDBModel.CustomerEventDetail" />
+    <EntitySet Name="CustomerEventOrders" EntityType="ChontraEntityDBModel.CustomerEventOrder" />
     <EntitySet Name="Decorations" EntityType="ChontraEntityDBModel.Decoration" />
-    <EntitySet Name="Events" EntityType="ChontraEntityDBModel.Event" />
-    <EntitySet Name="EventGalleries" EntityType="ChontraEntityDBModel.EventGallery" />
     <EntitySet Name="EventTimings" EntityType="ChontraEntityDBModel.EventTiming" />
     <EntitySet Name="EventTypes" EntityType="ChontraEntityDBModel.EventType" />
+    <EntitySet Name="HallEvents" EntityType="ChontraEntityDBModel.HallEvent" />
+    <EntitySet Name="HallEventGalleries" EntityType="ChontraEntityDBModel.HallEventGallery" />
     <EntitySet Name="Membership_Rolepages" EntityType="ChontraEntityDBModel.Membership_Rolepages" />
     <EntitySet Name="Membership_RoleUsers" EntityType="ChontraEntityDBModel.Membership_RoleUsers" />
     <EntitySet Name="Membership_Users" EntityType="ChontraEntityDBModel.Membership_Users" />
@@ -47,8 +49,26 @@
     <EntitySet Name="Sliders" EntityType="ChontraEntityDBModel.Slider" />
     <EntitySet Name="Stages" EntityType="ChontraEntityDBModel.Stage" />
     <EntitySet Name="SubMenus" EntityType="ChontraEntityDBModel.SubMenu" />
-    <FunctionImport Name="GetAllUsers" ReturnType="Collection(ChontraEntityDBModel.GetAllUsers_Result)" />
-    <FunctionImport Name="GetEventTimingDetails" ReturnType="Collection(ChontraEntityDBModel.GetEventTimingDetails_Result)" />
+    <FunctionImport Name="Admin_GetAllContactPage" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllContactPage_Result)" />
+    <FunctionImport Name="Admin_GetAllCustomer" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllCustomer_Result)" />
+    <FunctionImport Name="Admin_GetAllEventGallery__ByEventID">
+      <Parameter Name="EventID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_GetAllEventType" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllEventType_Result)" />
+    <FunctionImport Name="Admin_GetAllHallEvent" />
+    <FunctionImport Name="Admin_GetAllServices" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllServices_Result)" />
+    <FunctionImport Name="Admin_GetAllSlider" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllSlider_Result)" />
+    <FunctionImport Name="Admin_GetCustomerEventDetail__ByCustomerID">
+      <Parameter Name="Customer_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_GetPriceMenu" ReturnType="Collection(ChontraEntityDBModel.Admin_GetPriceMenu_Result)" />
+    <FunctionImport Name="Admin_GetPriceMenuPicture__ByPriceMenuID" ReturnType="Collection(ChontraEntityDBModel.Admin_GetPriceMenuPicture__ByPriceMenuID_Result)">
+      <Parameter Name="PriceMenuID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Admin_GetSelecPageForSlider" ReturnType="Collection(String)" />
+    <FunctionImport Name="Admin_GetServiceDetails__ByServiceID" ReturnType="Collection(ChontraEntityDBModel.Admin_GetServiceDetails__ByServiceID_Result)">
+      <Parameter Name="ServiceID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetSideMenusByRoleID_Result">
     <Property Type="Int32" Name="WebPageID" Nullable="false" />
@@ -93,6 +113,34 @@
     <Property Type="DateTime" Name="EventTiming" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="EventTimingID" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="GetAllUsers_Result">
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="11" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="String" Name="Image" Nullable="true" />
+    <Property Type="Int32" Name="Role_ID" Nullable="true" />
+    <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetEventTimingDetails_Result">
+    <Property Type="Int32" Name="CustomerEventDetailsID" Nullable="false" />
+    <Property Type="Int32" Name="Customer_ID" Nullable="false" />
+    <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="Services_ID" Nullable="false" />
+    <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="EventType_ID" Nullable="false" />
+    <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="ServicesPicture_ID" Nullable="false" />
+    <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="PriceMenu_ID" Nullable="false" />
+    <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
+    <Property Type="Int64" Name="Price" Nullable="false" />
+  </ComplexType>
   <EntityType Name="Branch">
     <Key>
       <PropertyRef Name="BranchID" />
@@ -135,13 +183,13 @@
     <Property Name="CustomerConact" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="CustomerCNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="CustomerAddress" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
     <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ModifiedByUser_ID" Type="Int32" />
     <Property Name="ModifiedByDateTime" Type="DateTime" Precision="3" />
-    <Property Name="isActive" Type="Boolean" Nullable="false" />
   </EntityType>
-  <EntityType Name="CustomerEventDetail">
+  <EntityType Name="CustomerEventOrder">
     <Key>
       <PropertyRef Name="CustomerEventDetailsID" />
     </Key>
@@ -151,14 +199,12 @@
     <Property Name="ServicesPicture_ID" Type="Int32" Nullable="false" />
     <Property Name="EventType_ID" Type="Int32" Nullable="false" />
     <Property Name="PriceMenu_ID" Type="Int32" Nullable="false" />
-    <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="Advance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
     <Property Name="EntryDateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ModifiedByUser_ID" Type="Int32" />
     <Property Name="ModifiedByDateTime" Type="DateTime" Precision="3" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="PerEventAmount" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="Decoration">
     <Key>
@@ -168,43 +214,17 @@
     <Property Name="DecorationType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
   </EntityType>
-  <EntityType Name="Event">
-    <Key>
-      <PropertyRef Name="EventID" />
-    </Key>
-    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EventTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="EventDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="EventMainPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
-    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
-    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-    <Property Name="isActive" Type="Boolean" Nullable="false" />
-  </EntityType>
-  <EntityType Name="EventGallery">
-    <Key>
-      <PropertyRef Name="EventGalleryID" />
-    </Key>
-    <Property Name="Event_ID" Type="Int32" Nullable="false" />
-    <Property Name="EventGalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EventGalleryTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="EventGalleryPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="isActive" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
-    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
-    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="EventTiming">
     <Key>
       <PropertyRef Name="EventTimingID" />
     </Key>
     <Property Name="EventTimingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EventStartTiming" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="EventEndTiming" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Customer_ID" Type="Int32" Nullable="false" />
     <Property Name="ServicesPicture_ID" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Advance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
     <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -222,6 +242,34 @@
     <Property Name="ModifyByUser_ID" Type="Int32" />
     <Property Name="ModifyDate" Type="DateTime" Precision="3" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HallEvent">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EventDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EventMainPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HallEventGallery">
+    <Key>
+      <PropertyRef Name="EventGalleryID" />
+    </Key>
+    <Property Name="Event_ID" Type="Int32" Nullable="false" />
+    <Property Name="EventGalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventGalleryTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="EventGalleryPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Membership_Rolepages">
     <Key>
@@ -363,32 +411,67 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="PriceMenu_ID" Type="Int32" Nullable="false" />
   </EntityType>
-  <ComplexType Name="GetAllUsers_Result">
-    <Property Type="Int32" Name="UserID" Nullable="false" />
-    <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="11" />
-    <Property Type="Boolean" Name="IsActive" Nullable="true" />
-    <Property Type="String" Name="Image" Nullable="true" />
-    <Property Type="Int32" Name="Role_ID" Nullable="true" />
-    <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+  <ComplexType Name="Admin_GetAllContactPage_Result">
+    <Property Type="Int32" Name="ContactID" Nullable="false" />
+    <Property Type="String" Name="ContactName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ContactPhone" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="ContactSubject" Nullable="true" />
+    <Property Type="String" Name="ContactMessage" Nullable="true" />
+    <Property Type="String" Name="ContactAddress" Nullable="true" />
+    <Property Type="String" Name="ContactOurPhone" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ContactMobile1" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ContactMobile2" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ContactTitle" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ContactDescription" Nullable="true" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="GetEventTimingDetails_Result">
-    <Property Type="Int32" Name="CustomerEventDetailsID" Nullable="false" />
-    <Property Type="Int32" Name="Customer_ID" Nullable="false" />
+  <ComplexType Name="Admin_GetAllCustomer_Result">
+    <Property Type="Int32" Name="CustomerID" Nullable="false" />
     <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
     <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
-    <Property Type="Int32" Name="Services_ID" Nullable="false" />
-    <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
-    <Property Type="Int32" Name="EventType_ID" Nullable="false" />
+    <Property Type="String" Name="CustomerAddress" Nullable="true" MaxLength="99" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllEventType_Result">
     <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="ServicesPicture_ID" Nullable="false" />
-    <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
-    <Property Type="Int32" Name="PriceMenu_ID" Nullable="false" />
+    <Property Type="Int32" Name="EventTypeID" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllServices_Result">
+    <Property Type="Int32" Name="ServicesID" Nullable="false" />
+    <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ServicesDescription" Nullable="true" />
+    <Property Type="String" Name="ServicesMainImage" Nullable="true" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllSlider_Result">
+    <Property Type="Int32" Name="SliderID" Nullable="false" />
+    <Property Type="String" Name="SliderTitle" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="SliderDecription" Nullable="false" MaxLength="800" />
+    <Property Type="String" Name="SliderImagePath" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+    <Property Type="String" Name="SelecPage" Nullable="false" MaxLength="150" />
+    <Property Type="Boolean" Name="isVideo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetPriceMenu_Result">
+    <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
     <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
     <Property Type="Int64" Name="Price" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
+    <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+    <Property Type="String" Name="PriceMenuPicture" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetServiceDetails__ByServiceID_Result">
+    <Property Type="Int32" Name="Services_ID" Nullable="false" />
+    <Property Type="Int32" Name="EventTypeID" Nullable="false" />
+    <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="ServicesPictureID" Nullable="false" />
+    <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="ServicesPictureDescription" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
   </ComplexType>
 </Schema>

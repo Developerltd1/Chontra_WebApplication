@@ -8,12 +8,12 @@
         <EntityTypeShape EntityType="ChontraEntityDBModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ChontraEntityDBModel.Contact" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="ChontraEntityDBModel.Customer" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.CustomerEventDetail" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ChontraEntityDBModel.CustomerEventOrder" Width="1.5" PointX="4.75" PointY="4.75" />
         <EntityTypeShape EntityType="ChontraEntityDBModel.Decoration" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Event" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.EventGallery" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.EventTiming" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.EventType" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChontraEntityDBModel.EventTiming" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ChontraEntityDBModel.EventType" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ChontraEntityDBModel.HallEvent" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ChontraEntityDBModel.HallEventGallery" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_Rolepages" Width="1.5" PointX="8.75" PointY="4.75" />
         <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_RoleUsers" Width="1.5" PointX="8.75" PointY="7.75" />
         <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_Users" Width="1.5" PointX="2.75" PointY="9.75" />

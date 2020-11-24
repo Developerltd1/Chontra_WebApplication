@@ -12,17 +12,16 @@ namespace BusinessLayerLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class HallEvent
     {
-        public int CustomerID { get; set; }
-        public string CustomerName { get; set; }
-        public string CustomerConact { get; set; }
-        public string CustomerCNIC { get; set; }
-        public string CustomerAddress { get; set; }
-        public bool isActive { get; set; }
+        public int EventID { get; set; }
+        public string EventTitle { get; set; }
+        public string EventDescription { get; set; }
+        public string EventMainPicture { get; set; }
         public int CreatedByUser_ID { get; set; }
-        public System.DateTime EntryDate { get; set; }
-        public Nullable<int> ModifiedByUser_ID { get; set; }
-        public Nullable<System.DateTime> ModifiedByDateTime { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public int ModifyByUser_ID { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
+        public bool isActive { get; set; }
     }
 }

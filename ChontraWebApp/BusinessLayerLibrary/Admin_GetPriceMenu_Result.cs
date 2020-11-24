@@ -11,13 +11,11 @@ namespace BusinessLayerLibrary
 {
     using System;
     
-    public partial class GeEventByDate_Result
+    public partial class Admin_GetPriceMenu_Result
     {
-        public string ServicesTitle { get; set; }
-        public string EventType { get; set; }
-        public string ServicesPictureTitle { get; set; }
-        public string CustomerName { get; set; }
-        public System.DateTime EventTiming { get; set; }
-        public int EventTimingID { get; set; }
+        public int PriceMenuID { get; set; }
+        public string PriceMenuTitle { get; set; }
+        public long Price { get; set; }
+        public bool isActive { get; set; }
     }
 }

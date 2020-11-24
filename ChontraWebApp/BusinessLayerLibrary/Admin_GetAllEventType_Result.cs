@@ -10,18 +10,11 @@
 namespace BusinessLayerLibrary
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class EventGallery
+    public partial class Admin_GetAllEventType_Result
     {
-        public int Event_ID { get; set; }
-        public int EventGalleryID { get; set; }
-        public string EventGalleryTitle { get; set; }
-        public string EventGalleryPicturePath { get; set; }
+        public string EventType { get; set; }
+        public int EventTypeID { get; set; }
         public bool isActive { get; set; }
-        public int CreatedByUser_ID { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public int ModifyByUser_ID { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
     }
 }
