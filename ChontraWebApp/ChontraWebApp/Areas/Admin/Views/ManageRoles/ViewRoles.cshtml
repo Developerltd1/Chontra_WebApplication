@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "ViewRoles";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <!-- DataTables -->
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-sm-12">
+                <div class="card box-shadow">
+                    <h4 class="card-header">
+                        <i class="mdi mdi-account-clock-outline"></i> User Roles
+                        @if (ViewBag.CanAdd)
+                        {
+                            <a class="btn btn-success waves-effect btn-sm float-right mdi mdi-plus text-white" onclick="location.href='@Url.Action("AddRole", "Roles")'">
+                                New Role
+                            </a>
+                        }
+                    </h4>
+                    <div class="card-body">
+                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Role Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    int RowNo = 0;
+                                    foreach (var item in Model)
+                                    {
+                                        RowNo += 1;
+                                        <tr>
+                                            <td>@RowNo</td>
+                                            <td>@item.RoleName</td>
+                                            <td>
+                                                @if (item.IsActive)
+                                                {
+                                                    <span class="badge  badge-round badge-primary">Active</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge  badge-round badge-danger">Deactive</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (ViewBag.CanUpdate)
+                                                {
+                                                    <a class="btn btn-primary btn-sm mdi mdi-account-edit-outline" title="Edit"  href='@Url.Action("EditRole", "ManageRoles", new { id = 1 @*MyCode.Utilities.MyExtensions.EncryptURL(item.RoleID.ToString())*@ })'>  <!--StaticChange-->
+                                                EDIT  
+                                                </a>
+                                                
+                                                }
+                                                <h4 class="d-inline"> &nbsp | &nbsp</h4>  
+                                               
+
+                                                @if (ViewBag.CanDelete)
+                                                { 
+                                                    <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" href="@Url.Action("ChangeStatus", "Roles", new { id = MyCode.Utilities.MyExtensions.EncryptURL(item.RoleID.ToString()) })">
+                                                    DELETE
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+
+
+@section scripts{
+    <!-- Required datatable js -->
+
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/jszip/jszip.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <!-- Datatable init js -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/datatables.init.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/bootbox.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a.btn-danger').on('click', function (e) {
+
+                e.preventDefault();
+                var url = $(this).attr('href');
+
+                Swal.fire({
+                    title: "Attention",
+                    text: "Are you sure to Change  Status?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#34c38f",
+                    cancelButtonColor: "#f46a6a",
+                    confirmButtonText: "Yes, Change it!"
+                }).then(function (result) {
+                    if (result.value) {
+                        window.location.href = url;
+                        //Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                    }
+                });
+            });
+            //$('#1').addClass('active open');
+            //$('#1 div.collapsible-body').attr('style', 'display: block;');
+            //$('#2').addClass('active');
+            //$('#2 a').addClass('active');
+            //$('a.btn-danger').on('click', function (e) {
+            //    e.preventDefault();
+            //    var url = $(this).attr('href');
+            //    bootbox.confirm({
+            //        title: "<h1>Attention!<h1>",
+            //        message: "<h2>Are you sure to Change Role Status?</h2>",
+            //        buttons: {
+            //            cancel: {
+            //                label: '<i class="fa fa-times"></i> No',
+            //                className: 'waves-effect waves-light btn-rounded btn-success'
+            //            },
+            //            confirm: {
+            //                label: '<i class="fa fa-check"></i> Yes',
+            //                className: 'waves-effect waves-light btn-rounded btn-danger'
+            //            }
+            //        },
+            //        callback: function (result) {
+            //            if (result == true) {
+            //                window.location.href = url;
+            //            }
+            //        }
+            //    });
+            //});
+            //$('#tbl').DataTable({
+            //    "lengthMenu": [
+            //      [10, 25, 50, -1],
+            //      [10, 25, 50, "All"]
+            //    ]
+            //});
+        });
+    </script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/sweet-alerts.init.js"></script>
+}

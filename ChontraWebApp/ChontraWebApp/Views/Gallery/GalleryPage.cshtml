@@ -1,0 +1,289 @@
+﻿@model IEnumerable < BusinessLayerLibrary.CustomModels.ClsMainModel.ClsEvent>
+@{
+     
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+@section styles{
+
+<style>
+    .move-bg {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        -webkit-backface-visibility: hidden;
+    }
+
+
+    /* img-hover-wraps */
+    .img-hover-wrap {
+        -webkit-transition: transform .3s ease;
+        -o-transition: transform .3s ease;
+        transition: transform .3s ease;
+        -moz-transform-style: flat !important;
+        -webkit-backface-visibility: hidden;
+    }
+
+        .img-hover-wrap:hover {
+            -webkit-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
+            z-index: 2;
+        }
+
+    .img-hover-card:after {
+        content: " ";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        transition: all .3s ease;
+        opacity: 0;
+    }
+
+    .img-hover-wrap.show-title .img-hover-card:after {
+        opacity: 0.5;
+    }
+
+    .img-hover-wrap:hover .img-hover-card:after {
+        opacity: 1;
+    }
+
+    .img-hover-card {
+        position: relative;
+        display: block;
+        will-change: transform;
+        transition: all .3s ease;
+        box-shadow: 0 10px 40px transparent;
+    }
+
+        .img-hover-card img {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+        }
+
+        .img-hover-card.hover-in {
+            transition: -webkit-transform .2s ease-out;
+            transition: transform .2s ease-out;
+            transition: transform .2s ease-out, -webkit-transform .2s ease-out;
+        }
+
+        .img-hover-card.hover-3d. {
+            z-index: 2;
+        }
+
+        .img-hover-card.hover-out {
+            transition: -webkit-transform .2s ease-in;
+            transition: transform .2s ease-in;
+            transition: transform .2s ease-in, -webkit-transform .2s ease-in;
+        }
+
+    .img-hover-wrap:hover .img-hover-card {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .img-hover-wrap.show-title .img-hover-title,
+    .img-hover-wrap.show-title .img-hover-category {
+        -webkit-transform: translateY(0) scale(1);
+        -ms-transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    .img-hover-wrap.show-title:hover .img-hover-title,
+    .img-hover-wrap.show-title:hover .img-hover-category {
+        -webkit-transform: scale(1.106);
+        -ms-transform: scale(1.106);
+        transform: scale(1.106);
+    }
+
+    .img-hover-wrap:hover .img-hover-title,
+    .img-hover-wrap:hover .img-hover-category {
+        -webkit-transform: translateY(0) scale(1);
+        -ms-transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    .img-hover-detail {
+        position: absolute;
+        left: 40px;
+        right: 40px;
+        top: 40px;
+        bottom: 40px;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        pointer-events: none;
+        -webkit-transform: translateZ(40px);
+        transform: translateZ(40px);
+        -webkit-backface-visibility: hidden;
+    }
+
+    .img-hover-title {
+        margin: 0 0 10px;
+        font-size: 24px;
+        font-weight: 700;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+        transition: .4s ease;
+        opacity: 0;
+        -webkit-transform: translateY(40px) scale(0);
+        -ms-transform: translateY(40px) scale(0);
+        transform: translateY(40px) scale(0);
+        will-change: transform;
+    }
+
+    .img-hover-category {
+        opacity: 0;
+        margin: 0 0 18px;
+        font-family: 'Lato';
+        transition: .4s ease;
+        transition-delay: .1s;
+        -webkit-transform: translateY(40px) scale(0);
+        -ms-transform: translateY(40px) scale(0);
+        transform: translateY(40px) scale(0);
+        will-change: transform;
+    }
+
+    .img-hover-detail a {
+        color: #FFF;
+    }
+</style>
+    
+    }
+
+
+
+<!-- Page Title
+        ============================================= -->
+<section id="page-title" class="page-title-mini" style="margin-top:-6% ">
+
+    <div class="container clearfix">
+        <h1>@ViewBag.Title</h1>
+        <span>Everything you need to know about our Company</span>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
+
+<!-- Content
+    ============================================= -->
+<section id="content" style="margin-bottom:-5%">
+    <div class="content-wrap">
+        <div class="container topmargin">
+             <div class="row clearfix">
+              @foreach (var item in Model)
+              {
+                <div class="col-md-4">
+                    <div class="img-hover-wrap">
+                        <div class="img-hover-card">
+                                <img src="@item.EventMainPicture" alt="@item.EventTitle">
+                                <div class="img-hover-detail">
+                                    <h2 class="img-hover-title"><a href="@Url.Action("GalleryPictureDetail","Gallery", new { id = @item.EventID })">@item.EventTitle</a></h2>
+                                    <small class="img-hover-category"><a href="@Url.Action("GalleryPictureDetail","Gallery", new { id = @item.EventID })">@item.EventDescription</a></small>
+                                </div>
+
+                          </div>
+                        <p ><a href="@Url.Action("GalleryPictureDetail","Gallery", new { id = @item.EventID })" class="button button-dark text-center col-12 ">@item.EventTitle</a></p>
+                    </div>
+                </div>
+              }
+            </div>
+        </div>
+
+     
+        <div class="si-sticky si-sticky-right d-none d-lg-block" style="z-index: 399;">
+            <a href="#" class="social-icon si-colored si-facebook" data-animate="bounceInRight">
+                <i class="icon-facebook"></i>
+                <i class="icon-facebook"></i>
+            </a>
+            <a href="#" class="social-icon si-colored si-twitter" data-animate="bounceInRight" data-delay="100">
+                <i class="icon-twitter"></i>
+                <i class="icon-twitter"></i>
+            </a>
+            <a href="#" class="social-icon si-colored si-pinterest" data-animate="bounceInRight" data-delay="200">
+                <i class="icon-pinterest"></i>
+                <i class="icon-pinterest"></i>
+            </a>
+            <a href="#" class="social-icon si-colored si-instagram" data-animate="bounceInRight" data-delay="300">
+                <i class="icon-instagram"></i>
+                <i class="icon-instagram"></i>
+            </a>
+            <a href="#" class="social-icon si-colored si-gplus" data-animate="bounceInRight" data-delay="600">
+                <i class="icon-gplus"></i>
+                <i class="icon-gplus"></i>
+            </a>
+            <a href="#" class="social-icon si-colored si-rss" data-animate="bounceInRight" data-delay="700">
+                <i class="icon-rss"></i>
+                <i class="icon-rss"></i>
+            </a>
+        </div>
+    </div>
+</section><!-- #content end -->
+
+@section scripts{
+
+    <!-- JavaScripts
+        ============================================= -->
+    <script src="~/ContentWebsite/js/hover3d.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/ContentWebsite/js/functions.js"></script>
+    <script>
+    
+    		jQuery(document).ready( function(){
+			if( !jQuery('body').hasClass('device-touch') ) {
+
+				var lFollowX = 0,
+					lFollowY = 0,
+					x = 0,
+					y = 0,
+					friction = 1 / 30;
+
+				function moveBackground() {
+					x += (lFollowX - x) * friction;
+					y += (lFollowY - y) * friction;
+
+					translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+					jQuery('.move-bg').css({
+						'-webit-transform': translate,
+						'-moz-transform': translate,
+						'transform': translate
+					});
+
+					window.requestAnimationFrame(moveBackground);
+				}
+				jQuery('.move-bg').parents('.section').on('mousemove click', function(e) {
+
+					var lMouseX = Math.max(-100, Math.min(100, jQuery(window).width() / 2 - e.clientX));
+					var lMouseY = Math.max(-100, Math.min(100, jQuery(window).height() / 2 - e.clientY));
+					lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+					lFollowY = (20 * lMouseY) / 100;
+				});
+				moveBackground();
+			}
+			jQuery(".img-hover-wrap").hover3d({
+				selector: ".img-hover-card",
+				shine: false,
+			});
+		});
+    </script>
+}
+
+
+

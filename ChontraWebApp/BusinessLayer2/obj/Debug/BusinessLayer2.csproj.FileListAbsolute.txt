@@ -1,0 +1,78 @@
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.dll
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.xml
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\obj\Debug\BusinessLayer2.csprojResolveAssemblyReference.cache
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+E:\EducationalVideo\Websites\ASP.NET\MVC\WebMVCapp1\WebMVCapp1 - Nazim Bhai 2\WebMVCapp1\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.dll
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.xml
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+C:\Users\Nazim\Downloads\WebMVCapp1 Pack with 3 Errors\WebMVCapp1\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\documents\visual studio 2013\Projects\WebMVCapp1\BusinessLayer2\obj\Debug\BusinessLayer2.csprojResolveAssemblyReference.cache
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\EntityFramework.dll
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\EntityFramework.xml
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\obj\Debug\BusinessLayer2.csprojResolveAssemblyReference.cache
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+C:\Users\Nazim\documents\visual studio 2013\Projects\Almamoon01\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\EntityFramework.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\EntityFramework.xml
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\obj\Debug\BusinessLayer2.csprojResolveAssemblyReference.cache
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\Movers\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\EntityFramework.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\EntityFramework.xml
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\obj\Debug\BusinessLayer2.csprojResolveAssemblyReference.cache
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+C:\Users\Nazim\Documents\Visual Studio 2013\Projects\PnD\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\EntityFramework.dll
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\EntityFramework.xml
+D:\private-projetcs\Fcss\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+D:\private-projetcs\Fcss\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+D:\private-projetcs\Fcss\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\EntityFramework.dll
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\EntityFramework.xml
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\obj\Debug\BusinessLayer2.csprojResolveAssemblyReference.cache
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+D:\Application\Web\ASP.NET\MVC\NazimBhai_AdminLTEMVC\Fcss\BusinessLayer2\obj\Debug\BusinessLayer2.pdb
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\BusinessLayer2.dll.config
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\BusinessLayer2.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\BusinessLayer2.pdb
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\EntityFramework.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\EntityFramework.xml
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\bin\Debug\EntityFramework.SqlServer.xml
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\obj\Debug\BusinessLayer2.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayer2\obj\Debug\BusinessLayer2.pdb

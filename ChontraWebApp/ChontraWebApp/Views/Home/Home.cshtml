@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+
+@*========Condition Partial Calling from Action to View=======*@
+
+@{Html.RenderAction("PartialAboutSlider");}<!--HomeSlider-->
+@{Html.RenderAction("PartialDailyEventsTable");}<!--Calander-->
+@{Html.RenderAction("PartialPriceMenu");}<!--Menu-->
+@Html.Partial("~/Views/Home/_PartialVideoGallery.cshtml") <!--VideoGallery-->
+@{Html.RenderAction("PartialGallery");}<!--PicGallery-->
+@{Html.RenderAction("PartiaServices");}<!--HomeServices-->
+
+@Html.Partial("~/Views/Home/_PartialFooterSlider.cshtml") <!--FooterSlider-->
+
+   
+    
+@*@Html.Partial("~/Views/Home/_PartialHomeMixGallery.cshtml") <!--HomeMixGallery-->*@
+
+    
+
+
+

@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbSiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblApplication">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Job_ID" Type="int" Nullable="false" />
+    <Property Name="ApplicantName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FatherHusbandName" Type="varchar" MaxLength="50" />
+    <Property Name="CNIC" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="15" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Experience" Type="float" />
+    <Property Name="MailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DomicileDistrict_ID" Type="int" Nullable="false" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="50" />
+    <Property Name="EntryDateTime" Type="smalldatetime" />
+    <Property Name="CheckDateTime" Type="smalldatetime" />
+    <Property Name="TotalExperience" Type="varchar" MaxLength="100" />
+    <Property Name="CVPath" Type="varchar" MaxLength="50" />
+    <Property Name="EntryDate" Type="smalldatetime" />
+    <Property Name="Gender" Type="char" MaxLength="1" />
+    <Property Name="EnterByUser_ID" Type="int" Nullable="false" />
+    <Property Name="ModifyByUser_ID" Type="int" />
+    <Property Name="ModifyDate" Type="smalldatetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblClient">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientName" Type="varchar" MaxLength="50" />
+    <Property Name="ClientLogo" Type="varchar" MaxLength="10" />
+    <Property Name="ClientType" Type="int" />
+    <Property Name="ShowOnHome" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="EnterByUser_ID" Type="int" />
+    <Property Name="EntryDate" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="tblContact">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="20" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="13" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="20" />
+    <Property Name="WhatsappNo" Type="varchar" MaxLength="15" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="MailAddress" Type="varchar" MaxLength="150" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="ModifyDate" Type="smalldatetime" />
+    <Property Name="ModifyBy_ID" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblDownload">
+    <Key>
+      <PropertyRef Name="DownloadID" />
+    </Key>
+    <Property Name="DownloadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DownloadTitle" Type="varchar" MaxLength="250" />
+    <Property Name="Details" Type="varchar" MaxLength="350" />
+    <Property Name="DownloadPath" Type="varchar" MaxLength="50" />
+    <Property Name="EnterByUser_ID" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblEvent">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EventDetail" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="EventDate" Type="smalldatetime" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="ModifyDate" Type="smalldatetime" />
+    <Property Name="ModifyBy_ID" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="TitleImagePath" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar" MaxLength="15" />
+    <Property Name="EventVenue" Type="nvarchar" MaxLength="100" />
+    <Property Name="EventTextDate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblFacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="12" />
+    <Property Name="Counts" Type="varchar" MaxLength="10" />
+    <Property Name="Start" Type="varchar" MaxLength="5" />
+    <Property Name="Speed" Type="varchar" MaxLength="5" />
+    <Property Name="Interval" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="tblGallery">
+    <Key>
+      <PropertyRef Name="GalleryID" />
+    </Key>
+    <Property Name="GalleryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GalleryImage" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="GalleryTitle" Type="varchar" MaxLength="99" Nullable="false" />
+    <Property Name="GalleryDescription" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Type" Type="char" MaxLength="1" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="Year" Type="varchar" MaxLength="4" />
+    <Property Name="Alt" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblJob">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PostDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="ClosingDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EnterByUser_ID" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="ModifyByUser_ID" Type="int" />
+    <Property Name="ModifyDate" Type="smalldatetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="AdvPath" Type="varchar" MaxLength="50" />
+    <Property Name="Details" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tblNews">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewsTitle" Type="varchar" MaxLength="99" />
+    <Property Name="NewsDescription" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="NewsPicPath" Type="varchar" MaxLength="15" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPayment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="PaymentComments" Type="varchar" MaxLength="99" Nullable="false" />
+    <Property Name="PaymentMode" Type="int" Nullable="false" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblQuote">
+    <Key>
+      <PropertyRef Name="QuoteID" />
+    </Key>
+    <Property Name="QuoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromLoc" Type="varchar" MaxLength="150" />
+    <Property Name="ToLoc" Type="varchar" MaxLength="150" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Organization" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="13" />
+    <Property Name="QuoteType" Type="varchar" MaxLength="15" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Details" Type="varchar" MaxLength="1024" />
+    <Property Name="IsRecieved" Type="int" />
+  </EntityType>
+  <EntityType Name="tblService">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Name="ServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServiceName" Type="varchar" MaxLength="50" />
+    <Property Name="ServiceImagePath" Type="varchar" MaxLength="10" />
+    <Property Name="B1" Type="varchar" MaxLength="100" />
+    <Property Name="B2" Type="varchar" MaxLength="100" />
+    <Property Name="B3" Type="varchar" MaxLength="100" />
+    <Property Name="B4" Type="varchar" MaxLength="100" />
+    <Property Name="B5" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSlider">
+    <Key>
+      <PropertyRef Name="SliderID" />
+    </Key>
+    <Property Name="SliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SliderImage" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="SliderCap1" Type="varchar" MaxLength="75" />
+    <Property Name="SliderCap2" Type="varchar" MaxLength="50" />
+    <Property Name="SliderCap3" Type="varchar" MaxLength="50" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="EntryDate" Type="smalldatetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTeamMember">
+    <Key>
+      <PropertyRef Name="MemID" />
+    </Key>
+    <Property Name="MemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="150" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="MemberContactNo" Type="varchar" MaxLength="15" />
+    <Property Name="MemberEmail" Type="varchar" MaxLength="50" />
+    <Property Name="MemberAddress" Type="varchar" MaxLength="50" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="150" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ModifyDate" Type="smalldatetime" />
+    <Property Name="ModifyBy_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblTestimonial">
+    <Key>
+      <PropertyRef Name="TestimonialID" />
+    </Key>
+    <Property Name="TestimonialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Details" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="PicPath" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Desg" Type="varchar" MaxLength="50" />
+    <Property Name="Rating" Type="float" />
+  </EntityType>
+  <EntityType Name="tblText">
+    <Key>
+      <PropertyRef Name="TextID" />
+    </Key>
+    <Property Name="TextID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TextTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TextPage" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TextDetail" Type="nvarchar" MaxLength="1024" Nullable="false" />
+    <Property Name="TextType_ID" Type="tinyint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="EntryDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="EnterBy_ID" Type="int" Nullable="false" />
+    <Property Name="ModifyDate" Type="smalldatetime" />
+    <Property Name="ModifyBy_ID" Type="int" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityContainer Name="dbSiteModelStoreContainer">
+    <EntitySet Name="tblApplication" EntityType="Self.tblApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblClient" EntityType="Self.tblClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContact" EntityType="Self.tblContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDownload" EntityType="Self.tblDownload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEvent" EntityType="Self.tblEvent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFacts" EntityType="Self.tblFacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGallery" EntityType="Self.tblGallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblJob" EntityType="Self.tblJob" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblNews" EntityType="Self.tblNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblQuote" EntityType="Self.tblQuote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblService" EntityType="Self.tblService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSlider" EntityType="Self.tblSlider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTeamMember" EntityType="Self.tblTeamMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTestimonial" EntityType="Self.tblTestimonial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblText" EntityType="Self.tblText" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

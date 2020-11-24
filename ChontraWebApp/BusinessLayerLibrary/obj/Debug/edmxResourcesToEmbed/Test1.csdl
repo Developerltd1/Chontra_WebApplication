@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChontraDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PriceMenu">
+    <Key>
+      <PropertyRef Name="PriceMenuID" />
+    </Key>
+    <Property Name="PriceMenuID" Type="Int32" Nullable="false" />
+    <Property Name="PriceMenuTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Price" Type="Int64" Nullable="false" />
+    <Property Name="PriceMenuPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="FoodName1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FoodName2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName5" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName6" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName7" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName8" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName9" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName10" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName11" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName12" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName13" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName14" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName15" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName16" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName17" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName18" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName19" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FoodName20" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedByUser_ID" Type="Int32" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="ChontraDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PriceMenus" EntityType="Self.PriceMenu" />
+  </EntityContainer>
+</Schema>

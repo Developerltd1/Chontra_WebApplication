@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChontraDBModel1StoreContainer" CdmEntityContainer="ChontraDBEntities1">
+    <EntitySetMapping Name="PriceMenus">
+      <EntityTypeMapping TypeName="ChontraDBModel1.PriceMenu">
+        <MappingFragment StoreEntitySet="PriceMenu">
+          <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+          <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="PriceMenuPicture" ColumnName="PriceMenuPicture" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="FoodName1" ColumnName="FoodName1" />
+          <ScalarProperty Name="FoodName2" ColumnName="FoodName2" />
+          <ScalarProperty Name="FoodName3" ColumnName="FoodName3" />
+          <ScalarProperty Name="FoodName4" ColumnName="FoodName4" />
+          <ScalarProperty Name="FoodName5" ColumnName="FoodName5" />
+          <ScalarProperty Name="FoodName6" ColumnName="FoodName6" />
+          <ScalarProperty Name="FoodName7" ColumnName="FoodName7" />
+          <ScalarProperty Name="FoodName8" ColumnName="FoodName8" />
+          <ScalarProperty Name="FoodName9" ColumnName="FoodName9" />
+          <ScalarProperty Name="FoodName10" ColumnName="FoodName10" />
+          <ScalarProperty Name="FoodName11" ColumnName="FoodName11" />
+          <ScalarProperty Name="FoodName12" ColumnName="FoodName12" />
+          <ScalarProperty Name="FoodName13" ColumnName="FoodName13" />
+          <ScalarProperty Name="FoodName14" ColumnName="FoodName14" />
+          <ScalarProperty Name="FoodName15" ColumnName="FoodName15" />
+          <ScalarProperty Name="FoodName16" ColumnName="FoodName16" />
+          <ScalarProperty Name="FoodName17" ColumnName="FoodName17" />
+          <ScalarProperty Name="FoodName18" ColumnName="FoodName18" />
+          <ScalarProperty Name="FoodName19" ColumnName="FoodName19" />
+          <ScalarProperty Name="FoodName20" ColumnName="FoodName20" />
+          <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

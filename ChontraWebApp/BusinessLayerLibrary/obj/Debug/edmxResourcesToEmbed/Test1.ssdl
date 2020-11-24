@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChontraDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PriceMenu">
+    <Key>
+      <PropertyRef Name="PriceMenuID" />
+    </Key>
+    <Property Name="PriceMenuID" Type="int" Nullable="false" />
+    <Property Name="PriceMenuTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="bigint" Nullable="false" />
+    <Property Name="PriceMenuPicture" Type="varchar(max)" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="FoodName1" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="FoodName2" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName3" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName4" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName5" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName6" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName7" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName8" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName9" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName10" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName11" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName12" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName13" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName14" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName15" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName16" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName17" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName18" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName19" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName20" Type="varchar" MaxLength="150" />
+    <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedByUser_ID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="ChontraDBModel1StoreContainer">
+    <EntitySet Name="PriceMenu" EntityType="Self.PriceMenu" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

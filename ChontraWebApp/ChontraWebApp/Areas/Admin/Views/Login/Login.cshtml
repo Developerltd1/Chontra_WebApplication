@@ -1,0 +1,109 @@
+﻿@model  MyCode.DAL.ClsDALUsers
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent//css/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent/css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent/css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Contents/LoginContent/css/custom.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Login - Layout 3 | Canvas</title>
+</head>
+
+<body class="stretched">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+        <!-- Header
+        ============================================= -->
+        <div class="container  justify-content-center d-flex pt-5">
+            <a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="~/Areas/Admin/Contents/LoginContent/images/logo.png" alt="Canvas Logo"></a>
+        </div>
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container clearfix">
+
+                    <div class="accordion accordion-lg mx-auto mb-0 clearfix" style="max-width: 550px;" >
+
+                        <div class="accordion-header">
+                            <div class="accordion-icon">
+                                <i class="accordion-closed icon-lock3"></i>
+                                <i class="accordion-open icon-unlock"></i>
+                            </div>
+                            <div class="accordion-title">
+                                Login to your Account
+                            </div>
+                        </div>
+                        <div class="accordion-content clearfix">
+                            <form id="login-form" name="login-form" class="row mb-0" @*action="Admin/Login/Login"*@ method="post" role="form">
+                                <div class="col-12 form-group">
+                                    <label for="login-form-username">Username:</label>
+                                    <input type="text" id="Email" name="Email"  placeholder="User Name" required="required" value="" class="form-control" />
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <label for="login-form-password">Password:</label>
+                                    <input type="password"  id="Password" name="Password" placeholder="Password" required="required" value="" class="form-control" />
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <button class="button button-3d button-black m-0" id="btnLogin" type="submit">Login</button>
+                                    <a href="#" class="float-right">Forgot Password?</a>
+                                </div>
+
+                               
+                            </form>
+                            <div>
+                                <div class="row" >
+                                    <div class="col-12 d-flex align-content-center">
+                                        
+                                        @{ if (TempData["LoginFail"] != null)
+                                            {
+                                                <div class="alert alert-danger bg-danger text-white border-0" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    @TempData["LoginFail"]
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #content end -->
+    </div><!-- #wrapper end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts
+    ============================================= -->
+    <script src="~/Areas/Admin/Contents/LoginContent/js/jquery.js"></script>
+    <script src="~/Areas/Admin/Contents/LoginContent/js/plugins.min.js"></script>
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/Areas/Admin/Contents/LoginContent/js/functions.js"></script>
+
+</body>
+</html>
+

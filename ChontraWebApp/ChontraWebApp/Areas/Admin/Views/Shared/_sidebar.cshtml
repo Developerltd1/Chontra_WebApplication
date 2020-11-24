@@ -1,0 +1,58 @@
+﻿@using System.Linq;
+@model List<MyCode.DAL.ClsWebPages>
+
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+    <div data-simplebar class="h-100">
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li>
+                    <a href="@Url.Action("Dashboard","Dashboard", "Admin")">   @*@Html.Action("Menus", "Dashboard", "Admin")*@      @*@Url.Action("Index", "Dashboard")*@
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                @{
+                    List<MyCode.DAL.ClsWebPages> list2Child;  //ListToChild
+
+                    List<MyCode.DAL.ClsWebPages> menus = Model;  //MainList_From_Controller
+
+                    List<MyCode.DAL.ClsWebPages>
+                        Parents = menus.Where(d => d.Parent_ID == 0 && d.IsHorizantal == false).ToList();
+
+                    foreach (MyCode.DAL.ClsWebPages p in Parents)
+                    {
+                        if (!string.IsNullOrEmpty(p.MenuTitle))
+                        {
+                            <li class="menu-title">@p.MenuTitle</li> @*Heading1*@
+                        }
+
+                        list2Child = menus.Where(d => d.Parent_ID == p.WebPageID && d.IsHorizantal == false).ToList();
+                        if (list2Child.Count > 0)
+                        {
+                            <li id="@p.WebPageID">
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="mdi mdi-home"></i>  @*Heading2*@
+                                    <span>@p.PageTitle</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    @foreach (var c in list2Child)
+                                    {
+                                        if (!string.IsNullOrEmpty(c.PageTitle))
+                                        {
+                                            <li><a id="@c.WebPageID" href="@Url.Action(c.ViewName, c.ControllerName)">@c.PageTitle</a></li> @*Heading3*@
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->
