@@ -1,0 +1,5 @@
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\bin\Debug\MyCode.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\bin\Debug\MyCode.pdb
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\obj\Debug\MyCode.csprojResolveAssemblyReference.cache
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\obj\Debug\MyCode.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\obj\Debug\MyCode.pdb

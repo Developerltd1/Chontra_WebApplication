@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChontraDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactID" />
+    </Key>
+    <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactName" Type="varchar" MaxLength="150" />
+    <Property Name="ContactEmail" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPhone" Type="varchar" MaxLength="15" />
+    <Property Name="ContactSubject" Type="varchar(max)" />
+    <Property Name="ContactMessage" Type="varchar(max)" />
+    <Property Name="ContactAddress" Type="varchar(max)" />
+    <Property Name="ContactOurPhone" Type="varchar" MaxLength="20" />
+    <Property Name="ContactMobile1" Type="varchar" MaxLength="20" />
+    <Property Name="ContactMobile2" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedByUser_ID" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ModifiedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="MidfiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventTitle" Type="varbinary" MaxLength="250" Nullable="false" />
+    <Property Name="EventDescription" Type="varchar" MaxLength="500" />
+    <Property Name="EventMainPicture" Type="varchar(max)" Nullable="false" />
+    <Property Name="EventGallery_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventGallery">
+    <Key>
+      <PropertyRef Name="EventGalleryID" />
+    </Key>
+    <Property Name="EventGalleryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventGalleryTitle" Type="varchar" MaxLength="250" />
+    <Property Name="EventGalleryPicture" Type="varchar(max)" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventType">
+    <Key>
+      <PropertyRef Name="EventTypeID" />
+    </Key>
+    <Property Name="EventTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventType" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedByUser_ID" Type="int" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifyByUser_ID" Type="int" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Membership_Rolepages">
+    <Key>
+      <PropertyRef Name="RoleWebPageID" />
+    </Key>
+    <Property Name="RoleWebPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role_ID" Type="int" />
+    <Property Name="WebPage_ID" Type="int" />
+    <Property Name="HasInsert" Type="bit" />
+    <Property Name="HasUpdate" Type="bit" />
+    <Property Name="HasDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Membership_RoleUsers">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="0" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime2" Precision="0" />
+  </EntityType>
+  <EntityType Name="Membership_Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role_ID" Type="int" />
+    <Property Name="FullName" Type="varchar" MaxLength="100" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="200" />
+    <Property Name="MobileNumber" Type="varchar" MaxLength="11" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="UserKey" Type="uniqueidentifier" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Membership_Webpages">
+    <Key>
+      <PropertyRef Name="WebPageID" />
+    </Key>
+    <Property Name="WebPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parent_ID" Type="int" />
+    <Property Name="PageOrder" Type="int" />
+    <Property Name="AreaName" Type="varchar" MaxLength="50" />
+    <Property Name="ControllerName" Type="varchar" MaxLength="45" />
+    <Property Name="ViewName" Type="varchar" MaxLength="45" />
+    <Property Name="MenuTitle" Type="varchar" MaxLength="45" />
+    <Property Name="PageTitle" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="45" />
+    <Property Name="MenuColor" Type="varchar" MaxLength="50" />
+    <Property Name="IsHorizantal" Type="bit" />
+    <Property Name="IsVisible" Type="bit" />
+    <Property Name="PageIcon" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Membership_Webpageurls">
+    <Key>
+      <PropertyRef Name="WebPageUrlID" />
+    </Key>
+    <Property Name="WebPageUrlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WebPage_ID" Type="int" />
+    <Property Name="Url" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PriceMenu">
+    <Key>
+      <PropertyRef Name="PriceMenuID" />
+    </Key>
+    <Property Name="PriceMenuID" Type="int" Nullable="false" />
+    <Property Name="PriceMenuTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="bigint" Nullable="false" />
+    <Property Name="PriceMenuPicture" Type="varchar(max)" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="FoodName1" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="FoodName2" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName3" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName4" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName5" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName6" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName7" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName8" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName9" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName10" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName11" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName12" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName13" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName14" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName15" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName16" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName17" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName18" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName19" Type="varchar" MaxLength="150" />
+    <Property Name="FoodName20" Type="varchar" MaxLength="150" />
+    <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedByUser_ID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="ServicesID" />
+    </Key>
+    <Property Name="ServicesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServicesTitle" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ServicesDescription" Type="varchar(max)" />
+    <Property Name="ServicesMainImage" Type="varchar(max)" />
+    <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifyByUser_ID" Type="int" Nullable="false" />
+    <Property Name="ModifyDate" Type="datetime" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServicesPicture">
+    <Key>
+      <PropertyRef Name="ServicesPictureID" />
+    </Key>
+    <Property Name="ServicesPictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServicesPictureTitle" Type="varchar" MaxLength="250" />
+    <Property Name="ServicesPictureDescription" Type="varchar" MaxLength="350" />
+    <Property Name="ServicesPicturePicture" Type="varchar(max)" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="SliderID" />
+    </Key>
+    <Property Name="SliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SliderTitle" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="SliderDecription" Type="varchar" MaxLength="800" Nullable="false" />
+    <Property Name="SliderImagePath" Type="varchar(max)" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stages">
+    <Key>
+      <PropertyRef Name="StageID" />
+    </Key>
+    <Property Name="StageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StageTitle" Type="nchar" MaxLength="10" />
+    <Property Name="StageDescription" Type="nchar" MaxLength="10" />
+    <Property Name="EventType_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ChontraDBModelStoreContainer">
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventGallery" EntityType="Self.EventGallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Membership_Rolepages" EntityType="Self.Membership_Rolepages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Membership_RoleUsers" EntityType="Self.Membership_RoleUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Membership_Users" EntityType="Self.Membership_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Membership_Webpages" EntityType="Self.Membership_Webpages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Membership_Webpageurls" EntityType="Self.Membership_Webpageurls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PriceMenu" EntityType="Self.PriceMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicesPicture" EntityType="Self.ServicesPicture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stages" EntityType="Self.Stages" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,10 @@
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\BusinessLayerLibrary.dll.config
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\BusinessLayerLibrary.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\BusinessLayerLibrary.pdb
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\EntityFramework.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\EntityFramework.SqlServer.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\EntityFramework.xml
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\bin\Debug\EntityFramework.SqlServer.xml
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\obj\Debug\BusinessLayerLibrary.csprojResolveAssemblyReference.cache
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\obj\Debug\BusinessLayerLibrary.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BusinessLayerLibrary\obj\Debug\BusinessLayerLibrary.pdb

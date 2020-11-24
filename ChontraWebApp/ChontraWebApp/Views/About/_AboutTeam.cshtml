@@ -1,0 +1,33 @@
+﻿@model IEnumerable < BusinessLayerLibrary.ViewModel.MainViewModels.User_N_RoleViewModels>
+<div class="row col-mb-50 mb-0">
+@{
+   foreach (var item in Model)
+   {
+    <div class="col-lg-6">
+        <div class="team team-list row align-items-center">
+            <div class="team-image col-sm-6">
+                <img src="@item.Image" alt="John Doe">
+            </div>
+            <div class="team-desc col-sm-6">
+                <div class="team-title"><h4>@item.FullName</h4><span>@item.RoleName</span></div>
+                <div class="team-content">
+                    <p>@item.Description</p>
+                </div>
+                <a href="#" class="social-icon si-rounded si-small si-light si-facebook">
+                    <i class="icon-facebook"></i>
+                    <i class="icon-facebook"></i>
+                </a>
+                <a href="#" class="social-icon si-rounded si-small si-light si-twitter">
+                    <i class="icon-twitter"></i>
+                    <i class="icon-twitter"></i>
+                </a>
+                <a href="#" class="social-icon si-rounded si-small si-light si-gplus">
+                    <i class="icon-gplus"></i>
+                    <i class="icon-gplus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+   }
+}
+</div>

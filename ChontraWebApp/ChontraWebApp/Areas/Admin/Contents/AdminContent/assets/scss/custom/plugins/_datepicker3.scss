@@ -1,0 +1,25 @@
+﻿.datepicker-dropdown:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid $calendar-bg-color;
+    border-top: 0;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+}
+
+.datepicker-dropdown:after {
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid $calendar-bg-color;
+    border-top: 0;
+    position: absolute;
+}
+.datepicker.dropdown-menu {
+    background-color: $calendar-bg-color;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #333333;
+}

@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <meta content="developed by Developers.com" name="description" />
+    <meta content="AQIB" name="author" />
+
+    <link rel="shortcut icon" href="~/Areas/Admin/Contents/AdminContent/assets/images/logo-login.png">
+    @RenderSection("styles", required: false)
+
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/css/bootstrap.min.css" id="bootstrap-light" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/css/app.min.css" id="app-light" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/css/Custom.css" rel="stylesheet" />
+
+    <style>
+        .loaderajax {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba( 255, 255, 255, .8 ) url('http://sampsonresume.com/labs/pIkfp.gif') 50% 50% no-repeat;
+        }
+
+        body.loaderajax {
+            overflow: hidden;
+        }
+
+        body.loading .loaderajax {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        function showMessage(type, message) {
+            switch (type) {
+                case 'error':
+                    var html = '<div class="alert-danger bg-danger text-white border-0 alert msg-box"  role="alert">';
+                    html += '<strong><i class="mdi mdi-window-close"></i></strong>' + message;
+                    html += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+                    html += '<span aria-hidden="true">&times;</span>';
+                    html += '</button></div>';
+                    $('#alert-Message-jquery').html(html);
+                    $('#alert-Message-jquery').show();
+                    break;
+                case 'success':
+                    var html = '<div class="alert-success bg-success text-white border-0 alert msg-box"  role="alert">';
+                    html += '<strong><i class="mdi mdi-check-bold"></i></strong>' + message;
+                    html += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+                    html += '<span aria-hidden="true">&times;</span>';
+                    html += '</button></div>';
+                    $('#alert-Message-jquery').html(html);
+                    $('#alert-Message-jquery').show();
+                    break;
+                default:
+                    $('#alert-Message-jquery').html('');
+                    break;
+            }
+        }
+    </script>
+
+</head>
+<body data-sidebar="dark">
+
+
+
+    
+    <!-- Loader -->
+    <div id="preloader" class="loaderajax">
+        <div id="status">
+            <div class="spinner-chase">
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+                <div class="chase-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loaderajax"></div>
+    <div id="layout-wrapper">
+        @Html.Partial("~/Areas/Admin/Views/Shared/_topbar.cshtml") <!--Topbar-->
+        @Html.Action("Menus", "Dashboard", "Admin") <!--SideBar_Nav__frm_database-->
+
+        <div class="main-content" id="body-content">
+             @RenderBody() <!--Goto_Content_Page-->
+            <hr />
+            @Html.Partial("~/Areas/Admin/Views/Shared/_footer.cshtml")<!--Footer-->
+        </div>
+    </div>
+
+    <!-- Go Top -->
+    <a class="go-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+
+    <!-- Vlidation js -->
+    <script src="~/Areas/Admin/Contents/AdminContent/Scripts/jquery-1.10.2.js"></script>
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    <script src="~/Areas/Admin/Contents/AdminContent/Scripts/jquery.validate.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/Scripts/jquery.validate-vsdoc.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/simplebar/simplebar.min.js"></script>
+    <!-- Summernote js -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/app.js?@DateTime.Now.Ticks"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+
+                $(document).ajaxError(function (xhr, props) {
+                    if (props.status === 401) {
+                        window.location.href = "/Areas/Admin/Login/Login";
+                    }
+                });
+
+                //$("div.messagebox").delay(5000).slideUp(2000);
+                //$('button.close').click(function () {
+                //    $("div.messagebox").hide();
+                //});
+
+                $('#btnTemplate').change(function () {
+                    if ($(this).is(':checked')) {
+                        updateTheme(false, true, true);
+                        sessionStorage.setItem("theme", "light");
+                    } else {
+                        updateTheme(true, false, true);
+                        sessionStorage.setItem("theme", "dark");
+                    }
+                });
+                function updateTheme(light, dark, rtl) {
+                    $("#bootstrap-light").prop("disabled", light);
+                    $("#bootstrap-dark").prop("disabled", dark);
+                    $("#app-light").prop("disabled", (rtl) ? light : true);
+                    $("#app-dark").prop("disabled", dark);
+                    //  $("#app-rtl").prop("disabled", rtl);
+                }
+
+                if (window.sessionStorage) {
+                    var alreadyVisited = sessionStorage.getItem("theme");
+                    if (alreadyVisited == null) {
+                        sessionStorage.setItem("theme", "light");
+                        updateTheme(false, true, true);
+                    } else {
+                        if (alreadyVisited === "light") {
+                            updateTheme(false, true, true);
+                        } else if (alreadyVisited === "dark") {
+                            $('#btnTemplate').prop('checked', false);
+                            updateTheme(true, false, true);
+                        } else if (alreadyVisited === "rtl-mode-switch") {
+                            updateTheme(false, true, false);
+                        }
+                    }
+                };
+            });
+            $body = $("body");
+            $(document).on({
+                ajaxStart: function () { $body.addClass("loading"); },
+                ajaxStop: function () { $body.removeClass("loading"); },
+                ajaxError: function () { $body.removeClass("loading"); }
+            }).on('focus', '.select2', function (e) {
+                if (e.originalEvent) {
+                    $(this).siblings('select').select2('open');
+                }
+            });
+
+        //Alert TimeOut
+          window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 2000);
+
+
+    </script>
+</body>
+</html>

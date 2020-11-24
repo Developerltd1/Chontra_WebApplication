@@ -1,0 +1,995 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChontraEntityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="BranchAddress" Type="varchar(max)" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="30" />
+          <Property Name="LogoPath" Type="varchar(max)" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactName" Type="varchar" MaxLength="150" />
+          <Property Name="ContactEmail" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPhone" Type="varchar" MaxLength="15" />
+          <Property Name="ContactSubject" Type="varchar(max)" />
+          <Property Name="ContactMessage" Type="varchar(max)" />
+          <Property Name="ContactAddress" Type="varchar(max)" />
+          <Property Name="ContactOurPhone" Type="varchar" MaxLength="20" />
+          <Property Name="ContactMobile1" Type="varchar" MaxLength="20" />
+          <Property Name="ContactMobile2" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedByUser_ID" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ModifiedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="MidfiedDate" Type="datetime" Nullable="false" />
+          <Property Name="ContactTitle" Type="varchar" MaxLength="150" />
+          <Property Name="ContactDescription" Type="varchar(max)" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CustomerConact" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerCNIC" Type="varchar" MaxLength="15" />
+          <Property Name="CustomerAddress" Type="varchar" MaxLength="99" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Decoration">
+          <Key>
+            <PropertyRef Name="DecorationID" />
+          </Key>
+          <Property Name="DecorationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DecorationType" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTitle" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="EventDescription" Type="varchar" MaxLength="500" />
+          <Property Name="EventMainPicture" Type="varchar(max)" />
+          <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyByUser_ID" Type="int" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventGallery">
+          <Key>
+            <PropertyRef Name="EventGalleryID" />
+          </Key>
+          <Property Name="Event_ID" Type="int" Nullable="false" />
+          <Property Name="EventGalleryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventGalleryTitle" Type="varchar" MaxLength="250" />
+          <Property Name="EventGalleryPicturePath" Type="varchar(max)" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyByUser_ID" Type="int" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EventTiming">
+          <Key>
+            <PropertyRef Name="EventTimingID" />
+          </Key>
+          <Property Name="EventTimingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTiming" Type="datetime" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="ServicesPicture_ID" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventType" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="int" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyByUser_ID" Type="int" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership_Rolepages">
+          <Key>
+            <PropertyRef Name="RoleWebPageID" />
+          </Key>
+          <Property Name="RoleWebPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_ID" Type="int" />
+          <Property Name="WebPage_ID" Type="int" />
+          <Property Name="HasInsert" Type="bit" />
+          <Property Name="HasUpdate" Type="bit" />
+          <Property Name="HasDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Membership_RoleUsers">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="0" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime2" Precision="0" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Membership_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_ID" Type="int" />
+          <Property Name="FullName" Type="varchar" MaxLength="100" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="11" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Membership_Webpages">
+          <Key>
+            <PropertyRef Name="WebPageID" />
+          </Key>
+          <Property Name="WebPageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parent_ID" Type="int" />
+          <Property Name="PageOrder" Type="int" />
+          <Property Name="AreaName" Type="varchar" MaxLength="50" />
+          <Property Name="ControllerName" Type="varchar" MaxLength="45" />
+          <Property Name="ViewName" Type="varchar" MaxLength="45" />
+          <Property Name="MenuTitle" Type="varchar" MaxLength="45" />
+          <Property Name="PageTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="45" />
+          <Property Name="MenuColor" Type="varchar" MaxLength="50" />
+          <Property Name="IsHorizantal" Type="bit" />
+          <Property Name="IsVisible" Type="bit" />
+          <Property Name="PageIcon" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Membership_Webpageurls">
+          <Key>
+            <PropertyRef Name="WebPageUrlID" />
+          </Key>
+          <Property Name="WebPageUrlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WebPage_ID" Type="int" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PriceMenu">
+          <Key>
+            <PropertyRef Name="PriceMenuID" />
+          </Key>
+          <Property Name="PriceMenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriceMenuTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="bigint" Nullable="false" />
+          <Property Name="PriceMenuPicture" Type="varchar(max)" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByUser_ID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ServicesID" />
+          </Key>
+          <Property Name="ServicesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServicesTitle" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ServicesDescription" Type="varchar(max)" />
+          <Property Name="ServicesMainImage" Type="varchar(max)" />
+          <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyByUser_ID" Type="int" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicesPicture">
+          <Key>
+            <PropertyRef Name="ServicesPictureID" />
+          </Key>
+          <Property Name="ServicesPictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServicesPictureTitle" Type="varchar" MaxLength="250" />
+          <Property Name="ServicesPictureDescription" Type="varchar" MaxLength="350" />
+          <Property Name="ServicesPicturePath" Type="varchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="Services_ID" Type="int" Nullable="false" />
+          <Property Name="EventType_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SliderID" />
+          </Key>
+          <Property Name="SliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SliderTitle" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="SliderDecription" Type="varchar" MaxLength="800" Nullable="false" />
+          <Property Name="SliderImagePath" Type="varchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="SelecPage" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="isVideo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stages">
+          <Key>
+            <PropertyRef Name="StageID" />
+          </Key>
+          <Property Name="StageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StageTitle" Type="nchar" MaxLength="10" />
+          <Property Name="StageDescription" Type="nchar" MaxLength="10" />
+          <Property Name="EventType_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubMenu">
+          <Key>
+            <PropertyRef Name="SubMenuID" />
+          </Key>
+          <Property Name="SubMenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubMenuTitle" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedByUser_ID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="GeEventByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="in_RoleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="membership_AddRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="InOut" />
+          <Parameter Name="RoleName" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="membership_AddRolePages" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+          <Parameter Name="WebPage_ID" Type="int" Mode="In" />
+          <Parameter Name="HasInsert" Type="bit" Mode="In" />
+          <Parameter Name="HasUpdate" Type="bit" Mode="In" />
+          <Parameter Name="HasDelete" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="membership_AuthenticateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="in_UserName" Type="varchar" Mode="In" />
+          <Parameter Name="in_Password" Type="varchar" Mode="In" />
+          <Parameter Name="p_Status" Type="bit" Mode="InOut" />
+          <Parameter Name="p_StatusDetails" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="membership_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="membership_GetRoleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ChontraEntityDBModelStoreContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Decoration" EntityType="Self.Decoration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventGallery" EntityType="Self.EventGallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventTiming" EntityType="Self.EventTiming" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_Rolepages" EntityType="Self.Membership_Rolepages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_RoleUsers" EntityType="Self.Membership_RoleUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_Users" EntityType="Self.Membership_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_Webpages" EntityType="Self.Membership_Webpages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_Webpageurls" EntityType="Self.Membership_Webpageurls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceMenu" EntityType="Self.PriceMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesPicture" EntityType="Self.ServicesPicture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stages" EntityType="Self.Stages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChontraEntityDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ContactSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactOurPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContactMobile1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ContactMobile2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="MidfiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ContactTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ContactDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventType1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyByUser_ID" Type="Int32" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership_Rolepages">
+          <Key>
+            <PropertyRef Name="RoleWebPageID" />
+          </Key>
+          <Property Name="RoleWebPageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_ID" Type="Int32" />
+          <Property Name="WebPage_ID" Type="Int32" />
+          <Property Name="HasInsert" Type="Boolean" />
+          <Property Name="HasUpdate" Type="Boolean" />
+          <Property Name="HasDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Membership_RoleUsers">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Membership_Webpages">
+          <Key>
+            <PropertyRef Name="WebPageID" />
+          </Key>
+          <Property Name="WebPageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parent_ID" Type="Int32" />
+          <Property Name="PageOrder" Type="Int32" />
+          <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ControllerName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ViewName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="MenuTitle" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="PageTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="MenuColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsHorizantal" Type="Boolean" />
+          <Property Name="IsVisible" Type="Boolean" />
+          <Property Name="PageIcon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Membership_Webpageurls">
+          <Key>
+            <PropertyRef Name="WebPageUrlID" />
+          </Key>
+          <Property Name="WebPageUrlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WebPage_ID" Type="Int32" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ServicesID" />
+          </Key>
+          <Property Name="ServicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServicesTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServicesDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ServicesMainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stage">
+          <Key>
+            <PropertyRef Name="StageID" />
+          </Key>
+          <Property Name="StageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StageTitle" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="StageDescription" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EventType_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ChontraEntityModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="EventTypes" EntityType="Self.EventType" />
+          <EntitySet Name="Membership_Rolepages" EntityType="Self.Membership_Rolepages" />
+          <EntitySet Name="Membership_RoleUsers" EntityType="Self.Membership_RoleUsers" />
+          <EntitySet Name="Membership_Webpages" EntityType="Self.Membership_Webpages" />
+          <EntitySet Name="Membership_Webpageurls" EntityType="Self.Membership_Webpageurls" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="Stages" EntityType="Self.Stage" />
+          <FunctionImport Name="GetSideMenusByRoleID" ReturnType="Collection(ChontraEntityDBModel.GetSideMenusByRoleID_Result)">
+          <Parameter Name="in_RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="membership_AddRole" ReturnType="Collection(Int32)">
+            <Parameter Name="RoleID" Mode="InOut" Type="Int32" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="membership_AddRolePages">
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+            <Parameter Name="WebPage_ID" Mode="In" Type="Int32" />
+            <Parameter Name="HasInsert" Mode="In" Type="Boolean" />
+            <Parameter Name="HasUpdate" Mode="In" Type="Boolean" />
+            <Parameter Name="HasDelete" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="membership_AuthenticateUser" ReturnType="Collection(ChontraEntityDBModel.membership_AuthenticateUser_Result)">
+            <Parameter Name="in_UserName" Mode="In" Type="String" />
+            <Parameter Name="in_Password" Mode="In" Type="String" />
+            <Parameter Name="p_Status" Mode="InOut" Type="Boolean" />
+            <Parameter Name="p_StatusDetails" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="membership_GetAllRoles" ReturnType="Collection(ChontraEntityDBModel.membership_GetAllRoles_Result)" />
+          <FunctionImport Name="membership_GetRoleByID" ReturnType="Collection(ChontraEntityDBModel.membership_GetRoleByID_Result)">
+          <Parameter Name="RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Decorations" EntityType="ChontraEntityDBModel.Decoration" />
+          <EntitySet Name="ServicesPictures" EntityType="ChontraEntityDBModel.ServicesPicture" />
+          <EntitySet Name="Events" EntityType="ChontraEntityDBModel.Event" />
+          <EntitySet Name="EventGalleries" EntityType="ChontraEntityDBModel.EventGallery" />
+          <EntitySet Name="Branches" EntityType="ChontraEntityDBModel.Branch" />
+          <EntitySet Name="Membership_Users" EntityType="ChontraEntityDBModel.Membership_Users" />
+          <EntitySet Name="SubMenus" EntityType="ChontraEntityDBModel.SubMenu" />
+          <EntitySet Name="Sliders" EntityType="ChontraEntityDBModel.Slider" />
+          <EntitySet Name="PriceMenus" EntityType="ChontraEntityDBModel.PriceMenu" />
+          <EntitySet Name="Customers" EntityType="ChontraEntityDBModel.Customer" />
+          <EntitySet Name="EventTimings" EntityType="ChontraEntityDBModel.EventTiming" />
+          <FunctionImport Name="GeEventByDate" ReturnType="Collection(ChontraEntityDBModel.GeEventByDate_Result)">
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetSideMenusByRoleID_Result">
+          <Property Type="Int32" Name="WebPageID" Nullable="false" />
+          <Property Type="String" Name="PageTitle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AreaName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ControllerName" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="ViewName" Nullable="true" MaxLength="45" />
+          <Property Type="Int32" Name="Parent_ID" Nullable="true" />
+          <Property Type="Int32" Name="PageOrder" Nullable="true" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IsVisible" Nullable="true" />
+          <Property Type="String" Name="PageIcon" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="45" />
+          <Property Type="Boolean" Name="HasInsert" Nullable="true" />
+          <Property Type="Boolean" Name="HasUpdate" Nullable="true" />
+          <Property Type="Boolean" Name="HasDelete" Nullable="true" />
+          <Property Type="String" Name="MenuTitle" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="MenuColor" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsHorizantal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="membership_AuthenticateUser_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Role_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="membership_GetAllRoles_Result">
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="membership_GetRoleByID_Result">
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Decoration">
+          <Key>
+            <PropertyRef Name="DecorationID" />
+          </Key>
+          <Property Name="DecorationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DecorationType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicesPicture">
+          <Key>
+            <PropertyRef Name="ServicesPictureID" />
+          </Key>
+          <Property Name="Services_ID" Type="Int32" Nullable="false" />
+          <Property Name="EventType_ID" Type="Int32" Nullable="false" />
+          <Property Name="ServicesPictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServicesPictureTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ServicesPictureDescription" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="ServicesPicturePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EventDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EventMainPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventGallery">
+          <Key>
+            <PropertyRef Name="EventGalleryID" />
+          </Key>
+          <Property Name="Event_ID" Type="Int32" Nullable="false" />
+          <Property Name="EventGalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventGalleryTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EventGalleryPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BranchAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LogoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership_Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_ID" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SubMenu">
+          <Key>
+            <PropertyRef Name="SubMenuID" />
+          </Key>
+          <Property Name="SubMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubMenuTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByUser_ID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="PriceMenu_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="SliderID" />
+          </Key>
+          <Property Name="SliderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SliderTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SliderDecription" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="SliderImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="SelecPage" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="isVideo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PriceMenu">
+          <Key>
+            <PropertyRef Name="PriceMenuID" />
+          </Key>
+          <Property Name="PriceMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriceMenuTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int64" Nullable="false" />
+          <Property Name="PriceMenuPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedByUser_ID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerConact" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerCNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventTiming">
+          <Key>
+            <PropertyRef Name="EventTimingID" />
+          </Key>
+          <Property Name="EventTimingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTiming1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="ServicesPicture_ID" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="GeEventByDate_Result">
+          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="EventTiming" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="EventTimingID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChontraEntityDBModelStoreContainer" CdmEntityContainer="ChontraEntityModel">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ContactDescription" ColumnName="ContactDescription" />
+                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
+                <ScalarProperty Name="ContactMessage" ColumnName="ContactMessage" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactOurPhone" ColumnName="ContactOurPhone" />
+                <ScalarProperty Name="ContactMobile1" ColumnName="ContactMobile1" />
+                <ScalarProperty Name="ContactMobile2" ColumnName="ContactMobile2" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="MidfiedDate" ColumnName="MidfiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="EventType1" ColumnName="EventType" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_Rolepages">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Rolepages">
+              <MappingFragment StoreEntitySet="Membership_Rolepages">
+                <ScalarProperty Name="RoleWebPageID" ColumnName="RoleWebPageID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="WebPage_ID" ColumnName="WebPage_ID" />
+                <ScalarProperty Name="HasInsert" ColumnName="HasInsert" />
+                <ScalarProperty Name="HasUpdate" ColumnName="HasUpdate" />
+                <ScalarProperty Name="HasDelete" ColumnName="HasDelete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_RoleUsers">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_RoleUsers">
+              <MappingFragment StoreEntitySet="Membership_RoleUsers">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_Webpages">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Webpages">
+              <MappingFragment StoreEntitySet="Membership_Webpages">
+                <ScalarProperty Name="WebPageID" ColumnName="WebPageID" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="PageOrder" ColumnName="PageOrder" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MenuColor" ColumnName="MenuColor" />
+                <ScalarProperty Name="IsHorizantal" ColumnName="IsHorizantal" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_Webpageurls">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Webpageurls">
+              <MappingFragment StoreEntitySet="Membership_Webpageurls">
+                <ScalarProperty Name="WebPageUrlID" ColumnName="WebPageUrlID" />
+                <ScalarProperty Name="WebPage_ID" ColumnName="WebPage_ID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
+                <ScalarProperty Name="ServicesMainImage" ColumnName="ServicesMainImage" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stages">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Stage">
+              <MappingFragment StoreEntitySet="Stages">
+                <ScalarProperty Name="StageID" ColumnName="StageID" />
+                <ScalarProperty Name="StageTitle" ColumnName="StageTitle" />
+                <ScalarProperty Name="StageDescription" ColumnName="StageDescription" />
+                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetSideMenusByRoleID" FunctionName="ChontraEntityDBModel.Store.GetSideMenusByRoleID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityDBModel.GetSideMenusByRoleID_Result">
+                <ScalarProperty Name="WebPageID" ColumnName="WebPageID" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="PageOrder" ColumnName="PageOrder" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="HasInsert" ColumnName="HasInsert" />
+                <ScalarProperty Name="HasUpdate" ColumnName="HasUpdate" />
+                <ScalarProperty Name="HasDelete" ColumnName="HasDelete" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="MenuColor" ColumnName="MenuColor" />
+                <ScalarProperty Name="IsHorizantal" ColumnName="IsHorizantal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="membership_AddRole" FunctionName="ChontraEntityDBModel.Store.membership_AddRole" />
+          <FunctionImportMapping FunctionImportName="membership_AddRolePages" FunctionName="ChontraEntityDBModel.Store.membership_AddRolePages" />
+          <FunctionImportMapping FunctionImportName="membership_AuthenticateUser" FunctionName="ChontraEntityDBModel.Store.membership_AuthenticateUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityDBModel.membership_AuthenticateUser_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="membership_GetAllRoles" FunctionName="ChontraEntityDBModel.Store.membership_GetAllRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityDBModel.membership_GetAllRoles_Result">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="membership_GetRoleByID" FunctionName="ChontraEntityDBModel.Store.membership_GetRoleByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityDBModel.membership_GetRoleByID_Result">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Decorations">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Decoration">
+              <MappingFragment StoreEntitySet="Decoration">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="DecorationType" ColumnName="DecorationType" />
+                <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesPictures">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.ServicesPicture">
+              <MappingFragment StoreEntitySet="ServicesPicture">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+                <ScalarProperty Name="ServicesPictureDescription" ColumnName="ServicesPictureDescription" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="ServicesPictureID" ColumnName="ServicesPictureID" />
+                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
+                <ScalarProperty Name="Services_ID" ColumnName="Services_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="EventMainPicture" ColumnName="EventMainPicture" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventGalleries">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.EventGallery">
+              <MappingFragment StoreEntitySet="EventGallery">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="EventGalleryPicturePath" ColumnName="EventGalleryPicturePath" />
+                <ScalarProperty Name="EventGalleryTitle" ColumnName="EventGalleryTitle" />
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_Users">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Users">
+              <MappingFragment StoreEntitySet="Membership_Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubMenus">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.SubMenu">
+              <MappingFragment StoreEntitySet="SubMenu">
+                <ScalarProperty Name="PriceMenu_ID" ColumnName="PriceMenu_ID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SubMenuTitle" ColumnName="SubMenuTitle" />
+                <ScalarProperty Name="SubMenuID" ColumnName="SubMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sliders">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Slider">
+              <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="isVideo" ColumnName="isVideo" />
+                <ScalarProperty Name="SelecPage" ColumnName="SelecPage" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
+                <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
+                <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
+                <ScalarProperty Name="SliderID" ColumnName="SliderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceMenus">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.PriceMenu">
+              <MappingFragment StoreEntitySet="PriceMenu">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="PriceMenuPicture" ColumnName="PriceMenuPicture" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
+                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerCNIC" ColumnName="CustomerCNIC" />
+                <ScalarProperty Name="CustomerConact" ColumnName="CustomerConact" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTimings">
+            <EntityTypeMapping TypeName="ChontraEntityDBModel.EventTiming">
+              <MappingFragment StoreEntitySet="EventTiming">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ServicesPicture_ID" ColumnName="ServicesPicture_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="EventTiming1" ColumnName="EventTiming" />
+                <ScalarProperty Name="EventTimingID" ColumnName="EventTimingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GeEventByDate" FunctionName="ChontraEntityDBModel.Store.GeEventByDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityDBModel.GeEventByDate_Result">
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="EventTiming" ColumnName="EventTiming" />
+                <ScalarProperty Name="EventTimingID" ColumnName="EventTimingID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

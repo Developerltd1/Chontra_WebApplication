@@ -1,0 +1,45 @@
+﻿@model IList< BusinessLayerLibrary.ViewModel.MainViewModels.Gallery_N_GalleryDetilsViewModels>
+@{
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+@{ 
+
+}
+<!-- Page Title
+        ============================================= -->
+<section id="page-title" class="page-title-mini" style="margin-top:-6% ">
+    <div class="container clearfix">
+        <h1>@ViewBag.Title</h1>
+        <span>Everything you need to know about our Company</span>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+        </ol>
+    </div>
+</section><!-- #page-title end -->
+
+<!-- Content
+    ============================================= -->
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+          @{ 
+            if (@Model.Count > 0)
+            {
+             <h3>@Model[0].EventTitle</h3>
+             <div class="masonry-thumbs grid-container grid-6" data-big="3" data-lightbox="gallery" >
+                 @{ 
+                     foreach (var item in Model)
+                     {
+                      <a class="grid-item" href="@item.EventGalleryPicture" data-lightbox="gallery-item">
+                         <img src="@item.EventGalleryPicture" alt="Gallery Thumb 1">
+                      </a>
+                     }
+
+                 }
+             </div>
+             }
+           }
+        </div>
+    </div>
+</section><!-- #content end -->

@@ -1,0 +1,22 @@
+﻿@model IEnumerable <BusinessLayerLibrary.CustomModels.ClsMainModel.ClsSlider>
+<div class="row col-mb-80 mb-0">
+    <div class="col-12">
+        <div class="heading-block center border-bottom-0">
+            <h2>Interactive Wedding Hall Environment</h2>
+            <span>Sub  &amp; Description</span>
+        </div>
+
+        <div class="fslider" data-pagi="false" data-animation="fade">
+            <div class="flexslider">
+                <div class="slider-wrap" >
+                  @{
+                      foreach (var item in Model)
+                      {
+                       <div class="slide" ><a href=""><img src="@item.SliderImagePath" alt="@item.SliderTitle"></a></div>
+                      }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
