@@ -17,7 +17,7 @@ namespace BusinessLayerLibrary
         public string EventType { get; set; }
         public string ServicesPictureTitle { get; set; }
         public string CustomerName { get; set; }
-        public System.DateTime EventTiming { get; set; }
+        public System.DateTime EventDateTime { get; set; }
         public int EventTimingID { get; set; }
     }
 }

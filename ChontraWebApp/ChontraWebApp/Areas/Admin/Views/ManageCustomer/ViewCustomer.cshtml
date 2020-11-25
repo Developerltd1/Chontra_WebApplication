@@ -17,115 +17,41 @@
         <div class="row mt-4">
             <div class="col-sm-12">
               
-                    <div class="card box-shadow">
-                        <div class="card-header">
-                            <!--Start_Modal-->
-                            @*<button type="button" class="btn-block">Open Modal</button>
-                            <div class="-modal fade" id="myModal" data-url='@Url.Action("AddCustomerPartial","ManageCustomer")' role="dialog" > abccc</div>*@
-                            
-                            @*<button>
-                                @{int NotificationID = 1; }
-                                <a href="#" onclick="ShowDetails(@NotificationID)" data-toggle="modal" data-target="#myModal">
-                                    See Group
-                                </a>
-
-                            </button>*@
-                            @{int NotificationID = 1; }
-                          @*OK but not WOrking: <h4>
-                              <input type="hidden" name="desc" id="@NotificationID" value="@NotificationID" />
-                              <a href="javascript:void(0);" onClick="showdetail('@NotificationID')">
-                              aaa</a>
-                              aaa
-                          </h4>*@
-
-                            @*For Edit:<a class="btn btn-sm btn-primary mdi mdi-pen anchorDetail" title="Edit" href="javascript:void(0);" data-id="@NotificationID.ToString()">
-
-                            </a>*@
-
-
-                            <button type="button" class="btn btn-primary btn-sm btnModal" value="@NotificationID">
-                                Assign card
-                            </button>
-
-
-
-                           
-                               <!--End_Modal-->
-
-
-
-                                <a class="btn btn-sm float-sm-right btn-success" onclick="location.href='@Url.Action("AddBoard", "Configuration")'">
-                                    <i class="mdi mdi-plus"></i>  Add Board / University
-                                </a>
-                          
-
+                <div class="card box-shadow">
+                    <div class="card-header">
+                       <!--Start_Modal-->
+                         <button class="btn btn-sm float-sm-right btn-success  _click"><i class="mdi mdi-plus"></i> Create New </button>
+                         <div class="modal fade" role="dialog" id="myModal" data-url='@Url.Action("AddCustomerPartial","ManageCustomer")'></div>
+                       <!--End_Modal-->
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <table id="tbl" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Board / University Name</th>
+                                        <th>Short Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   <tr>
+                                       <td>owNo</td>
+                                       <td>BoardName</td>
+                                       <td>ShortName</td>
+                                   </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card-body">
-                            <div class="col-md-12">
-                                <table id="tbl" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Board / University Name</th>
-                                            <th>Short Name</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                                <tr>
-                                                    <td>owNo</td>
-                                                    <td>BoardName</td>
-                                                    <td>ShortName</td>
-                                             </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> 
+                    </div>
+                </div> 
+
             </div>
         </div>
     </div>
 </div>
 <!-- ./Panel Header-->
-
-
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Assign Card</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="alert alert-success" role="alert" id="SuccessModalMessage" style="display:none">
-                    Successfully Assigned Card To Patron
-                </div>
-
-                <div class="alert alert-danger" role="alert" id="FailedModalMessage" style="display:none">
-                    Failed To Assign Card
-                </div>
-
-                @Html.Hidden("studentId")
-                <div class="form-group">
-                    @Html.Label("Card Number", htmlAttributes: new { @class = "control-label" })
-                    @Html.TextBox("CardNo", "", new { @class = "form-control" })
-                </div>
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" id="AssignCardToPatron" class="btn btn-primary">Assign</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
 
 
 @section Scripts {
@@ -150,6 +76,34 @@
 <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 
     <script type="text/javascript">
+        
+        $(document).ready(function () {
+           
+            $('._click').click(function () {
+                debugger;
+                var url = $('#myModal').data('url');
+                $.get(url, function (data) {
+                    $("#myModal").html(data);
+                    $("#myModal").modal('show');
+
+                });
+            });
+        });
+        $('#btn-close').click(function () {
+            $('#model-course-remarks').modal('hide');
+        });
+
+     //  $(document).ready(function () {
+     //      $('.btn-block').click(function () {
+     //          var url = $('#myModal').data('url');  
+     //          $.get(url, function(data){
+     //              $("#myModal").html(data);
+     //              $("#myModal").modal('show');
+     //
+     //          });
+     //      });
+     //  });
+
        // ok but not working
      //     function showdetail(NotificationID) {
      //         debugger;
@@ -164,32 +118,32 @@
      //     });
 
         //For Edit
-         //  var TeamDetailPostBackURL = '/Admin/ManageCustomer/AddCustomerPartial';
-         //  $(function () {
-         //      $(".anchorDetail").click(function () {
-         //
-         //          var $buttonClicked = $(this);
-         //          var id = $buttonClicked.attr('data-id');
-         //          var options = { "backdrop": "static", keyboard: true };
-         //          $.ajax({
-         //              type: "GET",
-         //              url: TeamDetailPostBackURL,
-         //              contentType: "application/json; charset=utf-8",
-         //              data: { "Id": id },
-         //              datatype: "json",
-         //              success: function (data) {
-         //                  $('#myModalContent').html(data);
-         //                  console.log(data);
-         //                  $('#myModalU').modal(options);
-         //                  $('#myModalU').modal('show');
-         //
-         //              },
-         //              error: function () {
-         //                  alert("Dynamic content load failed.");
-         //              }
-         //          });
-         //      });
-         //  });
+       //   var TeamDetailPostBackURL = '/Admin/ManageCustomer/AddCustomerPartial';
+       //   $(function () {
+       //       $(".anchorDetail").click(function () {
+       // 
+       //           var $buttonClicked = $(this);
+       //           //var id = $buttonClicked.attr('data-id');
+       //           var options = { "backdrop": "static", keyboard: true };
+       //           $.ajax({
+       //               type: "GET",
+       //               url: TeamDetailPostBackURL,
+       //               contentType: "application/json; charset=utf-8",
+       //             //  data: { "Id": id },
+       //               datatype: "json",
+       //               success: function (data) {
+       //                   $('#myModalContent').html(data);
+       //                   console.log(data);
+       //                   $('#myModalU').modal(options);
+       //                   $('#myModalU').modal('show');
+       // 
+       //               },
+       //               error: function () {
+       //                   alert("Dynamic content load failed.");
+       //               }
+       //           });
+       //       });
+       //   });
 
     </script>
  
