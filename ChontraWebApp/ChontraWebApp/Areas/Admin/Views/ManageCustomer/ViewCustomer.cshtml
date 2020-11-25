@@ -6,37 +6,43 @@
 
 <!-- DataTables -->
 @section styles{
-    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+  <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+  <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+  <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+  <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 }
 
 <div class="page-content">
     <div class="container-fluid">
         <div class="row mt-4">
             <div class="col-sm-12">
-                @*@if (Model != null || Model == null)
-                {*@
+              
                     <div class="card box-shadow">
-                        <h4 class="card-header">
-                            <i class="mdi mdi-search-web"></i> Board / University
-                            @*@if (ViewBag.CanAdd)
-                            {*@
-
-
+                        <div class="card-header">
                             <!--Start_Modal-->
-                            <button type="button" class="btn-block">Open Modal</button>
+                            @*<button type="button" class="btn-block">Open Modal</button>
+                            <div class="-modal fade" id="myModal" data-url='@Url.Action("AddCustomerPartial","ManageCustomer")' role="dialog" > abccc</div>*@
+                            
+                            <button>
+                                @{int NotificationID = 1; }
+                                <a href="#" onclick="ShowDetails(@NotificationID)" data-toggle="modal" data-target="#myModal">
+                                    See Group
+                                </a>
 
-                            <div class="-modal fade" id="myModal" data-url='@Url.Action("AddCustomerPartial","ManageCustomer")' role="dialog"></div>
-                            <!--End_Modal-->
+                            </button>
+
+
+                           
+                               <!--End_Modal-->
 
 
 
                                 <a class="btn btn-sm float-sm-right btn-success" onclick="location.href='@Url.Action("AddBoard", "Configuration")'">
                                     <i class="mdi mdi-plus"></i>  Add Board / University
                                 </a>
-                            @*  *@}
+                          
 
-                        </h4>
+                        </div>
                         <div class="card-body">
                             <div class="col-md-12">
                                 <table id="tbl" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -49,34 +55,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       @* @{*@
-//int RowNo = 0;
-//foreach (var item in Model)
-//{
-//RowNo += 1;
+
                                                 <tr>
                                                     <td>owNo</td>
                                                     <td>BoardName</td>
                                                     <td>ShortName</td>
-                                                    <td>
-                                                        @*@if (ViewBag.CanUpdate)
-                                                        {*@
-                                                            @*<a class="btn btn-warning btn-sm mdi mdi-pencil"
-                                                               title="Edit"
-                                                               href='@Url.Action("EditBoard", "Configuration", new { id = Utility.EncryptURL(item.BoardID.ToString()) })'>
-                                                            </a>*@
-                                                       @* }*@
-
-                                                    </td>
-                                                </tr>
-                                            @*}
-                                        }*@
+                                             </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    @* }*@
+                    </div> 
             </div>
         </div>
     </div>
@@ -84,29 +73,65 @@
 <!-- ./Panel Header-->
 
 @section Scripts {
-    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+
     <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+
+
+
+       <!-- Required datatable js -->
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/jszip/jszip.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+<!-- Responsive examples -->
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/js/bootbox.min.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#5').addClass('mm-active');
-            $('#5 ul').addClass('mm-show');
-            $('#160').addClass('mm-active');
-            $('#tbl').DataTable({
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ]
-            });
+
+        function showdetail(NotificationID) {
+            debugger;
+            $('#modal-header').text(NotificationID)
+            $('#txt-description').text('description')
+            $('#txt-date').text('date');
+            $('#txt-pubdate').text('pubdate');
+            $('#notice-modal').modal('show');
+        }
+        $('#btn-update-close').click(function () {
+            $('#notice-modal').modal('hide');
+          })
+
+      //  function ShowDetails(Group_ID, StudentName, ACGPA) {
+      //      $('#myModalLabel').text(StudentName);
+      //      $('#ACGPA').text(ACGPA);
+      //      $.ajax({
+      //          type: "post",
+      //          url: "/MeritList/GetGroupDetails",
+      //          data: { GroupID: Group_ID },
+      //          datatype: "json",
+      //          // traditional: true,
+      //          success: function (data) {
+      //              $("#tblBody").empty();
+      //              $(data).each(function (index, item) {
+      //                  var Studentname = item.Name;
+      //                  var StudentregNo = item.StudentRegistrationNumber;
+      //                  var studentCGPA = item.CGPA;
+      //                  var markup = "<tr><td>" + StudentregNo + "</td><td>" + Studentname + "</td><td>" + studentCGPA + "</td></tr>";
+      //                  $("#MyTbl tbody").append(markup);
+      //              });
+      //          }
+      //      });
+      //  }
 
 
-            $('btn-block').click(function () {
-                var url = $('#myModal').data('url');
-                $get(url,function(data){
-                    @("#myModal").html(data);
-                    @("#myModal").modal('show');
-                });
-            });
-        });
     </script>
+ 
 }
