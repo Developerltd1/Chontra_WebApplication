@@ -55,13 +55,91 @@
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
-                                <button type="button" class="btn btn-success">Save</button>
+                                <button type="button" id="_submit" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")'class="btn btn-success">Save</button>
                             </div>
                         </div>
                     
                         </div>
                     </div>
                 </div>
-      
     </div>
+
+<div id="alert-Message-jquery"></div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#_submit').click(function () {
+
+            var person = {};
+            person.CustomerName = $("#CustomerName").val();
+            person.CustomerConact = $("#CustomerConact").val();
+            person.CustomerCNIC = $("#CustomerCNIC").val();
+            person.CustomerAddress = $("#CustomerAddress").val();
+            person.isActive = $("#isActive").val();
+            var url = $('#_submit').data('url');
+            $.ajax({
+                type: "POST",
+                async: true,
+                url: url,
+                data: { mdl: person },
+                datatype: "text/plain",
+
+                success: function (response) {
+                    debugger;
+
+                    //displayinTable();
+
+                    console.log(response);
+                    if (response.IsSuccess == false) {  //if Not Success
+                        showMessageBoxJquery("error", "Not Inserted");  //Other Funcation
+                        return true;
+                    }
+                    else {          //Show in Modal
+                        showMessageBoxJquery("success", "Inserted");  //Other Funcation
+                    }
+                },
+                error: function (jqXHR, textStatus, error) {
+                    if (jqXHR && jqXHR.status == 401) {
+                    }
+                }
+            });//ajax
+        });//submit
+      });//ready
+
+   // function displayinTable() {
+    ////     var urldisplay =  @*   @Url.Action("ViewCustomer", "ManageCustomer") *@
+   //      $.ajax({
+   //          type: "GET",
+   //          async: true,
+   //          url: url,
+   //          datatype: "text/plain",
+   //          success: function (dtChack) {
+   //              debugger;
+   //              console.log(dtChack);
+   //          },
+   //          error: function (jqXHR, textStatus, error) {
+   //              if (jqXHR && jqXHR.status == 401) {
+   //              }
+   //          }
+   //      });//ajax
+   // }
+
+
+
+    function showMessageBoxJquery(type, message) {
+        if (type == "success") {
+            $('#alert-Message-jquery').html("<div  class='btn btn-success' data-notify-type='success' data-notify-msg='<i class=icon-ok-sign></i> Message Sent Successfully!' onclick='SEMICOLON.widget.notifications({ el: this }); return false;>Show Success</div>");
+
+           // $('#alert-Message-jquery').html("<div class='alert-success bg-success text-white  border-0 alert msg-box' role='alert'><strong><i class='mdi mdi-check-bold'></i></strong> " + message + " <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>×</span> </button></div>");
+        }
+        else {
+
+            $('#alert-Message-jquery').html("<div class='alert-danger bg-danger text-white  border-0 alert msg-box' role='alert'><strong><i class='mdi mdi-check-bold'></i></strong> " + message + " <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>×</span> </button></div>");
+        }
+    }
+</script>
 

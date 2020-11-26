@@ -119,7 +119,6 @@
 
             // ******** Click "CreateNew" Button Then Open Modal ********
         $('._click').click(function () {
-                debugger;
                 var url = $('#myModal').data('url');
                 $.get(url, function (data) {
                     $("#myModal").html(data);

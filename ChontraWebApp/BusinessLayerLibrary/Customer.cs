@@ -21,7 +21,7 @@ namespace BusinessLayerLibrary
         public string CustomerAddress { get; set; }
         public bool isActive { get; set; }
         public int CreatedByUser_ID { get; set; }
-        public System.DateTime EntryDate { get; set; }
+        public Nullable<System.DateTime> EntryDate { get; set; }
         public Nullable<int> ModifiedByUser_ID { get; set; }
         public Nullable<System.DateTime> ModifiedByDateTime { get; set; }
     }

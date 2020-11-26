@@ -29,26 +29,6 @@
     <FunctionImport Name="GeEventByDate" ReturnType="Collection(ChontraEntityDBModel.GeEventByDate_Result)" />
     <FunctionImport Name="GetAllUsers" ReturnType="Collection(ChontraEntityDBModel.GetAllUsers_Result)" />
     <FunctionImport Name="GetEventTimingDetails" ReturnType="Collection(ChontraEntityDBModel.GetEventTimingDetails_Result)" />
-    <EntitySet Name="Branches" EntityType="ChontraEntityDBModel.Branch" />
-    <EntitySet Name="Contacts" EntityType="ChontraEntityDBModel.Contact" />
-    <EntitySet Name="Customers" EntityType="ChontraEntityDBModel.Customer" />
-    <EntitySet Name="CustomerEventOrders" EntityType="ChontraEntityDBModel.CustomerEventOrder" />
-    <EntitySet Name="Decorations" EntityType="ChontraEntityDBModel.Decoration" />
-    <EntitySet Name="EventTimings" EntityType="ChontraEntityDBModel.EventTiming" />
-    <EntitySet Name="EventTypes" EntityType="ChontraEntityDBModel.EventType" />
-    <EntitySet Name="HallEvents" EntityType="ChontraEntityDBModel.HallEvent" />
-    <EntitySet Name="HallEventGalleries" EntityType="ChontraEntityDBModel.HallEventGallery" />
-    <EntitySet Name="Membership_Rolepages" EntityType="ChontraEntityDBModel.Membership_Rolepages" />
-    <EntitySet Name="Membership_RoleUsers" EntityType="ChontraEntityDBModel.Membership_RoleUsers" />
-    <EntitySet Name="Membership_Users" EntityType="ChontraEntityDBModel.Membership_Users" />
-    <EntitySet Name="Membership_Webpages" EntityType="ChontraEntityDBModel.Membership_Webpages" />
-    <EntitySet Name="Membership_Webpageurls" EntityType="ChontraEntityDBModel.Membership_Webpageurls" />
-    <EntitySet Name="PriceMenus" EntityType="ChontraEntityDBModel.PriceMenu" />
-    <EntitySet Name="Services" EntityType="ChontraEntityDBModel.Service" />
-    <EntitySet Name="ServicesPictures" EntityType="ChontraEntityDBModel.ServicesPicture" />
-    <EntitySet Name="Sliders" EntityType="ChontraEntityDBModel.Slider" />
-    <EntitySet Name="Stages" EntityType="ChontraEntityDBModel.Stage" />
-    <EntitySet Name="SubMenus" EntityType="ChontraEntityDBModel.SubMenu" />
     <FunctionImport Name="Admin_GetAllContactPage" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllContactPage_Result)" />
     <FunctionImport Name="Admin_GetAllCustomer" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllCustomer_Result)" />
     <FunctionImport Name="Admin_GetAllEventGallery__ByEventID">
@@ -69,6 +49,26 @@
     <FunctionImport Name="Admin_GetServiceDetails__ByServiceID" ReturnType="Collection(ChontraEntityDBModel.Admin_GetServiceDetails__ByServiceID_Result)">
       <Parameter Name="ServiceID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Branches" EntityType="ChontraEntityDBModel.Branch" />
+    <EntitySet Name="Contacts" EntityType="ChontraEntityDBModel.Contact" />
+    <EntitySet Name="Customers" EntityType="ChontraEntityDBModel.Customer" />
+    <EntitySet Name="CustomerEventOrders" EntityType="ChontraEntityDBModel.CustomerEventOrder" />
+    <EntitySet Name="Decorations" EntityType="ChontraEntityDBModel.Decoration" />
+    <EntitySet Name="EventTimings" EntityType="ChontraEntityDBModel.EventTiming" />
+    <EntitySet Name="EventTypes" EntityType="ChontraEntityDBModel.EventType" />
+    <EntitySet Name="HallEvents" EntityType="ChontraEntityDBModel.HallEvent" />
+    <EntitySet Name="HallEventGalleries" EntityType="ChontraEntityDBModel.HallEventGallery" />
+    <EntitySet Name="Membership_Rolepages" EntityType="ChontraEntityDBModel.Membership_Rolepages" />
+    <EntitySet Name="Membership_RoleUsers" EntityType="ChontraEntityDBModel.Membership_RoleUsers" />
+    <EntitySet Name="Membership_Users" EntityType="ChontraEntityDBModel.Membership_Users" />
+    <EntitySet Name="Membership_Webpages" EntityType="ChontraEntityDBModel.Membership_Webpages" />
+    <EntitySet Name="Membership_Webpageurls" EntityType="ChontraEntityDBModel.Membership_Webpageurls" />
+    <EntitySet Name="PriceMenus" EntityType="ChontraEntityDBModel.PriceMenu" />
+    <EntitySet Name="Services" EntityType="ChontraEntityDBModel.Service" />
+    <EntitySet Name="ServicesPictures" EntityType="ChontraEntityDBModel.ServicesPicture" />
+    <EntitySet Name="Sliders" EntityType="ChontraEntityDBModel.Slider" />
+    <EntitySet Name="Stages" EntityType="ChontraEntityDBModel.Stage" />
+    <EntitySet Name="SubMenus" EntityType="ChontraEntityDBModel.SubMenu" />
   </EntityContainer>
   <ComplexType Name="GetSideMenusByRoleID_Result">
     <Property Type="Int32" Name="WebPageID" Nullable="false" />
@@ -140,6 +140,69 @@
     <Property Type="Int32" Name="PriceMenu_ID" Nullable="false" />
     <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
     <Property Type="Int64" Name="Price" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllContactPage_Result">
+    <Property Type="Int32" Name="ContactID" Nullable="false" />
+    <Property Type="String" Name="ContactName" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ContactPhone" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="ContactSubject" Nullable="true" />
+    <Property Type="String" Name="ContactMessage" Nullable="true" />
+    <Property Type="String" Name="ContactAddress" Nullable="true" />
+    <Property Type="String" Name="ContactOurPhone" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ContactMobile1" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ContactMobile2" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ContactTitle" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="ContactDescription" Nullable="true" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllCustomer_Result">
+    <Property Type="Int32" Name="CustomerID" Nullable="false" />
+    <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="CustomerAddress" Nullable="true" MaxLength="99" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllEventType_Result">
+    <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EventTypeID" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllServices_Result">
+    <Property Type="Int32" Name="ServicesID" Nullable="false" />
+    <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ServicesDescription" Nullable="true" />
+    <Property Type="String" Name="ServicesMainImage" Nullable="true" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetAllSlider_Result">
+    <Property Type="Int32" Name="SliderID" Nullable="false" />
+    <Property Type="String" Name="SliderTitle" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="SliderDecription" Nullable="false" MaxLength="800" />
+    <Property Type="String" Name="SliderImagePath" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+    <Property Type="String" Name="SelecPage" Nullable="false" MaxLength="150" />
+    <Property Type="Boolean" Name="isVideo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetPriceMenu_Result">
+    <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+    <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
+    <Property Type="Int64" Name="Price" Nullable="false" />
+    <Property Type="Boolean" Name="isActive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
+    <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+    <Property Type="String" Name="PriceMenuPicture" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Admin_GetServiceDetails__ByServiceID_Result">
+    <Property Type="Int32" Name="Services_ID" Nullable="false" />
+    <Property Type="Int32" Name="EventTypeID" Nullable="false" />
+    <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="ServicesPictureID" Nullable="false" />
+    <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="ServicesPictureDescription" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
   </ComplexType>
   <EntityType Name="Branch">
     <Key>
@@ -411,67 +474,4 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="PriceMenu_ID" Type="Int32" Nullable="false" />
   </EntityType>
-  <ComplexType Name="Admin_GetAllContactPage_Result">
-    <Property Type="Int32" Name="ContactID" Nullable="false" />
-    <Property Type="String" Name="ContactName" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ContactPhone" Nullable="true" MaxLength="15" />
-    <Property Type="String" Name="ContactSubject" Nullable="true" />
-    <Property Type="String" Name="ContactMessage" Nullable="true" />
-    <Property Type="String" Name="ContactAddress" Nullable="true" />
-    <Property Type="String" Name="ContactOurPhone" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="ContactMobile1" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="ContactMobile2" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="ContactTitle" Nullable="true" MaxLength="150" />
-    <Property Type="String" Name="ContactDescription" Nullable="true" />
-    <Property Type="Boolean" Name="isActive" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetAllCustomer_Result">
-    <Property Type="Int32" Name="CustomerID" Nullable="false" />
-    <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
-    <Property Type="String" Name="CustomerAddress" Nullable="true" MaxLength="99" />
-    <Property Type="Boolean" Name="isActive" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetAllEventType_Result">
-    <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="EventTypeID" Nullable="false" />
-    <Property Type="Boolean" Name="isActive" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetAllServices_Result">
-    <Property Type="Int32" Name="ServicesID" Nullable="false" />
-    <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
-    <Property Type="String" Name="ServicesDescription" Nullable="true" />
-    <Property Type="String" Name="ServicesMainImage" Nullable="true" />
-    <Property Type="Boolean" Name="isActive" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetAllSlider_Result">
-    <Property Type="Int32" Name="SliderID" Nullable="false" />
-    <Property Type="String" Name="SliderTitle" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="SliderDecription" Nullable="false" MaxLength="800" />
-    <Property Type="String" Name="SliderImagePath" Nullable="false" />
-    <Property Type="Boolean" Name="isActive" Nullable="false" />
-    <Property Type="String" Name="SelecPage" Nullable="false" MaxLength="150" />
-    <Property Type="Boolean" Name="isVideo" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetPriceMenu_Result">
-    <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
-    <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
-    <Property Type="Int64" Name="Price" Nullable="false" />
-    <Property Type="Boolean" Name="isActive" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
-    <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
-    <Property Type="String" Name="PriceMenuPicture" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="Admin_GetServiceDetails__ByServiceID_Result">
-    <Property Type="Int32" Name="Services_ID" Nullable="false" />
-    <Property Type="Int32" Name="EventTypeID" Nullable="false" />
-    <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="ServicesPictureID" Nullable="false" />
-    <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
-    <Property Type="String" Name="ServicesPictureDescription" Nullable="true" MaxLength="350" />
-    <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
-  </ComplexType>
 </Schema>

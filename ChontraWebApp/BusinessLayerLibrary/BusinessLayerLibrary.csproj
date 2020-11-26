@@ -158,6 +158,7 @@
     <Compile Include="Membership_Webpageurls.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MngInsert.cs" />
     <Compile Include="PriceMenu.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>

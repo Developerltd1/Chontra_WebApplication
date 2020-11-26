@@ -1,4 +1,5 @@
 ﻿using BusinessLayerLibrary;
+using BusinessLayerLibrary.CustomModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace ChontraWebApp.Areas.Admin.Controllers
     public class ManageCustomerController :BaseController //Controller
     {
         MngList obj = new MngList();
-         
+        MngInsert objInsert = new MngInsert();
+
         [HttpGet]
         public ActionResult ViewCustomer()
         {
@@ -24,6 +26,26 @@ namespace ChontraWebApp.Areas.Admin.Controllers
         public ActionResult AddCustomerPartial()
         {
             return PartialView();
+        }
+        [HttpPost]
+        public ActionResult AddCustomerPartial(ClsMainModel.ClsCustomer mdl)
+        {
+            try
+            {
+              int id =  objInsert.Admin_InsertAllCustomer(mdl);
+              if (id > 0)
+              { 
+                return PartialView("ViewCustomer");
+              }
+              else
+              {
+                  return Json(new { IsSuccess = false, message = "Record is Not Saved !" }, JsonRequestBehavior.AllowGet);
+              }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { IsSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
