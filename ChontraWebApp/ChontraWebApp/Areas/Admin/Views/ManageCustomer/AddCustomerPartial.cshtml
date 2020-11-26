@@ -1,136 +1,67 @@
 ﻿
 <div class="container-fluid">
-        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-            <div class="modal-dialog">
+        @* <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">*@
+        <div id="myModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Create New</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Create New</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="alert alert-success" role="alert" id="SuccessModalMessage" style="display:none">
-                            Successfully Assigned Card To Patron
+                            <!-- Modal body -->
+                    <div class="modal-body " style="color:GrayText">
+                        <div class="row">
+                            <label hidden class="CustomerID">CustomerID</label>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Cutomer Name</label>
+                                    <input type="text" class="form-control" id="CustomerName" name="CustomerName" placeholder="Customer Name" Required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Contact</label>
+                                    <input type="text" class="form-control" id="CustomerConact" name="CustomerConact" placeholder="Contact" Required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">CNIC</label>
+                                    <input type="text" class="form-control" id="CustomerCNIC" name="CustomerCNIC" placeholder="CNIC">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Address</label>
+                                    <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" placeholder="Address">
+                                </div>
+                            </div>
+
+
+
+                            <div class="alert alert-success" role="alert" id="SuccessModalMessage" style="display:none">
+                                Successfully Assigned Card To Patron
+                            </div>
+
+                            <div class="alert alert-danger" role="alert" id="FailedModalMessage" style="display:none">
+                                Failed To Assign Card
+                            </div>
+
                         </div>
-
-                        <div class="alert alert-danger" role="alert" id="FailedModalMessage" style="display:none">
-                            Failed To Assign Card
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+                                <button type="button" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    
                         </div>
                     </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
-                        <button type="button" class="btn btn-default">Save</button>
-                    </div>
-
                 </div>
-            </div>
-
-        </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">*@
-@*<div class="container-fluid">
-    <div class="row">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
-                        <button type="button" data-dismiss="modal" class="btn btn-danger" id="btn-closeRemarks"><i class="fa fa-window-close"></i> Close</button>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Praesent commodo cu t rutrum faucibus dolor auctor.</p>
-                       </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal"  class="btn btn-danger" id="btn-closeRemarks"> Close</button>
-                    <input type="button" name="Submit" value="Submit" class="btn btn-success" id="btn-submit-withdraracourse" />
-                </div>
-            </div>
-            
-        </div>
-        
+      
     </div>
-</div>*@   
-@*</div>*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @*<div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Assign Card</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label for="login-form-username">Username:</label>
-                    <input type="text" id="Email" name="Email" placeholder="User Name" required="required" value="" class="form-control" />
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button id="idCreate" class="btn btn-primary" onclick="">Create</button>
-                    <button id="idCancel" class="btn btn-default" data-dismiss="modal" onclick="">Cancel</button>
-                    <button type="button" id="AssignCardToPatron" class="btn btn-primary">Create</button>
-                </div>
-
-            </div>
-        </div>
-    </div>*@
 

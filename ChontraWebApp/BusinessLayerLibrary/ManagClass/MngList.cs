@@ -503,7 +503,17 @@ namespace BusinessLayerLibrary
 
         #region Admin
 
-    
+        //StoreProcedure
+        public List<Admin_GetAllCustomer_Result> Admin_GetAllCustomer()
+        {
+            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            {
+                var data = objContext.Database.SqlQuery<Admin_GetAllCustomer_Result>("Admin_GetAllCustomer").ToList();
+                return data;
+            }
+
+        }
+
 
         #endregion
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<BusinessLayerLibrary.Admin_GetAllCustomer_Result>
 @{
     ViewBag.Title = "ViewCustomer";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -9,48 +9,87 @@
   <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
   <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
   <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-  <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/Contents/AdminContent/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 }
+
 
 <div class="page-content">
     <div class="container-fluid">
         <div class="row mt-4">
             <div class="col-sm-12">
-              
                 <div class="card box-shadow">
-                    <div class="card-header">
-                       <!--Start_Modal-->
-                         <button class="btn btn-sm float-sm-right btn-success  _click"><i class="mdi mdi-plus"></i> Create New </button>
-                         <div class="modal fade" role="dialog" id="myModal" data-url='@Url.Action("AddCustomerPartial","ManageCustomer")'></div>
-                       <!--End_Modal-->
-                    </div>
+                    <h4 class="card-header"><!--Start_Modal-->
+                        <button class="btn btn-sm float-sm-right btn-success  _click"><i class="mdi mdi-plus"></i> Create New </button>
+                        <div class="modal fade" role="dialog" id="myModal" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")'></div>
+                        <!--End_Modal-->
+                        <i class="mdi mdi-account-clock-outline"></i> @ViewBag.TableHeaderName
+                    </h4>
                     <div class="card-body">
-                        <div class="col-md-12">
-                            <table id="tbl" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Board / University Name</th>
-                                        <th>Short Name</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   <tr>
-                                       <td>owNo</td>
-                                       <td>BoardName</td>
-                                       <td>ShortName</td>
-                                   </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> 
+                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Customer Name</th>
+                                    <th>Conact</th>
+                                    <th>CNIC</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
 
-            </div>
-        </div>
-    </div>
+                            <tbody>
+                            @{int increment = 0;
+                                foreach (var item in Model)
+                                {
+                                    increment++;
+                               <tr>
+                                   <td>@increment</td>
+                                   <td  @item.CustomerID>@item.CustomerName</td>
+                                   <td>@item.CustomerConact</td>
+                                   <td>@item.CustomerCNIC</td>
+                                   <td>@item.CustomerAddress</td>
+                                   <td>
+                                   @if (@item.isActive)
+                                   {
+                                       <span class="badge  badge-round badge-primary">Active</span>
+                                   }
+                                   else
+                                   {
+                                       <span class="badge  badge-round badge-danger">Deactive</span>
+                                   }
+                                   </td>
+                                   <td>
+                                   <td>
+                                           <a href="@Url.Action("Edit", "Course", new { id =MyCode.Utilities.MyExtensions.EncryptURL(@item.CustomerID.ToString())})" class="btn btn-info btn-sm box-shadowcard">
+                                               <i class="fa fa-pencil-alt"></i>
+                                           </a>
+                                       
+                                           <a class="btn btn-danger mdi mdi-close btn-sm" title="Change Status" href="@Url.Action("ChangeStatus", "Course", new { id=@item.CustomerID.ToString()})">
+                                           </a>
+                                   </td>
+                                   <td>Details</td>
+                               </tr>
+                                    }
+                                    }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+
+    </div> <!-- container-fluid -->
 </div>
+<!-- End Page-content -->
+
+
+
+
+
 <!-- ./Panel Header-->
 
 
@@ -71,15 +110,16 @@
 <!-- Responsive examples -->
 <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/datatables.init.js"></script>
 <script src="~/Areas/Admin/Contents/AdminContent/assets/js/bootbox.min.js"></script>
 
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 
     <script type="text/javascript">
         
         $(document).ready(function () {
-           
-            $('._click').click(function () {
+
+            // ******** Click "CreateNew" Button Then Open Modal ********
+        $('._click').click(function () {
                 debugger;
                 var url = $('#myModal').data('url');
                 $.get(url, function (data) {
@@ -87,64 +127,28 @@
                     $("#myModal").modal('show');
 
                 });
-            });
         });
+            // ********* Click "CreateNew" Button Then Modal Close ***********
         $('#btn-close').click(function () {
-            $('#model-course-remarks').modal('hide');
+            $('#myModal').modal('hide');
         });
-
-     //  $(document).ready(function () {
-     //      $('.btn-block').click(function () {
-     //          var url = $('#myModal').data('url');  
-     //          $.get(url, function(data){
-     //              $("#myModal").html(data);
-     //              $("#myModal").modal('show');
-     //
-     //          });
-     //      });
-     //  });
-
-       // ok but not working
-     //     function showdetail(NotificationID) {
-     //         debugger;
-     //     $('#modal-header').text(NotificationID);
-     //     $('#txt-description').text(NotificationID);
-     //     $('#txt-date').text(NotificationID);
-     //     $('#txt-pubdate').text(NotificationID);
-     //     $('#notice-modal').modal(NotificationID);
-     // }
-     //     $('#btn-update-close').click(function () {
-     //         $('#notice-modal').modal('hide');
-     //     });
-
-        //For Edit
-       //   var TeamDetailPostBackURL = '/Admin/ManageCustomer/AddCustomerPartial';
-       //   $(function () {
-       //       $(".anchorDetail").click(function () {
-       // 
-       //           var $buttonClicked = $(this);
-       //           //var id = $buttonClicked.attr('data-id');
-       //           var options = { "backdrop": "static", keyboard: true };
-       //           $.ajax({
-       //               type: "GET",
-       //               url: TeamDetailPostBackURL,
-       //               contentType: "application/json; charset=utf-8",
-       //             //  data: { "Id": id },
-       //               datatype: "json",
-       //               success: function (data) {
-       //                   $('#myModalContent').html(data);
-       //                   console.log(data);
-       //                   $('#myModalU').modal(options);
-       //                   $('#myModalU').modal('show');
-       // 
-       //               },
-       //               error: function () {
-       //                   alert("Dynamic content load failed.");
-       //               }
-       //           });
-       //       });
-       //   });
-
+        });
+       
     </script>
  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
