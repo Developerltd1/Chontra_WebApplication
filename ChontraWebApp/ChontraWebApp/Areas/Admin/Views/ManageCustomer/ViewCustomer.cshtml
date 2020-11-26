@@ -60,13 +60,12 @@
                                        <span class="badge  badge-round badge-danger">Deactive</span>
                                    }
                                    </td>
+                                   
                                    <td>
-                                   <td>
-                                           <a href="@Url.Action("Edit", "Course", new { id =MyCode.Utilities.MyExtensions.EncryptURL(@item.CustomerID.ToString())})" class="btn btn-info btn-sm box-shadowcard">
+                                           <a href="@Url.Action("Edit", "Course", new { id =MyCode.Utilities.MyExtensions.EncryptURL(@item.CustomerID.ToString())})" class="btn btn-warning btn-sm mdi mdi-pencil" title="Update">
                                                <i class="fa fa-pencil-alt"></i>
                                            </a>
-                                       
-                                           <a class="btn btn-danger mdi mdi-close btn-sm" title="Change Status" href="@Url.Action("ChangeStatus", "Course", new { id=@item.CustomerID.ToString()})">
+                                           <a class="btn btn-danger mdi mdi-close btn-sm" title="Delete" href="@Url.Action("ChangeStatus", "Course", new { id=@item.CustomerID.ToString()})">
                                            </a>
                                    </td>
                                    <td>Details</td>
