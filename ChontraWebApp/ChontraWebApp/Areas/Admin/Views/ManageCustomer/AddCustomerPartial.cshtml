@@ -1,145 +1,104 @@
 ﻿
-<div class="container-fluid">
-        @* <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">*@
-        <div id="myModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
+    
+                
 
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Create New</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <!-- Modal body -->
-                    <div class="modal-body " style="color:GrayText">
-                        <div class="row">
-                            <label hidden class="CustomerID">CustomerID</label>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Cutomer Name</label>
-                                    <input type="text" class="form-control" id="CustomerName" name="CustomerName" placeholder="Customer Name" Required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Contact</label>
-                                    <input type="text" class="form-control" id="CustomerConact" name="CustomerConact" placeholder="Contact" Required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">CNIC</label>
-                                    <input type="text" class="form-control" id="CustomerCNIC" name="CustomerCNIC" placeholder="CNIC">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Address</label>
-                                    <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" placeholder="Address">
-                                </div>
-                            </div>
-
-
-
-                            <div class="alert alert-success" role="alert" id="SuccessModalMessage" style="display:none">
-                                Successfully Assigned Card To Patron
-                            </div>
-
-                            <div class="alert alert-danger" role="alert" id="FailedModalMessage" style="display:none">
-                                Failed To Assign Card
-                            </div>
-
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Create New</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
-                                <button type="button" id="_submit" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")'class="btn btn-success">Save</button>
+             
+                        <!-- Modal body -->
+                        <div class="modal-body " style="color:GrayText">
+                            <div class="row">
+                                <label hidden class="CustomerID">CustomerID</label>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Cutomer Name</label>
+                                        <input type="text" class="form-control" id="CustomerName" name="CustomerName" placeholder="Customer Name" Required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Contact</label>
+                                        <input type="text" class="form-control" id="CustomerConact" name="CustomerConact" placeholder="Contact" Required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">CNIC</label>
+                                        <input type="text" class="form-control" id="CustomerCNIC" name="CustomerCNIC" placeholder="CNIC">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Address</label>
+                                        <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" placeholder="Address">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="alert alert-success" role="alert" id="SuccessModalMessage" style="display:none">
+                                    Successfully Assigned Card To Patron
+                                </div>
+
+                                <div class="alert alert-danger" role="alert" id="FailedModalMessage" style="display:none">
+                                    Failed To Assign Card
+                                </div>
+
                             </div>
                         </div>
-                    
+                       
+                         <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+                            <button type="button" id="_submit" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")' class="btn btn-success">Save</button>
                         </div>
-                    </div>
-                </div>
-    </div>
-
-<div id="alert-Message-jquery"></div>
-
+                       
+                
+                
+            
 
 
-<script type="text/javascript">
+<div id="showSuccessMsgDiv" style="display:none">
+</div>
 
-    $(document).ready(function () {
 
-        $('#_submit').click(function () {
 
-            var person = {};
-            person.CustomerName = $("#CustomerName").val();
-            person.CustomerConact = $("#CustomerConact").val();
-            person.CustomerCNIC = $("#CustomerCNIC").val();
-            person.CustomerAddress = $("#CustomerAddress").val();
-            person.isActive = $("#isActive").val();
-            var url = $('#_submit').data('url');
-            $.ajax({
-                type: "POST",
-                async: true,
-                url: url,
-                data: { mdl: person },
-                datatype: "text/plain",
+@section Scripts {
 
-                success: function (response) {
-                    debugger;
+  <script type="text/javascript">
+      $(document).ready(function () {
+            
+          $("#_submit").click(function () {
+              debugger;
+              var url = $('._click').data('url');
 
-                    //displayinTable();
+              // var person = {}; // person.Name = $("#ToggleId1").val();
+              $.ajax({
+                  type: "GET",
+                  url: url,
+                  data: {},
+                  datatype: "text/plain",
+                  success: function (response) {
+                      debugger;
+                      console.log(response);
+                      $("#myModalBodyDiv").html(response);
+                      $("#myModal").show();
 
-                    console.log(response);
-                    if (response.IsSuccess == false) {  //if Not Success
-                        showMessageBoxJquery("error", "Not Inserted");  //Other Funcation
-                        return true;
-                    }
-                    else {          //Show in Modal
-                        showMessageBoxJquery("success", "Inserted");  //Other Funcation
-                    }
-                },
-                error: function (jqXHR, textStatus, error) {
-                    if (jqXHR && jqXHR.status == 401) {
-                    }
-                }
-            });//ajax
-        });//submit
+                      //   $("#showSuccessMsgDiv").show();
+                  },
+                  error: function (jqXHR, textStatus, error) {
+                      if (jqXHR && jqXHR.status == 401) {
+                      }
+                  }
+              });
+          });
+
+  
       });//ready
-
-   // function displayinTable() {
-    ////     var urldisplay =  @*   @Url.Action("ViewCustomer", "ManageCustomer") *@
-   //      $.ajax({
-   //          type: "GET",
-   //          async: true,
-   //          url: url,
-   //          datatype: "text/plain",
-   //          success: function (dtChack) {
-   //              debugger;
-   //              console.log(dtChack);
-   //          },
-   //          error: function (jqXHR, textStatus, error) {
-   //              if (jqXHR && jqXHR.status == 401) {
-   //              }
-   //          }
-   //      });//ajax
-   // }
-
-
-
-    function showMessageBoxJquery(type, message) {
-        if (type == "success") {
-            $('#alert-Message-jquery').html("<div  class='btn btn-success' data-notify-type='success' data-notify-msg='<i class=icon-ok-sign></i> Message Sent Successfully!' onclick='SEMICOLON.widget.notifications({ el: this }); return false;>Show Success</div>");
-
-           // $('#alert-Message-jquery').html("<div class='alert-success bg-success text-white  border-0 alert msg-box' role='alert'><strong><i class='mdi mdi-check-bold'></i></strong> " + message + " <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>×</span> </button></div>");
-        }
-        else {
-
-            $('#alert-Message-jquery').html("<div class='alert-danger bg-danger text-white  border-0 alert msg-box' role='alert'><strong><i class='mdi mdi-check-bold'></i></strong> " + message + " <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>×</span> </button></div>");
-        }
-    }
-</script>
-
+  
+  </script>
+}

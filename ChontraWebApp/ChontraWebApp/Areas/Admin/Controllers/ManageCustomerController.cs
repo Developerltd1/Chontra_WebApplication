@@ -27,6 +27,7 @@ namespace ChontraWebApp.Areas.Admin.Controllers
         {
             return PartialView();
         }
+
         [HttpPost]
         public ActionResult AddCustomerPartial(ClsMainModel.ClsCustomer mdl)
         {
@@ -34,13 +35,29 @@ namespace ChontraWebApp.Areas.Admin.Controllers
             {
               int id =  objInsert.Admin_InsertAllCustomer(mdl);
               if (id > 0)
-              { 
-                return PartialView("ViewCustomer");
+              {
+                    return View("ViewCustomer", obj.Admin_GetAllCustomer());
               }
               else
               {
-                  return Json(new { IsSuccess = false, message = "Record is Not Saved !" }, JsonRequestBehavior.AllowGet);
+                    return PartialView("AddCustomerPartial");
+                    //return Json(new { IsSuccess = false, message = "Record is Not Saved !" }, JsonRequestBehavior.AllowGet);
               }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { IsSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult EditCustomerPartial()
+        {
+            try
+            {
+              //  int id = objInsert.Admin_InsertAllCustomer(id);
+                return PartialView("AddCustomerPartial");
             }
             catch (Exception ex)
             {

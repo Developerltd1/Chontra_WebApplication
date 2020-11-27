@@ -5553,6 +5553,7 @@
     <Content Include="ContentWebsite\demos\coworking\images\footer-bg.psd" />
     <Content Include="Areas\Admin\Views\ManageCustomer\ViewCustomer.cshtml" />
     <Content Include="Areas\Admin\Views\ManageCustomer\AddCustomerPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageCustomer\EditCustomerPartial.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
