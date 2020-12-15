@@ -13,9 +13,9 @@ namespace MyCode.DAL
 {
     public class DALCommon
     {
-        public List<DropDown> GetActiveRoles(int Organization_ID)
+        public List<DropDownModal> GetActiveRoles(int Organization_ID)
         {
-            List<DropDown> ddlList = new List<DropDown>();
+            List<DropDownModal> ddlList = new List<DropDownModal>();
             SqlConnection conn = null;
             SqlCommand cmd = null;
 
@@ -34,7 +34,7 @@ namespace MyCode.DAL
 
                 foreach (DataRow dr in dt.Rows)
                 {
-                    ddlList.Add(new DropDown()
+                    ddlList.Add(new DropDownModal()
                     {
                         Value = dr["RoleID"].ToInt32(),
                         Text = dr["RoleName"].ToString()

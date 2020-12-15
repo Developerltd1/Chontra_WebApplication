@@ -7,32 +7,27 @@
                   @foreach (var item in Model)
                   {
                     <!--Video-->
-                      if (item.isVideo == false)
-                      {
-                     <div class="swiper-slide dark">
-                        <div class="container">
-                            <div class="slider-caption slider-caption-center">
-                                <h2 data-animate="fadeInUp">@item.SliderTitle</h2>
-                                <p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200"> @item.SliderDecription</p>
-                            </div>
-                        </div>
-                         
-                        <div class="video-wrap">
-                            @{
-                                string a = @item.SliderImagePath + ".mp4";
-                                @item.SliderImagePath = a;
-                            }
-                            <video poster=@{@item.SliderImagePath} preload="auto" loop autoplay muted>
-                                  <source src='@{@item.SliderImagePath}' type='video/mp4' />
-                                @{
-                                    string b = @item.SliderImagePath + ".webm";
-                                    @item.SliderImagePath = b;
-                                }
-                                <source src='@{@item.SliderImagePath}' type='video/webm' />
-                            </video>
-                            <div class="video-overlay" style="background-color: rgba(0,0,0,0.33);"></div>
-                        </div>
-                    </div>
+                    if (item.isVideo == true)
+                    {
+                      <div class="swiper-slide dark">
+                         <div class="container">
+                             <div class="slider-caption slider-caption-center">
+                                 <h2 data-animate="fadeInUp">@item.SliderTitle</h2>
+                                 <p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200"> @item.SliderDecription</p>
+                             </div>
+                         </div>
+                         <div class="video-wrap">
+                             <video poster=@{@item.SliderImagePath} preload="auto" loop autoplay muted>
+                                   <source src='@{@item.SliderImagePath}' type='video/mp4' />
+                                 @{
+                                     string b = @item.SliderImagePath + ".webm";
+                                     @item.SliderImagePath = b;
+                                 }
+                                 <source src='@{@item.SliderImagePath}' type='video/webm' />
+                             </video>
+                             <div class="video-overlay" style="background-color: rgba(0,0,0,0.33);"></div>
+                         </div>
+                      </div>
                     }
                     else
                     {

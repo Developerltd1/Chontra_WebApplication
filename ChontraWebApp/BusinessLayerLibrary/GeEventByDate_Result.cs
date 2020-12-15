@@ -13,9 +13,6 @@ namespace BusinessLayerLibrary
     
     public partial class GeEventByDate_Result
     {
-        public string ServicesTitle { get; set; }
-        public string EventType { get; set; }
-        public string ServicesPictureTitle { get; set; }
         public string CustomerName { get; set; }
         public System.DateTime EventDateTime { get; set; }
         public int EventTimingID { get; set; }

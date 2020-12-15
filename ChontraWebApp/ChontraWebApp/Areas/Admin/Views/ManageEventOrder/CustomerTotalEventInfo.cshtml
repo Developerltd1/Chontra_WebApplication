@@ -1,0 +1,12 @@
+﻿@model IEnumerable < BusinessLayerLibrary.ViewModel.MainViewModels.EventTiming_N_Customer_N_ServicesPicture_N_EventType_N_ServicesViewModels>
+@{
+    Layout = null;
+}
+
+
+<div class="container">
+        @foreach (var item in Model)
+        {
+          <p>Event Type: @item.EventType | Hall:  @item.SubServiceTitle | Menu: @item.PriceMenuTitle : Price: @item.Price</p>
+        }
+</div>

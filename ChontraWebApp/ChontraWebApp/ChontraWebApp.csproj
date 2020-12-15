@@ -5554,6 +5554,14 @@
     <Content Include="Areas\Admin\Views\ManageCustomer\ViewCustomer.cshtml" />
     <Content Include="Areas\Admin\Views\ManageCustomer\AddCustomerPartial.cshtml" />
     <Content Include="Areas\Admin\Views\ManageCustomer\EditCustomerPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageEventOrder\AddEventOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageEventOrder\ViewEventOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageEventOrder\CustomerTotalEventInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\ViewSlider.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\AddSlider.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageFoodMenu\ViewFoodMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageFoodMenu\AddFoodMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageFoodMenu\AddSubFoodMenu.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -5568,11 +5576,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ComboBoxController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageCustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageEventOrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageFoodMenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
@@ -5631,9 +5643,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AllPictures\FoodMenu\" />
+    <Folder Include="AllPictures\Slider\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Contents\AdminContent\assets\libs\chartist\scss\settings\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\ComboBox\" />
+    <Folder Include="Areas\Admin\Views\EventOrder\" />
+    <Folder Include="Areas\Admin\Views\ManagePriceMenu\" />
     <Folder Include="ContentWebsite\include\twitter\cache\" />
     <Folder Include="Models\" />
   </ItemGroup>

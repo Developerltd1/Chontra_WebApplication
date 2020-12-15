@@ -1,5 +1,6 @@
 ﻿using BusinessLayerLibrary;
 using BusinessLayerLibrary.CustomModels;
+using BusinessLayerLibrary.ManagClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace ChontraWebApp.Areas.Admin.Controllers
     {
         MngList obj = new MngList();
         MngInsert objInsert = new MngInsert();
+        MngEdit objEdit = new MngEdit();
 
         [HttpGet]
         public ActionResult ViewCustomer()
@@ -41,7 +43,6 @@ namespace ChontraWebApp.Areas.Admin.Controllers
               else
               {
                     return PartialView("AddCustomerPartial");
-                    //return Json(new { IsSuccess = false, message = "Record is Not Saved !" }, JsonRequestBehavior.AllowGet);
               }
             }
             catch (Exception ex)
@@ -51,18 +52,67 @@ namespace ChontraWebApp.Areas.Admin.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult EditCustomerPartial()
+
+
+
+        [HttpGet]
+        public ActionResult EditCustomerPartial(int id)
+        {
+              ClsMainModel.ClsCustomer mdl = objEdit.UpdateCustomer(id);
+                  return PartialView(mdl);
+             
+           
+        }
+     //   [HttpPost]
+     //   public ActionResult EditCustomerPartial(int id)
+     //   {
+     //
+     //       try
+     //       {
+     //           ClsMainModel.ClsCustomer mdl = objEdit.UpdateCustomer(id);
+     //           if (mdl.CustomerID > 0)
+     //           {
+     //               return PartialView(mdl);
+     //           }
+     //           else
+     //           {
+     //               TempData["Statusdetailserror"] = "Record not Deleted";
+     //               return View("ViewCustomer", obj.Admin_GetAllCustomer());
+     //           }
+     //       }
+     //       catch (Exception ex)
+     //       {
+     //           TempData["Statusdetailserror"] = ex.Message;
+     //           throw;
+     //       }
+     //   }
+
+
+
+
+
+        [HttpGet]
+        public ActionResult DeleteCustomer(int id)
         {
             try
             {
-              //  int id = objInsert.Admin_InsertAllCustomer(id);
-                return PartialView("AddCustomerPartial");
+                int confum = objEdit.DeleteCustomer(id);
+                if (confum > 0)
+                {
+                    return View("ViewCustomer", obj.Admin_GetAllCustomer());
+                }
+                else
+                {
+                    TempData["Statusdetailserror"] = "Record not Deleted";
+                    return View("ViewCustomer", obj.Admin_GetAllCustomer());
+                }
             }
             catch (Exception ex)
             {
-                return Json(new { IsSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                TempData["Statusdetailserror"] = ex.Message;
+                throw;
             }
         }
+
     }
 }

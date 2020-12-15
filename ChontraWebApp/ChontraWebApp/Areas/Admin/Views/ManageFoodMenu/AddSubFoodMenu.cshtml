@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "AddSubFoodMenu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    * {
+       .border-radius(0) !important;
+      }
+
+     #field {
+         margin-bottom:2px;
+     }
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-12 ">
+                @{
+                    if (TempData["Statusdetails"] != null)
+                    {
+                        <div class="alert alert-success bg-success text-white border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetails"]
+                        </div>
+
+                    }
+
+                    else if (TempData["Statusdetailserror"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetailserror"]
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-2 "></div>
+            <div class="col-lg-12">
+                <br />
+                <div class="card">
+                    <h4 class="card-header">
+                        @*<i class="mdi mdi-access-point"></i>*@  Add Food Item
+                    </h4>
+                    <div class="card-body">
+                        <!-- your content-->
+                        @using (Html.BeginForm("AddFoodMenu", "ManageFoodMenu", FormMethod.Post, new { enctype = "multipart/form-data", @onsubmit = "return validation()" }))
+                        {
+                            <div class="row">
+                                <!--FoodMenu_Title-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Title">Select FoodMenu</label>
+                                        <input type="text" class="form-control" id="SliderTitle" name="PriceMenuTitle" placeholder="Title" Required>
+                                    </div>
+                                </div>
+                            </div>
+                              <!--TRY-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="hidden" name="count" value="1" />
+                                    <div class="form-group" id="fields">
+                                        <label for="field1">Food Item Name</label>
+                                                <div id="field" >
+                                                    <div class="float-left">
+                                                        <input autocomplete="off" class="form-control " id="field1" name="prof1" type="text" placeholder="Type something" data-items="8">
+                                                    </div>
+                                                </div>
+                                        <button id="b1" class="btn add-more" type="button">+</button>
+
+                                            <small>Press + to add another form field :)</small>
+                                    </div>
+                                </div>
+                            </div>
+                          <br />
+                          <div class="card-footer text-sm-right">
+                              <a title="Back" class="btn btn-primary mdi mdi-undo-variant" href="@Url.Action("ViewFoodMenu", "ManageFoodMenu")">Cancel</a>
+                              <input title="Save" type="submit" class="btn btn-success mdi mdi-content-save" value="Create">
+                          </div>
+                        }
+                        <!--./your content-->
+                    </div>
+                </div><!--./end card -->
+            </div><!--./end col-12 -->
+        </div> <!--./end row -->
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+
+
+@section scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        var next = 1;
+        $(".add-more").click(function (e) {
+            e.preventDefault();
+            var addto = "#field" + next;
+            var addRemove = "#field" + (next);
+            next = next + 1;
+            var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+            var newInput = $(newIn);
+            var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+            var removeButton = $(removeBtn);
+            $(addto).after(newInput);
+            $(addRemove).after(removeButton);
+            $("#field" + next).attr('data-source', $(addto).attr('data-source'));
+            $("#count").val(next);
+
+            $('.remove-me').click(function (e) {
+                e.preventDefault();
+                var fieldNum = this.id.charAt(this.id.length - 1);
+                var fieldID = "#field" + fieldNum;
+                $(this).remove();
+                $(fieldID).remove();
+            });
+        });
+    });
+</script>
+}

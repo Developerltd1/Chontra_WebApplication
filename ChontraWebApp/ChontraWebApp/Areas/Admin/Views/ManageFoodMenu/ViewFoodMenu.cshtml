@@ -1,0 +1,212 @@
+﻿@using System.Data;
+@model List<BusinessLayerLibrary.CustomModels.ClsMainModel.ClsPriceMenu>
+@{
+    ViewBag.Title = "ViewFoodMenu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- DataTables -->
+@section styles{
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Areas/Admin/Contents/AdminContent/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        @*     @Html.Partial("EditCustomerPartial")*@
+
+        <div class="row mt-4">
+            <div class="col-sm-12">
+
+                @{
+                    if (TempData["Statusdetailserror"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetailserror"]
+                        </div>
+
+                    }
+                    else if (TempData["Exception"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Exception"]
+                        </div>
+                    }
+                }
+
+
+
+
+                <div class="row mt-1">
+                    <div class="col-sm-12">
+                        <div class="card box-shadow">
+
+                            <div class="card-header">
+                                <button class="ml-2 btn btn-sm float-sm-right btn-success" onclick="location.href = '/Admin/ManageFoodMenu/AddSubFoodMenu'"><i class="mdi mdi-plus"></i> Create New Food Item</button>
+                                <button class="btn btn-sm float-sm-right btn-success"  onclick="location.href = '/Admin/ManageFoodMenu/AddFoodMenu'" ><i class="mdi mdi-plus"></i> Create New </button>
+                                <div><h4>View FoodMenu</h4></div>
+                            </div>
+
+                            <div class="card-body">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Food Menu</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int increment = 0;
+                                            foreach (var item in Model)
+                                            {
+                                                increment++;
+                                                <tr>
+                                                    <td>@increment</td>
+                                                    <td><a href="#" data-toggle="popover" data-target="hover">@item.PriceMenuTitle</a></td>
+                                                    <td>@item.PriceMenuPicture</td>
+                                                    
+                                                    <td>
+                                                        @if (item.isActive == true)
+                                                        { <span class="badge  badge-round badge-primary">Active</span> }
+                                                        else
+                                                        {  <span class="badge  badge-round badge-info">Deactive</span> }
+                                                    </td>
+                                                    <td>
+                                                        <a data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@item.PriceMenuID" class="btn btn-warning btn-sm mdi mdi-pencil btnEdit" title="Update">
+                                                            <i class="fa fa-pencil-alt"></i>
+                                                        </a>
+                                                        <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@item.PriceMenuID">
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+            </div>
+        </div>
+    </div> <!-- container-fluid -->
+</div>
+<!-- End Page-content -->
+<!--=================MODAL=================-->
+<div class="modal fade" role="dialog" id="myModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" id="myModalBodyDiv">
+            <!-- Modal Body -->
+            <div class="modal-body" style="color:GrayText">
+                <!--Dynamicly PartialView Code by ID-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <!-- Required datatable js -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/jszip/jszip.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/datatables.init.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/bootbox.min.js"></script>
+
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/sweet-alerts.init.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[data-toggle="popover"]').popover({
+
+            title: setData,
+            html: true,
+            placement: 'right'
+        });
+
+        function setData(id) {
+            debugger;
+            var set_data = '';
+            var element = $(this);
+            var id = element.attr("id");
+            $.ajax({
+                type: 'POST',
+                url: "/Admin/ManageEventOrder/CustomerTotalEventInfo?id" + id,
+                datatype: "text/plain",
+                async: false,
+                data: { id: id },
+                success: function (data) {
+                    set_data = data;
+                }
+            });
+            return set_data;
+        }
+
+    });//ready
+
+
+    function btnEventOrderDetails(ReciptNo, CustomerName, CustomerID)
+    {
+
+        var url = '@Url.Action("SendtoAddEventOrder", "ManageEventOrder")'
+        var _ReciptNo = ReciptNo.toString();
+        var _CustomerName = CustomerName.toString();
+        var _CustomerID = CustomerID.toString();
+       // var person = {};
+        // person.ReciptNo = ReciptNo; person.CustomerName = CustomerName;
+        debugger
+        $.ajax({
+            type: 'POST',
+            url: "/ManageEventOrder/SendtoAddEventOrder",
+            data: { ReciptNo: ReciptNo, CustomerName: CustomerName, CustomerID: CustomerID },
+            dataType: 'json',
+           success: function (data) {
+               window.location.href = data.redirect;
+           },//success
+           error: function (httpRequest, Status, Thrown, xhr, status) {
+               alert("Error: " + Status + " | errorThrown|  " + Thrown + " | httpRequest|  " + httpRequest + " | xhr|  " + xhr + " | status|  " + status);
+           },
+           complete: function (xhr, status) {
+                console.log("complete " + xhr.responseText + " status: " + status);
+            }
+        });//ajax
+
+    }
+
+    </script>
+
+}
+

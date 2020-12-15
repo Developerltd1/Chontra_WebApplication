@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChontraEntityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChontraEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="BranchID" />
@@ -52,6 +52,7 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedByUser_ID" Type="int" />
           <Property Name="ModifiedByDateTime" Type="datetime" />
+          <Property Name="ReciptNo" Type="int" />
         </EntityType>
         <EntityType Name="CustomerEventOrder">
           <Key>
@@ -60,7 +61,7 @@
           <Property Name="CustomerEventDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Customer_ID" Type="int" Nullable="false" />
           <Property Name="Services_ID" Type="int" Nullable="false" />
-          <Property Name="ServicesPicture_ID" Type="int" Nullable="false" />
+          <Property Name="SubServices_ID" Type="int" Nullable="false" />
           <Property Name="EventType_ID" Type="int" Nullable="false" />
           <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
           <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
@@ -94,6 +95,14 @@
           <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
           <Property Name="ModifiedByUser_ID" Type="int" />
           <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EventTimingType">
+          <Key>
+            <PropertyRef Name="EventTimingTypeID" />
+          </Key>
+          <Property Name="EventTimingTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTimingType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -238,8 +247,7 @@
           <Property Name="ServicesPictureDescription" Type="varchar" MaxLength="350" />
           <Property Name="ServicesPicturePath" Type="varchar(max)" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
-          <Property Name="Services_ID" Type="int" Nullable="false" />
-          <Property Name="EventType_ID" Type="int" Nullable="false" />
+          <Property Name="SubServices_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Slider">
           <Key>
@@ -275,6 +283,16 @@
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="SubServices">
+          <Key>
+            <PropertyRef Name="SubServiceID" />
+          </Key>
+          <Property Name="SubServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubServiceTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="Service_ID" Type="int" Nullable="false" />
+          <Property Name="EventType_ID" Type="int" />
+        </EntityType>
         <Function Name="Admin_GetAllContactPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Admin_GetAllCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Admin_GetAllEventGallery__ByEventID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -295,7 +313,14 @@
         <Function Name="Admin_GetServiceDetails__ByServiceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ServiceID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Combo_GetAllEventType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Combo_GetAllHalls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Combo_GetAllPriceMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Combo_GetAllPriceMenu_ByPriceMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PriceMenuID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GeEventByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllEventTimingType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetEventTimingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -323,13 +348,24 @@
         <Function Name="membership_GetRoleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleID" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="ChontraEntityDBModelStoreContainer">
+        <Function Name="usp_InsertCustomerEventOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Customer_ID" Type="int" Mode="In" />
+          <Parameter Name="Services_ID" Type="int" Mode="In" />
+          <Parameter Name="SubServices_ID" Type="int" Mode="In" />
+          <Parameter Name="EventType_ID" Type="int" Mode="In" />
+          <Parameter Name="PriceMenu_ID" Type="int" Mode="In" />
+          <Parameter Name="CreatedByUser_ID" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="InOut" />
+          <Parameter Name="StatusDetails" Type="varchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="ChontraEntityModelStoreContainer">
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerEventOrder" EntityType="Self.CustomerEventOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Decoration" EntityType="Self.Decoration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventTiming" EntityType="Self.EventTiming" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventTimingType" EntityType="Self.EventTimingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HallEvent" EntityType="Self.HallEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HallEventGallery" EntityType="Self.HallEventGallery" Schema="dbo" store:Type="Tables" />
@@ -344,222 +380,18 @@
           <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stages" EntityType="Self.Stages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubServices" EntityType="Self.SubServices" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ChontraEntityDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ChontraEntityModel" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="GetSideMenusByRoleID" ReturnType="Collection(ChontraEntityDBModel.GetSideMenusByRoleID_Result)">
-          <Parameter Name="in_RoleID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="membership_AddRole" ReturnType="Collection(Int32)">
-            <Parameter Name="RoleID" Mode="InOut" Type="Int32" />
-            <Parameter Name="RoleName" Mode="In" Type="String" />
-            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="membership_AddRolePages">
-            <Parameter Name="RoleID" Mode="In" Type="Int32" />
-            <Parameter Name="WebPage_ID" Mode="In" Type="Int32" />
-            <Parameter Name="HasInsert" Mode="In" Type="Boolean" />
-            <Parameter Name="HasUpdate" Mode="In" Type="Boolean" />
-            <Parameter Name="HasDelete" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="membership_AuthenticateUser" ReturnType="Collection(ChontraEntityDBModel.membership_AuthenticateUser_Result)">
-            <Parameter Name="in_UserName" Mode="In" Type="String" />
-            <Parameter Name="in_Password" Mode="In" Type="String" />
-            <Parameter Name="p_Status" Mode="InOut" Type="Boolean" />
-            <Parameter Name="p_StatusDetails" Mode="InOut" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="membership_GetAllRoles" ReturnType="Collection(ChontraEntityDBModel.membership_GetAllRoles_Result)" />
-          <FunctionImport Name="membership_GetRoleByID" ReturnType="Collection(ChontraEntityDBModel.membership_GetRoleByID_Result)">
-          <Parameter Name="RoleID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GeEventByDate" ReturnType="Collection(ChontraEntityDBModel.GeEventByDate_Result)">
-          </FunctionImport>
-          <FunctionImport Name="GetAllUsers" ReturnType="Collection(ChontraEntityDBModel.GetAllUsers_Result)" />
-          <FunctionImport Name="GetEventTimingDetails" ReturnType="Collection(ChontraEntityDBModel.GetEventTimingDetails_Result)" />
-          <FunctionImport Name="Admin_GetAllContactPage" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllContactPage_Result)" />
-          <FunctionImport Name="Admin_GetAllCustomer" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllCustomer_Result)" />
-          <FunctionImport Name="Admin_GetAllEventGallery__ByEventID">
-          <Parameter Name="EventID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Admin_GetAllEventType" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllEventType_Result)" />
-          <FunctionImport Name="Admin_GetAllHallEvent" />
-          <FunctionImport Name="Admin_GetAllServices" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllServices_Result)" />
-          <FunctionImport Name="Admin_GetAllSlider" ReturnType="Collection(ChontraEntityDBModel.Admin_GetAllSlider_Result)" />
-          <FunctionImport Name="Admin_GetCustomerEventDetail__ByCustomerID">
-          <Parameter Name="Customer_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Admin_GetPriceMenu" ReturnType="Collection(ChontraEntityDBModel.Admin_GetPriceMenu_Result)" />
-          <FunctionImport Name="Admin_GetPriceMenuPicture__ByPriceMenuID" ReturnType="Collection(ChontraEntityDBModel.Admin_GetPriceMenuPicture__ByPriceMenuID_Result)">
-          <Parameter Name="PriceMenuID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Admin_GetSelecPageForSlider" ReturnType="Collection(String)" />
-          <FunctionImport Name="Admin_GetServiceDetails__ByServiceID" ReturnType="Collection(ChontraEntityDBModel.Admin_GetServiceDetails__ByServiceID_Result)">
-          <Parameter Name="ServiceID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="Branches" EntityType="ChontraEntityDBModel.Branch" />
-          <EntitySet Name="Contacts" EntityType="ChontraEntityDBModel.Contact" />
-          <EntitySet Name="Customers" EntityType="ChontraEntityDBModel.Customer" />
-          <EntitySet Name="CustomerEventOrders" EntityType="ChontraEntityDBModel.CustomerEventOrder" />
-          <EntitySet Name="Decorations" EntityType="ChontraEntityDBModel.Decoration" />
-          <EntitySet Name="EventTimings" EntityType="ChontraEntityDBModel.EventTiming" />
-          <EntitySet Name="EventTypes" EntityType="ChontraEntityDBModel.EventType" />
-          <EntitySet Name="HallEvents" EntityType="ChontraEntityDBModel.HallEvent" />
-          <EntitySet Name="HallEventGalleries" EntityType="ChontraEntityDBModel.HallEventGallery" />
-          <EntitySet Name="Membership_Rolepages" EntityType="ChontraEntityDBModel.Membership_Rolepages" />
-          <EntitySet Name="Membership_RoleUsers" EntityType="ChontraEntityDBModel.Membership_RoleUsers" />
-          <EntitySet Name="Membership_Users" EntityType="ChontraEntityDBModel.Membership_Users" />
-          <EntitySet Name="Membership_Webpages" EntityType="ChontraEntityDBModel.Membership_Webpages" />
-          <EntitySet Name="Membership_Webpageurls" EntityType="ChontraEntityDBModel.Membership_Webpageurls" />
-          <EntitySet Name="PriceMenus" EntityType="ChontraEntityDBModel.PriceMenu" />
-          <EntitySet Name="Services" EntityType="ChontraEntityDBModel.Service" />
-          <EntitySet Name="ServicesPictures" EntityType="ChontraEntityDBModel.ServicesPicture" />
-          <EntitySet Name="Sliders" EntityType="ChontraEntityDBModel.Slider" />
-          <EntitySet Name="Stages" EntityType="ChontraEntityDBModel.Stage" />
-          <EntitySet Name="SubMenus" EntityType="ChontraEntityDBModel.SubMenu" />
-        </EntityContainer>
-        <ComplexType Name="GetSideMenusByRoleID_Result">
-          <Property Type="Int32" Name="WebPageID" Nullable="false" />
-          <Property Type="String" Name="PageTitle" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="AreaName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ControllerName" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="ViewName" Nullable="true" MaxLength="45" />
-          <Property Type="Int32" Name="Parent_ID" Nullable="true" />
-          <Property Type="Int32" Name="PageOrder" Nullable="true" />
-          <Property Type="String" Name="Url" Nullable="true" MaxLength="500" />
-          <Property Type="Boolean" Name="IsVisible" Nullable="true" />
-          <Property Type="String" Name="PageIcon" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="45" />
-          <Property Type="Boolean" Name="HasInsert" Nullable="true" />
-          <Property Type="Boolean" Name="HasUpdate" Nullable="true" />
-          <Property Type="Boolean" Name="HasDelete" Nullable="true" />
-          <Property Type="String" Name="MenuTitle" Nullable="true" MaxLength="45" />
-          <Property Type="String" Name="MenuColor" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="IsHorizantal" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="membership_AuthenticateUser_Result">
-          <Property Type="Int32" Name="UserID" Nullable="false" />
-          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="Role_ID" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="membership_GetAllRoles_Result">
-          <Property Type="Int32" Name="RoleID" Nullable="false" />
-          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
-          <Property Type="Boolean" Name="IsActive" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="membership_GetRoleByID_Result">
-          <Property Type="Int32" Name="RoleID" Nullable="false" />
-          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="GeEventByDate_Result">
-          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
-          <Property Type="DateTime" Name="EventTiming" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="EventTimingID" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="GetAllUsers_Result">
-          <Property Type="Int32" Name="UserID" Nullable="false" />
-          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="11" />
-          <Property Type="Boolean" Name="IsActive" Nullable="true" />
-          <Property Type="String" Name="Image" Nullable="true" />
-          <Property Type="Int32" Name="Role_ID" Nullable="true" />
-          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="GetEventTimingDetails_Result">
-          <Property Type="Int32" Name="CustomerEventDetailsID" Nullable="false" />
-          <Property Type="Int32" Name="Customer_ID" Nullable="false" />
-          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
-          <Property Type="Int32" Name="Services_ID" Nullable="false" />
-          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
-          <Property Type="Int32" Name="EventType_ID" Nullable="false" />
-          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="ServicesPicture_ID" Nullable="false" />
-          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
-          <Property Type="Int32" Name="PriceMenu_ID" Nullable="false" />
-          <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
-          <Property Type="Int64" Name="Price" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetAllContactPage_Result">
-          <Property Type="Int32" Name="ContactID" Nullable="false" />
-          <Property Type="String" Name="ContactName" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ContactPhone" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="ContactSubject" Nullable="true" />
-          <Property Type="String" Name="ContactMessage" Nullable="true" />
-          <Property Type="String" Name="ContactAddress" Nullable="true" />
-          <Property Type="String" Name="ContactOurPhone" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="ContactMobile1" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="ContactMobile2" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="ContactTitle" Nullable="true" MaxLength="150" />
-          <Property Type="String" Name="ContactDescription" Nullable="true" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetAllCustomer_Result">
-          <Property Type="Int32" Name="CustomerID" Nullable="false" />
-          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="CustomerAddress" Nullable="true" MaxLength="99" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetAllEventType_Result">
-          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="EventTypeID" Nullable="false" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetAllServices_Result">
-          <Property Type="Int32" Name="ServicesID" Nullable="false" />
-          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="ServicesDescription" Nullable="true" />
-          <Property Type="String" Name="ServicesMainImage" Nullable="true" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetAllSlider_Result">
-          <Property Type="Int32" Name="SliderID" Nullable="false" />
-          <Property Type="String" Name="SliderTitle" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="SliderDecription" Nullable="false" MaxLength="800" />
-          <Property Type="String" Name="SliderImagePath" Nullable="false" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-          <Property Type="String" Name="SelecPage" Nullable="false" MaxLength="150" />
-          <Property Type="Boolean" Name="isVideo" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetPriceMenu_Result">
-          <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
-          <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
-          <Property Type="Int64" Name="Price" Nullable="false" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
-          <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
-          <Property Type="String" Name="PriceMenuPicture" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Admin_GetServiceDetails__ByServiceID_Result">
-          <Property Type="Int32" Name="Services_ID" Nullable="false" />
-          <Property Type="Int32" Name="EventTypeID" Nullable="false" />
-          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="ServicesPictureID" Nullable="false" />
-          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
-          <Property Type="String" Name="ServicesPictureDescription" Nullable="true" MaxLength="350" />
-          <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
-        </ComplexType>
+      <Schema Namespace="ChontraEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="BranchID" />
           </Key>
           <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BranchName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BranchName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BranchAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ContactNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="LogoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -592,8 +424,8 @@
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerConact" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerConact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CustomerCNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="CustomerAddress" Type="String" MaxLength="99" FixedLength="false" Unicode="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
@@ -601,6 +433,7 @@
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedByUser_ID" Type="Int32" />
           <Property Name="ModifiedByDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ReciptNo" Type="Int32" />
         </EntityType>
         <EntityType Name="CustomerEventOrder">
           <Key>
@@ -609,7 +442,7 @@
           <Property Name="CustomerEventDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Customer_ID" Type="Int32" Nullable="false" />
           <Property Name="Services_ID" Type="Int32" Nullable="false" />
-          <Property Name="ServicesPicture_ID" Type="Int32" Nullable="false" />
+          <Property Name="SubServices_ID" Type="Int32" Nullable="false" />
           <Property Name="EventType_ID" Type="Int32" Nullable="false" />
           <Property Name="PriceMenu_ID" Type="Int32" Nullable="false" />
           <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
@@ -624,7 +457,7 @@
             <PropertyRef Name="DecorationID" />
           </Key>
           <Property Name="DecorationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DecorationType" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DecorationType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="EventTiming">
@@ -635,21 +468,29 @@
           <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Customer_ID" Type="Int32" Nullable="false" />
           <Property Name="ServicesPicture_ID" Type="Int32" Nullable="false" />
-          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Advance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Advance" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
           <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedByUser_ID" Type="Int32" />
           <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="EventTimingType">
+          <Key>
+            <PropertyRef Name="EventTimingTypeID" />
+          </Key>
+          <Property Name="EventTimingTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTimingType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="EventType">
           <Key>
             <PropertyRef Name="EventTypeID" />
           </Key>
           <Property Name="EventTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventType1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EventType1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedByUser_ID" Type="Int32" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifyByUser_ID" Type="Int32" />
@@ -661,7 +502,7 @@
             <PropertyRef Name="EventID" />
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EventTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EventDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="EventMainPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
@@ -755,7 +596,7 @@
             <PropertyRef Name="PriceMenuID" />
           </Key>
           <Property Name="PriceMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PriceMenuTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PriceMenuTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Int64" Nullable="false" />
           <Property Name="PriceMenuPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
@@ -764,12 +605,12 @@
           <Property Name="ModifiedByUser_ID" Type="Int32" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Service">
+        <EntityType Name="Services">
           <Key>
             <PropertyRef Name="ServicesID" />
           </Key>
           <Property Name="ServicesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServicesTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ServicesTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ServicesDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ServicesMainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
@@ -785,24 +626,23 @@
           <Property Name="ServicesPictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServicesPictureTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="ServicesPictureDescription" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
-          <Property Name="ServicesPicturePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ServicesPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="Services_ID" Type="Int32" Nullable="false" />
-          <Property Name="EventType_ID" Type="Int32" Nullable="false" />
+          <Property Name="SubServices_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Slider">
           <Key>
             <PropertyRef Name="SliderID" />
           </Key>
           <Property Name="SliderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SliderTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="SliderDecription" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="false" />
-          <Property Name="SliderImagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SliderTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SliderDecription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SliderImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="SelecPage" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SelecPage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isVideo" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="Stage">
+        <EntityType Name="Stages">
           <Key>
             <PropertyRef Name="StageID" />
           </Key>
@@ -816,7 +656,7 @@
             <PropertyRef Name="SubMenuID" />
           </Key>
           <Property Name="SubMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubMenuTitle" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SubMenuTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="CreatedByUser_ID" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -824,502 +664,766 @@
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="PriceMenu_ID" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="SubServices">
+          <Key>
+            <PropertyRef Name="SubServiceID" />
+          </Key>
+          <Property Name="SubServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubServiceTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="Service_ID" Type="Int32" Nullable="false" />
+          <Property Name="EventType_ID" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branch" EntityType="Self.Branch" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="CustomerEventOrder" EntityType="Self.CustomerEventOrder" />
+          <EntitySet Name="Decoration" EntityType="Self.Decoration" />
+          <EntitySet Name="EventTiming" EntityType="Self.EventTiming" />
+          <EntitySet Name="EventTimingType" EntityType="Self.EventTimingType" />
+          <EntitySet Name="EventType" EntityType="Self.EventType" />
+          <EntitySet Name="HallEvent" EntityType="Self.HallEvent" />
+          <EntitySet Name="HallEventGallery" EntityType="Self.HallEventGallery" />
+          <EntitySet Name="Membership_Rolepages" EntityType="Self.Membership_Rolepages" />
+          <EntitySet Name="Membership_RoleUsers" EntityType="Self.Membership_RoleUsers" />
+          <EntitySet Name="Membership_Users" EntityType="Self.Membership_Users" />
+          <EntitySet Name="Membership_Webpages" EntityType="Self.Membership_Webpages" />
+          <EntitySet Name="Membership_Webpageurls" EntityType="Self.Membership_Webpageurls" />
+          <EntitySet Name="PriceMenu" EntityType="Self.PriceMenu" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="ServicesPicture" EntityType="Self.ServicesPicture" />
+          <EntitySet Name="Slider" EntityType="Self.Slider" />
+          <EntitySet Name="Stages" EntityType="Self.Stages" />
+          <EntitySet Name="SubMenu" EntityType="Self.SubMenu" />
+          <EntitySet Name="SubServices" EntityType="Self.SubServices" />
+          <FunctionImport Name="Admin_GetAllContactPage" ReturnType="Collection(ChontraEntityModel.Admin_GetAllContactPage_Result)" />
+          <FunctionImport Name="Admin_GetAllCustomer" ReturnType="Collection(ChontraEntityModel.Admin_GetAllCustomer_Result)" />
+          <FunctionImport Name="Admin_GetAllEventGallery__ByEventID">
+          <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_GetAllEventType" ReturnType="Collection(ChontraEntityModel.Admin_GetAllEventType_Result)" />
+          <FunctionImport Name="Admin_GetAllHallEvent" />
+          <FunctionImport Name="Admin_GetAllServices" ReturnType="Collection(ChontraEntityModel.Admin_GetAllServices_Result)" />
+          <FunctionImport Name="Admin_GetAllSlider" ReturnType="Collection(ChontraEntityModel.Admin_GetAllSlider_Result)" />
+          <FunctionImport Name="Admin_GetCustomerEventDetail__ByCustomerID">
+          <Parameter Name="Customer_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_GetPriceMenu" ReturnType="Collection(ChontraEntityModel.Admin_GetPriceMenu_Result)" />
+          <FunctionImport Name="Admin_GetPriceMenuPicture__ByPriceMenuID" ReturnType="Collection(ChontraEntityModel.Admin_GetPriceMenuPicture__ByPriceMenuID_Result)">
+          <Parameter Name="PriceMenuID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Admin_GetSelecPageForSlider" ReturnType="Collection(String)" />
+          <FunctionImport Name="Admin_GetServiceDetails__ByServiceID">
+          <Parameter Name="ServiceID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Combo_GetAllEventType" ReturnType="Collection(ChontraEntityModel.Combo_GetAllEventType_Result)" />
+          <FunctionImport Name="Combo_GetAllHalls" ReturnType="Collection(ChontraEntityModel.Combo_GetAllHalls_Result)" />
+          <FunctionImport Name="Combo_GetAllPriceMenu" ReturnType="Collection(ChontraEntityModel.Combo_GetAllPriceMenu_Result)" />
+          <FunctionImport Name="Combo_GetAllPriceMenu_ByPriceMenuID" ReturnType="Collection(ChontraEntityModel.Combo_GetAllPriceMenu_ByPriceMenuID_Result)">
+          <Parameter Name="PriceMenuID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GeEventByDate" ReturnType="Collection(ChontraEntityModel.GeEventByDate_Result)" />
+          <FunctionImport Name="GetAllEventTimingType" ReturnType="Collection(ChontraEntityModel.GetAllEventTimingType_Result)" />
+          <FunctionImport Name="GetAllUsers" ReturnType="Collection(ChontraEntityModel.GetAllUsers_Result)" />
+          <FunctionImport Name="GetEventTimingDetails" />
+          <FunctionImport Name="GetSideMenusByRoleID" ReturnType="Collection(ChontraEntityModel.GetSideMenusByRoleID_Result)">
+          <Parameter Name="in_RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="membership_AddRole" ReturnType="Collection(Int32)">
+            <Parameter Name="RoleID" Mode="InOut" Type="Int32" />
+            <Parameter Name="RoleName" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="membership_AddRolePages">
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+            <Parameter Name="WebPage_ID" Mode="In" Type="Int32" />
+            <Parameter Name="HasInsert" Mode="In" Type="Boolean" />
+            <Parameter Name="HasUpdate" Mode="In" Type="Boolean" />
+            <Parameter Name="HasDelete" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="membership_AuthenticateUser" ReturnType="Collection(ChontraEntityModel.membership_AuthenticateUser_Result)">
+            <Parameter Name="in_UserName" Mode="In" Type="String" />
+            <Parameter Name="in_Password" Mode="In" Type="String" />
+            <Parameter Name="p_Status" Mode="InOut" Type="Boolean" />
+            <Parameter Name="p_StatusDetails" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="membership_GetAllRoles" ReturnType="Collection(ChontraEntityModel.membership_GetAllRoles_Result)" />
+          <FunctionImport Name="membership_GetRoleByID" ReturnType="Collection(ChontraEntityModel.membership_GetRoleByID_Result)">
+          <Parameter Name="RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_InsertCustomerEventOrder">
+            <Parameter Name="Customer_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Services_ID" Mode="In" Type="Int32" />
+            <Parameter Name="SubServices_ID" Mode="In" Type="Int32" />
+            <Parameter Name="EventType_ID" Mode="In" Type="Int32" />
+            <Parameter Name="PriceMenu_ID" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedByUser_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="InOut" Type="Boolean" />
+            <Parameter Name="StatusDetails" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Admin_GetAllContactPage_Result">
+          <Property Type="Int32" Name="ContactID" Nullable="false" />
+          <Property Type="String" Name="ContactName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactPhone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="ContactSubject" Nullable="true" />
+          <Property Type="String" Name="ContactMessage" Nullable="true" />
+          <Property Type="String" Name="ContactAddress" Nullable="true" />
+          <Property Type="String" Name="ContactOurPhone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMobile1" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactMobile2" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ContactTitle" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ContactDescription" Nullable="true" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Admin_GetAllCustomer_Result">
+          <Property Type="Int32" Name="CustomerID" Nullable="false" />
+          <Property Type="Int32" Name="ReciptNo" Nullable="true" />
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="CustomerConact" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="CustomerCNIC" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="CustomerAddress" Nullable="true" MaxLength="99" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Admin_GetAllEventType_Result">
+          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="EventTypeID" Nullable="false" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Admin_GetAllServices_Result">
+          <Property Type="Int32" Name="ServicesID" Nullable="false" />
+          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ServicesDescription" Nullable="true" />
+          <Property Type="String" Name="ServicesMainImage" Nullable="true" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Admin_GetAllSlider_Result">
+          <Property Type="Int32" Name="SliderID" Nullable="false" />
+          <Property Type="String" Name="SliderTitle" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="SliderDecription" Nullable="false" MaxLength="800" />
+          <Property Type="String" Name="SliderImagePath" Nullable="false" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="String" Name="SelecPage" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="isVideo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Admin_GetPriceMenu_Result">
+          <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+          <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="Price" Nullable="false" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
+          <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+          <Property Type="String" Name="PriceMenuPicture" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Combo_GetAllEventType_Result">
+          <Property Type="Int32" Name="EventTypeID" Nullable="false" />
+          <Property Type="String" Name="EventType" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Combo_GetAllHalls_Result">
+          <Property Type="Int32" Name="SubServiceID" Nullable="false" />
+          <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="Int32" Name="Service_ID" Nullable="false" />
+          <Property Type="Int32" Name="EventType_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Combo_GetAllPriceMenu_Result">
+          <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+          <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="Price" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Combo_GetAllPriceMenu_ByPriceMenuID_Result">
+          <Property Type="Int32" Name="PriceMenuID" Nullable="false" />
+          <Property Type="String" Name="PriceMenuTitle" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="Price" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GeEventByDate_Result">
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="EventDateTime" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="EventTimingID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetAllEventTimingType_Result">
+          <Property Type="Int32" Name="EventTimingTypeID" Nullable="false" />
+          <Property Type="String" Name="EventTimingType" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllUsers_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="11" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="Int32" Name="Role_ID" Nullable="true" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetSideMenusByRoleID_Result">
+          <Property Type="Int32" Name="WebPageID" Nullable="false" />
+          <Property Type="String" Name="PageTitle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AreaName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ControllerName" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="ViewName" Nullable="true" MaxLength="45" />
+          <Property Type="Int32" Name="Parent_ID" Nullable="true" />
+          <Property Type="Int32" Name="PageOrder" Nullable="true" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IsVisible" Nullable="true" />
+          <Property Type="String" Name="PageIcon" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="45" />
+          <Property Type="Boolean" Name="HasInsert" Nullable="true" />
+          <Property Type="Boolean" Name="HasUpdate" Nullable="true" />
+          <Property Type="Boolean" Name="HasDelete" Nullable="true" />
+          <Property Type="String" Name="MenuTitle" Nullable="true" MaxLength="45" />
+          <Property Type="String" Name="MenuColor" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsHorizantal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="membership_AuthenticateUser_Result">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Role_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="membership_GetAllRoles_Result">
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="membership_GetRoleByID_Result">
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ChontraEntityDBModelStoreContainer" CdmEntityContainer="ChontraEntityModel">
-          <FunctionImportMapping FunctionImportName="GetSideMenusByRoleID" FunctionName="ChontraEntityDBModel.Store.GetSideMenusByRoleID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.GetSideMenusByRoleID_Result">
-                <ScalarProperty Name="WebPageID" ColumnName="WebPageID" />
-                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
-                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
-                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
-                <ScalarProperty Name="PageOrder" ColumnName="PageOrder" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
-                <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="HasInsert" ColumnName="HasInsert" />
-                <ScalarProperty Name="HasUpdate" ColumnName="HasUpdate" />
-                <ScalarProperty Name="HasDelete" ColumnName="HasDelete" />
-                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
-                <ScalarProperty Name="MenuColor" ColumnName="MenuColor" />
-                <ScalarProperty Name="IsHorizantal" ColumnName="IsHorizantal" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="membership_AddRole" FunctionName="ChontraEntityDBModel.Store.membership_AddRole" />
-          <FunctionImportMapping FunctionImportName="membership_AddRolePages" FunctionName="ChontraEntityDBModel.Store.membership_AddRolePages" />
-          <FunctionImportMapping FunctionImportName="membership_AuthenticateUser" FunctionName="ChontraEntityDBModel.Store.membership_AuthenticateUser">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.membership_AuthenticateUser_Result">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="membership_GetAllRoles" FunctionName="ChontraEntityDBModel.Store.membership_GetAllRoles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.membership_GetAllRoles_Result">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="membership_GetRoleByID" FunctionName="ChontraEntityDBModel.Store.membership_GetRoleByID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.membership_GetRoleByID_Result">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GeEventByDate" FunctionName="ChontraEntityDBModel.Store.GeEventByDate">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.GeEventByDate_Result">
-                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
-                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="EventTiming" ColumnName="EventTiming" />
-                <ScalarProperty Name="EventTimingID" ColumnName="EventTimingID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllUsers" FunctionName="ChontraEntityDBModel.Store.GetAllUsers">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.GetAllUsers_Result">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetEventTimingDetails" FunctionName="ChontraEntityDBModel.Store.GetEventTimingDetails">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.GetEventTimingDetails_Result">
-                <ScalarProperty Name="CustomerEventDetailsID" ColumnName="CustomerEventDetailsID" />
-                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="CustomerConact" ColumnName="CustomerConact" />
-                <ScalarProperty Name="CustomerCNIC" ColumnName="CustomerCNIC" />
-                <ScalarProperty Name="Services_ID" ColumnName="Services_ID" />
-                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
-                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
-                <ScalarProperty Name="ServicesPicture_ID" ColumnName="ServicesPicture_ID" />
-                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
-                <ScalarProperty Name="PriceMenu_ID" ColumnName="PriceMenu_ID" />
-                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetAllContactPage" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllContactPage">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetAllContactPage_Result">
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
-                <ScalarProperty Name="ContactMessage" ColumnName="ContactMessage" />
-                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
-                <ScalarProperty Name="ContactOurPhone" ColumnName="ContactOurPhone" />
-                <ScalarProperty Name="ContactMobile1" ColumnName="ContactMobile1" />
-                <ScalarProperty Name="ContactMobile2" ColumnName="ContactMobile2" />
-                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
-                <ScalarProperty Name="ContactDescription" ColumnName="ContactDescription" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetAllCustomer" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllCustomer">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetAllCustomer_Result">
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="CustomerConact" ColumnName="CustomerConact" />
-                <ScalarProperty Name="CustomerCNIC" ColumnName="CustomerCNIC" />
-                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetAllEventGallery__ByEventID" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllEventGallery__ByEventID" />
-          <FunctionImportMapping FunctionImportName="Admin_GetAllEventType" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllEventType">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetAllEventType_Result">
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
-                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetAllHallEvent" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllHallEvent" />
-          <FunctionImportMapping FunctionImportName="Admin_GetAllServices" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllServices">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetAllServices_Result">
-                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
-                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
-                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
-                <ScalarProperty Name="ServicesMainImage" ColumnName="ServicesMainImage" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetAllSlider" FunctionName="ChontraEntityDBModel.Store.Admin_GetAllSlider">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetAllSlider_Result">
-                <ScalarProperty Name="SliderID" ColumnName="SliderID" />
-                <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
-                <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
-                <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="SelecPage" ColumnName="SelecPage" />
-                <ScalarProperty Name="isVideo" ColumnName="isVideo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetCustomerEventDetail__ByCustomerID" FunctionName="ChontraEntityDBModel.Store.Admin_GetCustomerEventDetail__ByCustomerID" />
-          <FunctionImportMapping FunctionImportName="Admin_GetPriceMenu" FunctionName="ChontraEntityDBModel.Store.Admin_GetPriceMenu">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetPriceMenu_Result">
-                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
-                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetPriceMenuPicture__ByPriceMenuID" FunctionName="ChontraEntityDBModel.Store.Admin_GetPriceMenuPicture__ByPriceMenuID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
-                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
-                <ScalarProperty Name="PriceMenuPicture" ColumnName="PriceMenuPicture" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Admin_GetSelecPageForSlider" FunctionName="ChontraEntityDBModel.Store.Admin_GetSelecPageForSlider" />
-          <FunctionImportMapping FunctionImportName="Admin_GetServiceDetails__ByServiceID" FunctionName="ChontraEntityDBModel.Store.Admin_GetServiceDetails__ByServiceID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChontraEntityDBModel.Admin_GetServiceDetails__ByServiceID_Result">
-                <ScalarProperty Name="Services_ID" ColumnName="Services_ID" />
-                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
-                <ScalarProperty Name="ServicesPictureID" ColumnName="ServicesPictureID" />
-                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
-                <ScalarProperty Name="ServicesPictureDescription" ColumnName="ServicesPictureDescription" />
-                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Branches">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Branch">
+        <EntityContainerMapping StorageEntityContainer="ChontraEntityModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Branch">
               <MappingFragment StoreEntitySet="Branch">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
-                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
                 <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchAddress" ColumnName="BranchAddress" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Contact">
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Contact">
               <MappingFragment StoreEntitySet="Contact">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="ContactDescription" ColumnName="ContactDescription" />
-                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
-                <ScalarProperty Name="MidfiedDate" ColumnName="MidfiedDate" />
-                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="ContactMobile2" ColumnName="ContactMobile2" />
-                <ScalarProperty Name="ContactMobile1" ColumnName="ContactMobile1" />
-                <ScalarProperty Name="ContactOurPhone" ColumnName="ContactOurPhone" />
-                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
-                <ScalarProperty Name="ContactMessage" ColumnName="ContactMessage" />
-                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
+                <ScalarProperty Name="ContactMessage" ColumnName="ContactMessage" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactOurPhone" ColumnName="ContactOurPhone" />
+                <ScalarProperty Name="ContactMobile1" ColumnName="ContactMobile1" />
+                <ScalarProperty Name="ContactMobile2" ColumnName="ContactMobile2" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="MidfiedDate" ColumnName="MidfiedDate" />
+                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+                <ScalarProperty Name="ContactDescription" ColumnName="ContactDescription" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Customer">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="ModifiedByDateTime" ColumnName="ModifiedByDateTime" />
-                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
-                <ScalarProperty Name="CustomerCNIC" ColumnName="CustomerCNIC" />
-                <ScalarProperty Name="CustomerConact" ColumnName="CustomerConact" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerEventOrders">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.CustomerEventOrder">
-              <MappingFragment StoreEntitySet="CustomerEventOrder">
-                <ScalarProperty Name="PerEventAmount" ColumnName="PerEventAmount" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerConact" ColumnName="CustomerConact" />
+                <ScalarProperty Name="CustomerCNIC" ColumnName="CustomerCNIC" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="ModifiedByDateTime" ColumnName="ModifiedByDateTime" />
-                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
-                <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
                 <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="PriceMenu_ID" ColumnName="PriceMenu_ID" />
-                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
-                <ScalarProperty Name="ServicesPicture_ID" ColumnName="ServicesPicture_ID" />
-                <ScalarProperty Name="Services_ID" ColumnName="Services_ID" />
-                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
-                <ScalarProperty Name="CustomerEventDetailsID" ColumnName="CustomerEventDetailsID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Decorations">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Decoration">
-              <MappingFragment StoreEntitySet="Decoration">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="DecorationType" ColumnName="DecorationType" />
-                <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventTimings">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.EventTiming">
-              <MappingFragment StoreEntitySet="EventTiming">
-                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
-                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
-                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="Advance" ColumnName="Advance" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="ServicesPicture_ID" ColumnName="ServicesPicture_ID" />
-                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
-                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
-                <ScalarProperty Name="EventTimingID" ColumnName="EventTimingID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventTypes">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.EventType">
-              <MappingFragment StoreEntitySet="EventType">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="ModifiedByDateTime" ColumnName="ModifiedByDateTime" />
+                <ScalarProperty Name="ReciptNo" ColumnName="ReciptNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerEventOrder">
+            <EntityTypeMapping TypeName="ChontraEntityModel.CustomerEventOrder">
+              <MappingFragment StoreEntitySet="CustomerEventOrder">
+                <ScalarProperty Name="CustomerEventDetailsID" ColumnName="CustomerEventDetailsID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Services_ID" ColumnName="Services_ID" />
+                <ScalarProperty Name="SubServices_ID" ColumnName="SubServices_ID" />
+                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
+                <ScalarProperty Name="PriceMenu_ID" ColumnName="PriceMenu_ID" />
                 <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="EventType1" ColumnName="EventType" />
+                <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="ModifiedByDateTime" ColumnName="ModifiedByDateTime" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="PerEventAmount" ColumnName="PerEventAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Decoration">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Decoration">
+              <MappingFragment StoreEntitySet="Decoration">
+                <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
+                <ScalarProperty Name="DecorationType" ColumnName="DecorationType" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTiming">
+            <EntityTypeMapping TypeName="ChontraEntityModel.EventTiming">
+              <MappingFragment StoreEntitySet="EventTiming">
+                <ScalarProperty Name="EventTimingID" ColumnName="EventTimingID" />
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="ServicesPicture_ID" ColumnName="ServicesPicture_ID" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTimingType">
+            <EntityTypeMapping TypeName="ChontraEntityModel.EventTimingType">
+              <MappingFragment StoreEntitySet="EventTimingType">
+                <ScalarProperty Name="EventTimingTypeID" ColumnName="EventTimingTypeID" />
+                <ScalarProperty Name="EventTimingType1" ColumnName="EventTimingType" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventType">
+            <EntityTypeMapping TypeName="ChontraEntityModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
                 <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="EventType1" ColumnName="EventType" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HallEvents">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.HallEvent">
+          <EntitySetMapping Name="HallEvent">
+            <EntityTypeMapping TypeName="ChontraEntityModel.HallEvent">
               <MappingFragment StoreEntitySet="HallEvent">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="EventMainPicture" ColumnName="EventMainPicture" />
-                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
-                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="EventMainPicture" ColumnName="EventMainPicture" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HallEventGalleries">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.HallEventGallery">
+          <EntitySetMapping Name="HallEventGallery">
+            <EntityTypeMapping TypeName="ChontraEntityModel.HallEventGallery">
               <MappingFragment StoreEntitySet="HallEventGallery">
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="EventGalleryPicturePath" ColumnName="EventGalleryPicturePath" />
-                <ScalarProperty Name="EventGalleryTitle" ColumnName="EventGalleryTitle" />
-                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="EventGalleryTitle" ColumnName="EventGalleryTitle" />
+                <ScalarProperty Name="EventGalleryPicturePath" ColumnName="EventGalleryPicturePath" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Membership_Rolepages">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Rolepages">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Membership_Rolepages">
               <MappingFragment StoreEntitySet="Membership_Rolepages">
-                <ScalarProperty Name="HasDelete" ColumnName="HasDelete" />
-                <ScalarProperty Name="HasUpdate" ColumnName="HasUpdate" />
-                <ScalarProperty Name="HasInsert" ColumnName="HasInsert" />
-                <ScalarProperty Name="WebPage_ID" ColumnName="WebPage_ID" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
                 <ScalarProperty Name="RoleWebPageID" ColumnName="RoleWebPageID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="WebPage_ID" ColumnName="WebPage_ID" />
+                <ScalarProperty Name="HasInsert" ColumnName="HasInsert" />
+                <ScalarProperty Name="HasUpdate" ColumnName="HasUpdate" />
+                <ScalarProperty Name="HasDelete" ColumnName="HasDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Membership_RoleUsers">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_RoleUsers">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Membership_RoleUsers">
               <MappingFragment StoreEntitySet="Membership_RoleUsers">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Membership_Users">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Users">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Membership_Users">
               <MappingFragment StoreEntitySet="Membership_Users">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Membership_Webpages">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Webpages">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Membership_Webpages">
               <MappingFragment StoreEntitySet="Membership_Webpages">
-                <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
-                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
-                <ScalarProperty Name="IsHorizantal" ColumnName="IsHorizantal" />
-                <ScalarProperty Name="MenuColor" ColumnName="MenuColor" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
-                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
-                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
-                <ScalarProperty Name="PageOrder" ColumnName="PageOrder" />
-                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
                 <ScalarProperty Name="WebPageID" ColumnName="WebPageID" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="PageOrder" ColumnName="PageOrder" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MenuColor" ColumnName="MenuColor" />
+                <ScalarProperty Name="IsHorizantal" ColumnName="IsHorizantal" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Membership_Webpageurls">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Membership_Webpageurls">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Membership_Webpageurls">
               <MappingFragment StoreEntitySet="Membership_Webpageurls">
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="WebPage_ID" ColumnName="WebPage_ID" />
                 <ScalarProperty Name="WebPageUrlID" ColumnName="WebPageUrlID" />
+                <ScalarProperty Name="WebPage_ID" ColumnName="WebPage_ID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PriceMenus">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.PriceMenu">
+          <EntitySetMapping Name="PriceMenu">
+            <EntityTypeMapping TypeName="ChontraEntityModel.PriceMenu">
               <MappingFragment StoreEntitySet="PriceMenu">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="PriceMenuPicture" ColumnName="PriceMenuPicture" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
                 <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceMenuPicture" ColumnName="PriceMenuPicture" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Service">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Services">
               <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="ServicesMainImage" ColumnName="ServicesMainImage" />
-                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
-                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
                 <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
+                <ScalarProperty Name="ServicesMainImage" ColumnName="ServicesMainImage" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifyByUser_ID" ColumnName="ModifyByUser_ID" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ServicesPictures">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.ServicesPicture">
+          <EntitySetMapping Name="ServicesPicture">
+            <EntityTypeMapping TypeName="ChontraEntityModel.ServicesPicture">
               <MappingFragment StoreEntitySet="ServicesPicture">
-                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
-                <ScalarProperty Name="Services_ID" ColumnName="Services_ID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
-                <ScalarProperty Name="ServicesPictureDescription" ColumnName="ServicesPictureDescription" />
-                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
                 <ScalarProperty Name="ServicesPictureID" ColumnName="ServicesPictureID" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="ServicesPictureDescription" ColumnName="ServicesPictureDescription" />
+                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SubServices_ID" ColumnName="SubServices_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sliders">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Slider">
+          <EntitySetMapping Name="Slider">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Slider">
               <MappingFragment StoreEntitySet="Slider">
-                <ScalarProperty Name="isVideo" ColumnName="isVideo" />
-                <ScalarProperty Name="SelecPage" ColumnName="SelecPage" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
-                <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
-                <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
                 <ScalarProperty Name="SliderID" ColumnName="SliderID" />
+                <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
+                <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
+                <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SelecPage" ColumnName="SelecPage" />
+                <ScalarProperty Name="isVideo" ColumnName="isVideo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stages">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.Stage">
+            <EntityTypeMapping TypeName="ChontraEntityModel.Stages">
               <MappingFragment StoreEntitySet="Stages">
-                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
-                <ScalarProperty Name="StageDescription" ColumnName="StageDescription" />
-                <ScalarProperty Name="StageTitle" ColumnName="StageTitle" />
                 <ScalarProperty Name="StageID" ColumnName="StageID" />
+                <ScalarProperty Name="StageTitle" ColumnName="StageTitle" />
+                <ScalarProperty Name="StageDescription" ColumnName="StageDescription" />
+                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SubMenus">
-            <EntityTypeMapping TypeName="ChontraEntityDBModel.SubMenu">
+          <EntitySetMapping Name="SubMenu">
+            <EntityTypeMapping TypeName="ChontraEntityModel.SubMenu">
               <MappingFragment StoreEntitySet="SubMenu">
-                <ScalarProperty Name="PriceMenu_ID" ColumnName="PriceMenu_ID" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="SubMenuTitle" ColumnName="SubMenuTitle" />
                 <ScalarProperty Name="SubMenuID" ColumnName="SubMenuID" />
+                <ScalarProperty Name="SubMenuTitle" ColumnName="SubMenuTitle" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreatedByUser_ID" ColumnName="CreatedByUser_ID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="PriceMenu_ID" ColumnName="PriceMenu_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SubServices">
+            <EntityTypeMapping TypeName="ChontraEntityModel.SubServices">
+              <MappingFragment StoreEntitySet="SubServices">
+                <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+                <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetAllContactPage" FunctionName="ChontraEntityModel.Store.Admin_GetAllContactPage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetAllContactPage_Result">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactSubject" ColumnName="ContactSubject" />
+                <ScalarProperty Name="ContactMessage" ColumnName="ContactMessage" />
+                <ScalarProperty Name="ContactAddress" ColumnName="ContactAddress" />
+                <ScalarProperty Name="ContactOurPhone" ColumnName="ContactOurPhone" />
+                <ScalarProperty Name="ContactMobile1" ColumnName="ContactMobile1" />
+                <ScalarProperty Name="ContactMobile2" ColumnName="ContactMobile2" />
+                <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+                <ScalarProperty Name="ContactDescription" ColumnName="ContactDescription" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetAllCustomer" FunctionName="ChontraEntityModel.Store.Admin_GetAllCustomer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetAllCustomer_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ReciptNo" ColumnName="ReciptNo" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerConact" ColumnName="CustomerConact" />
+                <ScalarProperty Name="CustomerCNIC" ColumnName="CustomerCNIC" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetAllEventGallery__ByEventID" FunctionName="ChontraEntityModel.Store.Admin_GetAllEventGallery__ByEventID" />
+          <FunctionImportMapping FunctionImportName="Admin_GetAllEventType" FunctionName="ChontraEntityModel.Store.Admin_GetAllEventType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetAllEventType_Result">
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetAllHallEvent" FunctionName="ChontraEntityModel.Store.Admin_GetAllHallEvent" />
+          <FunctionImportMapping FunctionImportName="Admin_GetAllServices" FunctionName="ChontraEntityModel.Store.Admin_GetAllServices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetAllServices_Result">
+                <ScalarProperty Name="ServicesID" ColumnName="ServicesID" />
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="ServicesDescription" ColumnName="ServicesDescription" />
+                <ScalarProperty Name="ServicesMainImage" ColumnName="ServicesMainImage" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetAllSlider" FunctionName="ChontraEntityModel.Store.Admin_GetAllSlider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetAllSlider_Result">
+                <ScalarProperty Name="SliderID" ColumnName="SliderID" />
+                <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
+                <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
+                <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SelecPage" ColumnName="SelecPage" />
+                <ScalarProperty Name="isVideo" ColumnName="isVideo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetCustomerEventDetail__ByCustomerID" FunctionName="ChontraEntityModel.Store.Admin_GetCustomerEventDetail__ByCustomerID" />
+          <FunctionImportMapping FunctionImportName="Admin_GetPriceMenu" FunctionName="ChontraEntityModel.Store.Admin_GetPriceMenu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetPriceMenu_Result">
+                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetPriceMenuPicture__ByPriceMenuID" FunctionName="ChontraEntityModel.Store.Admin_GetPriceMenuPicture__ByPriceMenuID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Admin_GetPriceMenuPicture__ByPriceMenuID_Result">
+                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+                <ScalarProperty Name="PriceMenuPicture" ColumnName="PriceMenuPicture" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Admin_GetSelecPageForSlider" FunctionName="ChontraEntityModel.Store.Admin_GetSelecPageForSlider" />
+          <FunctionImportMapping FunctionImportName="Admin_GetServiceDetails__ByServiceID" FunctionName="ChontraEntityModel.Store.Admin_GetServiceDetails__ByServiceID" />
+          <FunctionImportMapping FunctionImportName="Combo_GetAllEventType" FunctionName="ChontraEntityModel.Store.Combo_GetAllEventType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Combo_GetAllEventType_Result">
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Combo_GetAllHalls" FunctionName="ChontraEntityModel.Store.Combo_GetAllHalls">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Combo_GetAllHalls_Result">
+                <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+                <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="EventType_ID" ColumnName="EventType_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Combo_GetAllPriceMenu" FunctionName="ChontraEntityModel.Store.Combo_GetAllPriceMenu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Combo_GetAllPriceMenu_Result">
+                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Combo_GetAllPriceMenu_ByPriceMenuID" FunctionName="ChontraEntityModel.Store.Combo_GetAllPriceMenu_ByPriceMenuID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.Combo_GetAllPriceMenu_ByPriceMenuID_Result">
+                <ScalarProperty Name="PriceMenuID" ColumnName="PriceMenuID" />
+                <ScalarProperty Name="PriceMenuTitle" ColumnName="PriceMenuTitle" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GeEventByDate" FunctionName="ChontraEntityModel.Store.GeEventByDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GeEventByDate_Result">
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="EventTimingID" ColumnName="EventTimingID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllEventTimingType" FunctionName="ChontraEntityModel.Store.GetAllEventTimingType">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetAllEventTimingType_Result">
+                <ScalarProperty Name="EventTimingTypeID" ColumnName="EventTimingTypeID" />
+                <ScalarProperty Name="EventTimingType" ColumnName="EventTimingType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllUsers" FunctionName="ChontraEntityModel.Store.GetAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetAllUsers_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEventTimingDetails" FunctionName="ChontraEntityModel.Store.GetEventTimingDetails" />
+          <FunctionImportMapping FunctionImportName="GetSideMenusByRoleID" FunctionName="ChontraEntityModel.Store.GetSideMenusByRoleID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetSideMenusByRoleID_Result">
+                <ScalarProperty Name="WebPageID" ColumnName="WebPageID" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent_ID" />
+                <ScalarProperty Name="PageOrder" ColumnName="PageOrder" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="HasInsert" ColumnName="HasInsert" />
+                <ScalarProperty Name="HasUpdate" ColumnName="HasUpdate" />
+                <ScalarProperty Name="HasDelete" ColumnName="HasDelete" />
+                <ScalarProperty Name="MenuTitle" ColumnName="MenuTitle" />
+                <ScalarProperty Name="MenuColor" ColumnName="MenuColor" />
+                <ScalarProperty Name="IsHorizantal" ColumnName="IsHorizantal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="membership_AddRole" FunctionName="ChontraEntityModel.Store.membership_AddRole" />
+          <FunctionImportMapping FunctionImportName="membership_AddRolePages" FunctionName="ChontraEntityModel.Store.membership_AddRolePages" />
+          <FunctionImportMapping FunctionImportName="membership_AuthenticateUser" FunctionName="ChontraEntityModel.Store.membership_AuthenticateUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.membership_AuthenticateUser_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="membership_GetAllRoles" FunctionName="ChontraEntityModel.Store.membership_GetAllRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.membership_GetAllRoles_Result">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="membership_GetRoleByID" FunctionName="ChontraEntityModel.Store.membership_GetRoleByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.membership_GetRoleByID_Result">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_InsertCustomerEventOrder" FunctionName="ChontraEntityModel.Store.usp_InsertCustomerEventOrder" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1334,7 +1438,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

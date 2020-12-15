@@ -11,14 +11,9 @@ namespace BusinessLayerLibrary
 {
     using System;
     
-    public partial class Admin_GetServiceDetails__ByServiceID_Result
+    public partial class Combo_GetAllEventType_Result
     {
-        public int Services_ID { get; set; }
         public int EventTypeID { get; set; }
         public string EventType { get; set; }
-        public int ServicesPictureID { get; set; }
-        public string ServicesPictureTitle { get; set; }
-        public string ServicesPictureDescription { get; set; }
-        public string ServicesPicturePath { get; set; }
     }
 }

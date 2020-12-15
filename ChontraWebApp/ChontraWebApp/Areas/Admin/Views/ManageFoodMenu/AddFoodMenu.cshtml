@@ -1,0 +1,99 @@
+﻿@model  BusinessLayerLibrary.CustomModels.ClsMainModel.ClsPriceMenu
+@{
+    ViewBag.Title = "AddFoodMenu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-12 ">
+                @{
+                    if (TempData["Statusdetails"] != null)
+                    {
+                        <div class="alert alert-success bg-success text-white border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetails"]
+                        </div>
+
+                    }
+
+                    else if (TempData["Statusdetailserror"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetailserror"]
+                        </div>
+                    }
+                }
+
+            </div>
+            <div class="col-2 "></div>
+            <div class="col-lg-12">
+
+                <br />
+                <div class="card">
+                    <h4 class="card-header">
+                        @*<i class="mdi mdi-access-point"></i>*@  Add New FoodMenu
+                        <!-- button-->
+                        @*<a class="btn btn-sm float-sm-right btn-info" onclick="location.href='#'">
+                                <i class="mdi mdi-plus"></i> Add Record
+                            </a>*@
+                        <!--./button-->
+                    </h4>
+                    <div class="card-body">
+                        <!-- your content-->
+                        @using (Html.BeginForm("AddFoodMenu", "ManageFoodMenu", FormMethod.Post, new { enctype = "multipart/form-data", @onsubmit = "return validation()" }))
+                        {
+                            <div class="row">
+                                <!--FoodMenu_Title-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Title">FoodMenu Title</label>
+                                        <input type="text" class="form-control" id="SliderTitle" name="PriceMenuTitle" placeholder="Title" Required>
+                                    </div>
+                                </div>
+                                <!--FoodMenu_Price-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Title">Menu Price</label>
+                                        <input type="text" class="form-control" id="Price" name="Price" placeholder="Price" Required>
+                                    </div>
+                                </div>
+                                <!--ImageUpload-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="SliderImagePath">Select Image</label>
+                                        <input type="file" accept="image/x-png,image/gif,image/jpeg" id="PriceMenuPicture" class="form-control" name="tmfiles" Required >
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br />
+                            <div class="card-footer text-sm-right">
+                                <a title="Back" class="btn btn-primary mdi mdi-undo-variant" href="@Url.Action("ViewFoodMenu", "ManageFoodMenu")">Cancel</a>
+                                <input title="Save" type="submit" class="btn btn-success mdi mdi-content-save" value="Create">
+                            </div>
+                                            }
+                        <!--./your content-->
+                    </div>
+                </div><!--./end card -->
+            </div><!--./end col-12 -->
+        </div> <!--./end row -->
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+
+<!-- End Page-content -->
+@section scripts{
+
+}
+

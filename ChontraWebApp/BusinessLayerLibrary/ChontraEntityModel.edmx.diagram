@@ -4,27 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ad6d2997b7e64259ad3915cc68abfb28" Name="Diagram1" ZoomLevel="71">
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Contact" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Customer" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.CustomerEventOrder" Width="1.5" PointX="4.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Decoration" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.EventTiming" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.EventType" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.HallEvent" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.HallEventGallery" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_Rolepages" Width="1.5" PointX="8.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_RoleUsers" Width="1.5" PointX="8.75" PointY="7.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_Users" Width="1.5" PointX="2.75" PointY="9.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_Webpages" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Membership_Webpageurls" Width="1.5" PointX="10.75" PointY="5.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.PriceMenu" Width="1.5" PointX="10.75" PointY="8.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Service" Width="1.5" PointX="4.75" PointY="11.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.ServicesPicture" Width="1.5" PointX="6.75" PointY="11.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Slider" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.Stage" Width="1.5" PointX="12.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ChontraEntityDBModel.SubMenu" Width="1.5" PointX="12.75" PointY="7.75" />
+      <Diagram DiagramId="a61109cebfd04180824b5d00e3bea190" Name="Diagram1">
+        <EntityTypeShape EntityType="ChontraEntityModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Contact" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Customer" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.CustomerEventOrder" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Decoration" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.EventTiming" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.EventTimingType" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.EventType" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.HallEvent" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.HallEventGallery" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Membership_Rolepages" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Membership_RoleUsers" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Membership_Users" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Membership_Webpages" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Membership_Webpageurls" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.PriceMenu" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Services" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.ServicesPicture" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Slider" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Stages" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.SubMenu" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChontraEntityModel.SubServices" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

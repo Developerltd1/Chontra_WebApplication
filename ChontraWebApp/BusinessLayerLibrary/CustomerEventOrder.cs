@@ -17,7 +17,7 @@ namespace BusinessLayerLibrary
         public int CustomerEventDetailsID { get; set; }
         public int Customer_ID { get; set; }
         public int Services_ID { get; set; }
-        public int ServicesPicture_ID { get; set; }
+        public int SubServices_ID { get; set; }
         public int EventType_ID { get; set; }
         public int PriceMenu_ID { get; set; }
         public int CreatedByUser_ID { get; set; }

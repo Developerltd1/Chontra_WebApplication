@@ -12,16 +12,11 @@ namespace BusinessLayerLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Service
+    public partial class Stages
     {
-        public int ServicesID { get; set; }
-        public string ServicesTitle { get; set; }
-        public string ServicesDescription { get; set; }
-        public string ServicesMainImage { get; set; }
-        public int CreatedByUser_ID { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public int ModifyByUser_ID { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
-        public bool isActive { get; set; }
+        public int StageID { get; set; }
+        public string StageTitle { get; set; }
+        public string StageDescription { get; set; }
+        public int EventType_ID { get; set; }
     }
 }

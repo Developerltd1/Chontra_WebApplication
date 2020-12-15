@@ -15,10 +15,10 @@ namespace BusinessLayerLibrary
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ChontraEntityModel : DbContext
+    public partial class Entities : DbContext
     {
-        public ChontraEntityModel()
-            : base("name=ChontraEntityModel")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -27,26 +27,148 @@ namespace BusinessLayerLibrary
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Branch> Branches { get; set; }
-        public virtual DbSet<Contact> Contacts { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<CustomerEventOrder> CustomerEventOrders { get; set; }
-        public virtual DbSet<Decoration> Decorations { get; set; }
-        public virtual DbSet<EventTiming> EventTimings { get; set; }
-        public virtual DbSet<EventType> EventTypes { get; set; }
-        public virtual DbSet<HallEvent> HallEvents { get; set; }
-        public virtual DbSet<HallEventGallery> HallEventGalleries { get; set; }
+        public virtual DbSet<Branch> Branch { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<CustomerEventOrder> CustomerEventOrder { get; set; }
+        public virtual DbSet<Decoration> Decoration { get; set; }
+        public virtual DbSet<EventTiming> EventTiming { get; set; }
+        public virtual DbSet<EventTimingType> EventTimingType { get; set; }
+        public virtual DbSet<EventType> EventType { get; set; }
+        public virtual DbSet<HallEvent> HallEvent { get; set; }
+        public virtual DbSet<HallEventGallery> HallEventGallery { get; set; }
         public virtual DbSet<Membership_Rolepages> Membership_Rolepages { get; set; }
         public virtual DbSet<Membership_RoleUsers> Membership_RoleUsers { get; set; }
         public virtual DbSet<Membership_Users> Membership_Users { get; set; }
         public virtual DbSet<Membership_Webpages> Membership_Webpages { get; set; }
         public virtual DbSet<Membership_Webpageurls> Membership_Webpageurls { get; set; }
-        public virtual DbSet<PriceMenu> PriceMenus { get; set; }
-        public virtual DbSet<Service> Services { get; set; }
-        public virtual DbSet<ServicesPicture> ServicesPictures { get; set; }
-        public virtual DbSet<Slider> Sliders { get; set; }
-        public virtual DbSet<Stage> Stages { get; set; }
-        public virtual DbSet<SubMenu> SubMenus { get; set; }
+        public virtual DbSet<PriceMenu> PriceMenu { get; set; }
+        public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<ServicesPicture> ServicesPicture { get; set; }
+        public virtual DbSet<Slider> Slider { get; set; }
+        public virtual DbSet<Stages> Stages { get; set; }
+        public virtual DbSet<SubMenu> SubMenu { get; set; }
+        public virtual DbSet<SubServices> SubServices { get; set; }
+    
+        public virtual ObjectResult<Admin_GetAllContactPage_Result> Admin_GetAllContactPage()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllContactPage_Result>("Admin_GetAllContactPage");
+        }
+    
+        public virtual ObjectResult<Admin_GetAllCustomer_Result> Admin_GetAllCustomer()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllCustomer_Result>("Admin_GetAllCustomer");
+        }
+    
+        public virtual int Admin_GetAllEventGallery__ByEventID(Nullable<int> eventID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetAllEventGallery__ByEventID", eventIDParameter);
+        }
+    
+        public virtual ObjectResult<Admin_GetAllEventType_Result> Admin_GetAllEventType()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllEventType_Result>("Admin_GetAllEventType");
+        }
+    
+        public virtual int Admin_GetAllHallEvent()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetAllHallEvent");
+        }
+    
+        public virtual ObjectResult<Admin_GetAllServices_Result> Admin_GetAllServices()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllServices_Result>("Admin_GetAllServices");
+        }
+    
+        public virtual ObjectResult<Admin_GetAllSlider_Result> Admin_GetAllSlider()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllSlider_Result>("Admin_GetAllSlider");
+        }
+    
+        public virtual int Admin_GetCustomerEventDetail__ByCustomerID(Nullable<int> customer_ID)
+        {
+            var customer_IDParameter = customer_ID.HasValue ?
+                new ObjectParameter("Customer_ID", customer_ID) :
+                new ObjectParameter("Customer_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetCustomerEventDetail__ByCustomerID", customer_IDParameter);
+        }
+    
+        public virtual ObjectResult<Admin_GetPriceMenu_Result> Admin_GetPriceMenu()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetPriceMenu_Result>("Admin_GetPriceMenu");
+        }
+    
+        public virtual ObjectResult<Admin_GetPriceMenuPicture__ByPriceMenuID_Result> Admin_GetPriceMenuPicture__ByPriceMenuID(Nullable<int> priceMenuID)
+        {
+            var priceMenuIDParameter = priceMenuID.HasValue ?
+                new ObjectParameter("PriceMenuID", priceMenuID) :
+                new ObjectParameter("PriceMenuID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetPriceMenuPicture__ByPriceMenuID_Result>("Admin_GetPriceMenuPicture__ByPriceMenuID", priceMenuIDParameter);
+        }
+    
+        public virtual ObjectResult<string> Admin_GetSelecPageForSlider()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Admin_GetSelecPageForSlider");
+        }
+    
+        public virtual int Admin_GetServiceDetails__ByServiceID(Nullable<int> serviceID)
+        {
+            var serviceIDParameter = serviceID.HasValue ?
+                new ObjectParameter("ServiceID", serviceID) :
+                new ObjectParameter("ServiceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetServiceDetails__ByServiceID", serviceIDParameter);
+        }
+    
+        public virtual ObjectResult<Combo_GetAllEventType_Result> Combo_GetAllEventType()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Combo_GetAllEventType_Result>("Combo_GetAllEventType");
+        }
+    
+        public virtual ObjectResult<Combo_GetAllHalls_Result> Combo_GetAllHalls()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Combo_GetAllHalls_Result>("Combo_GetAllHalls");
+        }
+    
+        public virtual ObjectResult<Combo_GetAllPriceMenu_Result> Combo_GetAllPriceMenu()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Combo_GetAllPriceMenu_Result>("Combo_GetAllPriceMenu");
+        }
+    
+        public virtual ObjectResult<Combo_GetAllPriceMenu_ByPriceMenuID_Result> Combo_GetAllPriceMenu_ByPriceMenuID(Nullable<int> priceMenuID)
+        {
+            var priceMenuIDParameter = priceMenuID.HasValue ?
+                new ObjectParameter("PriceMenuID", priceMenuID) :
+                new ObjectParameter("PriceMenuID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Combo_GetAllPriceMenu_ByPriceMenuID_Result>("Combo_GetAllPriceMenu_ByPriceMenuID", priceMenuIDParameter);
+        }
+    
+        public virtual ObjectResult<GeEventByDate_Result> GeEventByDate()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeEventByDate_Result>("GeEventByDate");
+        }
+    
+        public virtual ObjectResult<GetAllEventTimingType_Result> GetAllEventTimingType()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllEventTimingType_Result>("GetAllEventTimingType");
+        }
+    
+        public virtual ObjectResult<GetAllUsers_Result> GetAllUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllUsers_Result>("GetAllUsers");
+        }
+    
+        public virtual int GetEventTimingDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetEventTimingDetails");
+        }
     
         public virtual ObjectResult<GetSideMenusByRoleID_Result> GetSideMenusByRoleID(Nullable<int> in_RoleID)
         {
@@ -122,95 +244,33 @@ namespace BusinessLayerLibrary
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<membership_GetRoleByID_Result>("membership_GetRoleByID", roleIDParameter);
         }
     
-        public virtual ObjectResult<GeEventByDate_Result> GeEventByDate()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeEventByDate_Result>("GeEventByDate");
-        }
-    
-        public virtual ObjectResult<GetAllUsers_Result> GetAllUsers()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllUsers_Result>("GetAllUsers");
-        }
-    
-        public virtual ObjectResult<GetEventTimingDetails_Result> GetEventTimingDetails()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEventTimingDetails_Result>("GetEventTimingDetails");
-        }
-    
-        public virtual ObjectResult<Admin_GetAllContactPage_Result> Admin_GetAllContactPage()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllContactPage_Result>("Admin_GetAllContactPage");
-        }
-    
-        public virtual ObjectResult<Admin_GetAllCustomer_Result> Admin_GetAllCustomer()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllCustomer_Result>("Admin_GetAllCustomer");
-        }
-    
-        public virtual int Admin_GetAllEventGallery__ByEventID(Nullable<int> eventID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetAllEventGallery__ByEventID", eventIDParameter);
-        }
-    
-        public virtual ObjectResult<Admin_GetAllEventType_Result> Admin_GetAllEventType()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllEventType_Result>("Admin_GetAllEventType");
-        }
-    
-        public virtual int Admin_GetAllHallEvent()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetAllHallEvent");
-        }
-    
-        public virtual ObjectResult<Admin_GetAllServices_Result> Admin_GetAllServices()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllServices_Result>("Admin_GetAllServices");
-        }
-    
-        public virtual ObjectResult<Admin_GetAllSlider_Result> Admin_GetAllSlider()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetAllSlider_Result>("Admin_GetAllSlider");
-        }
-    
-        public virtual int Admin_GetCustomerEventDetail__ByCustomerID(Nullable<int> customer_ID)
+        public virtual int usp_InsertCustomerEventOrder(Nullable<int> customer_ID, Nullable<int> services_ID, Nullable<int> subServices_ID, Nullable<int> eventType_ID, Nullable<int> priceMenu_ID, Nullable<int> createdByUser_ID, ObjectParameter status, ObjectParameter statusDetails)
         {
             var customer_IDParameter = customer_ID.HasValue ?
                 new ObjectParameter("Customer_ID", customer_ID) :
                 new ObjectParameter("Customer_ID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Admin_GetCustomerEventDetail__ByCustomerID", customer_IDParameter);
-        }
+            var services_IDParameter = services_ID.HasValue ?
+                new ObjectParameter("Services_ID", services_ID) :
+                new ObjectParameter("Services_ID", typeof(int));
     
-        public virtual ObjectResult<Admin_GetPriceMenu_Result> Admin_GetPriceMenu()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetPriceMenu_Result>("Admin_GetPriceMenu");
-        }
+            var subServices_IDParameter = subServices_ID.HasValue ?
+                new ObjectParameter("SubServices_ID", subServices_ID) :
+                new ObjectParameter("SubServices_ID", typeof(int));
     
-        public virtual ObjectResult<Admin_GetPriceMenuPicture__ByPriceMenuID_Result> Admin_GetPriceMenuPicture__ByPriceMenuID(Nullable<int> priceMenuID)
-        {
-            var priceMenuIDParameter = priceMenuID.HasValue ?
-                new ObjectParameter("PriceMenuID", priceMenuID) :
-                new ObjectParameter("PriceMenuID", typeof(int));
+            var eventType_IDParameter = eventType_ID.HasValue ?
+                new ObjectParameter("EventType_ID", eventType_ID) :
+                new ObjectParameter("EventType_ID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetPriceMenuPicture__ByPriceMenuID_Result>("Admin_GetPriceMenuPicture__ByPriceMenuID", priceMenuIDParameter);
-        }
+            var priceMenu_IDParameter = priceMenu_ID.HasValue ?
+                new ObjectParameter("PriceMenu_ID", priceMenu_ID) :
+                new ObjectParameter("PriceMenu_ID", typeof(int));
     
-        public virtual ObjectResult<string> Admin_GetSelecPageForSlider()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Admin_GetSelecPageForSlider");
-        }
+            var createdByUser_IDParameter = createdByUser_ID.HasValue ?
+                new ObjectParameter("CreatedByUser_ID", createdByUser_ID) :
+                new ObjectParameter("CreatedByUser_ID", typeof(int));
     
-        public virtual ObjectResult<Admin_GetServiceDetails__ByServiceID_Result> Admin_GetServiceDetails__ByServiceID(Nullable<int> serviceID)
-        {
-            var serviceIDParameter = serviceID.HasValue ?
-                new ObjectParameter("ServiceID", serviceID) :
-                new ObjectParameter("ServiceID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Admin_GetServiceDetails__ByServiceID_Result>("Admin_GetServiceDetails__ByServiceID", serviceIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertCustomerEventOrder", customer_IDParameter, services_IDParameter, subServices_IDParameter, eventType_IDParameter, priceMenu_IDParameter, createdByUser_IDParameter, status, statusDetails);
         }
     }
 }

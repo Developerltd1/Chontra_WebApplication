@@ -10,7 +10,7 @@
 
     <link rel="shortcut icon" href="~/Areas/Admin/Contents/AdminContent/assets/images/logo-login.png">
     @RenderSection("styles", required: false)
-
+   
     <link href="~/Areas/Admin/Contents/AdminContent/assets/css/bootstrap.min.css" id="bootstrap-light" rel="stylesheet" type="text/css" />
     <link href="~/Areas/Admin/Contents/AdminContent/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Areas/Admin/Contents/AdminContent/assets/css/app.min.css" id="app-light" rel="stylesheet" type="text/css" />
@@ -103,7 +103,7 @@
 
     <!-- Vlidation js -->
     <script src="~/Areas/Admin/Contents/AdminContent/Scripts/jquery-1.10.2.js"></script>
-    @*<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Areas/Admin/Contents/AdminContent/Scripts/jquery.validate.js"></script>
     <script src="~/Areas/Admin/Contents/AdminContent/Scripts/jquery.validate-vsdoc.js"></script>
     <script src="~/Areas/Admin/Contents/AdminContent/Scripts/bootstrap.min.js"></script>
@@ -116,6 +116,7 @@
     <script src="~/Areas/Admin/Contents/AdminContent/assets/js/app.js?@DateTime.Now.Ticks"></script>
 
     @RenderSection("scripts", required: false)
+  @*<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>*@
 
     <script type="text/javascript">
             $(document).ready(function () {

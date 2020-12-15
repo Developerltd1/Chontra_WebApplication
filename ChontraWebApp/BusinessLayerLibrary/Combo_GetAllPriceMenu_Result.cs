@@ -10,13 +10,11 @@
 namespace BusinessLayerLibrary
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Stage
+    public partial class Combo_GetAllPriceMenu_Result
     {
-        public int StageID { get; set; }
-        public string StageTitle { get; set; }
-        public string StageDescription { get; set; }
-        public int EventType_ID { get; set; }
+        public int PriceMenuID { get; set; }
+        public string PriceMenuTitle { get; set; }
+        public long Price { get; set; }
     }
 }

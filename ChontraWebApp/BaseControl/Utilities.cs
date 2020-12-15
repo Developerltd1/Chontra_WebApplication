@@ -15,12 +15,47 @@ namespace MyCode
 
     public static class MyExtensions
     {
-        public class DropDown
+        public class DropDownModal
             {
                 public int Value { get; set; }
+                public string ValueIfDistinct { get; set; }
                 public string Text { get; set; }
             }
-        public static string Encrypt(string strPlainText)
+
+            
+
+
+            public static List<DropDownModal> ToSelectList(System.Data.DataTable table, string valueField, string textField)
+            {
+                List<DropDownModal> list = new List<DropDownModal>();
+
+                foreach (System.Data.DataRow row in table.Rows)
+                {
+                    list.Add(new DropDownModal
+                    {
+                        Value = Convert.ToInt32(row[valueField]),
+                        Text = Convert.ToString(row[textField])
+                    });
+                }
+                return list;
+            }
+            public static List<DropDownModal> ToSelectListIfDistinct(System.Data.DataTable table, string valueField, string textField)
+            {
+                List<DropDownModal> list = new List<DropDownModal>();
+
+                foreach (System.Data.DataRow row in table.Rows)
+                {
+                    list.Add(new DropDownModal
+                    {
+                        ValueIfDistinct = Convert.ToString(row[valueField]),
+                        Text = Convert.ToString(row[textField])
+                    });
+                }
+                return list;
+            }
+
+
+            public static string Encrypt(string strPlainText)
         {
             TripleDESCryptoServiceProvider crp = new TripleDESCryptoServiceProvider();
             UnicodeEncoding uEncode = new UnicodeEncoding();
@@ -80,7 +115,7 @@ namespace MyCode
             catch (Exception) { return ""; }
 
         }
-            public static string DecryptURL(string strData) 
+        public static string DecryptURL(string strData) 
             {
             try
             {
@@ -101,7 +136,14 @@ namespace MyCode
             catch (Exception) { return ""; }
         }
 
-    }
+
+          //public DataTable TableHeadingNamePicture()
+          //{
+              //DataTable HeadingName = new DataTable();
+              //HeadingName.Columns.Add(new DataColumn("dtSelectPage", typeof(string)));
+              //return HeadingName;
+          //}
+        }
 
 
     public static class dbConnection
@@ -196,7 +238,35 @@ namespace MyCode
         }
 
 
+        #region ConvertDataTableToList
+        public static List<T> ConvertDataTable<T>(DataTable dt)
+        {
+            List<T> data = new List<T>();
+            foreach (DataRow row in dt.Rows)
+            {
+                T item = GetItem<T>(row);
+                data.Add(item);
+            }
+            return data;
+        }
+        public static T GetItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
 
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
+        }
+        #endregion
         public static DataTable ConvertListToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
@@ -223,33 +293,7 @@ namespace MyCode
             //put a breakpoint here and check datatable
             return dataTable;
         }
-        public static List<T> ConvertDataTableToList<T>(DataTable dt)
-        {
-            List<T> data = new List<T>();
-            foreach (DataRow row in dt.Rows)
-            {
-                T item = DataRowGetItem<T>(row);
-                data.Add(item);
-            }
-            return data;
-        }
-        private static T DataRowGetItem<T>(DataRow dr)
-        {
-            Type temp = typeof(T);
-            T obj = Activator.CreateInstance<T>();
-
-            foreach (DataColumn column in dr.Table.Columns)
-            {
-                foreach (PropertyInfo pro in temp.GetProperties())
-                {
-                    if (pro.Name == column.ColumnName)
-                        pro.SetValue(obj, dr[column.ColumnName], null);
-                    else
-                        continue;
-                }
-            }
-            return obj;
-        }
+        
     }
 
    

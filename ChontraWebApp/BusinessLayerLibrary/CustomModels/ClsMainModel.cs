@@ -3,11 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BusinessLayerLibrary.CustomModels
 {
     public class ClsMainModel
     {
+
+
+        #region CustomerEventOrder Class
+
+        public class ClsCustomerEventOrder
+        {
+            public int CustomerEventDetailsID { get; set; }
+            public int Customer_ID { get; set; }
+            public int Services_ID { get; set; }
+            public int SubServices_ID { get; set; }
+            public int EventType_ID { get; set; }
+            public int EventTimingTypeID { get; set; }
+            public int PriceMenu_ID { get; set; }
+            public int CreatedByUser_ID { get; set; }
+            public int ModifiedByUser_ID { get; set; }
+            public DateTime EntryDateTime { get; set; }
+            public DateTime ModifiedByDateTime { get; set; }
+            public bool isActive { get; set; }
+            public decimal PerEventAmount { get; set; }
+        }
+
+        #endregion
 
         #region ServicesPicture Class
 
@@ -226,6 +249,7 @@ namespace BusinessLayerLibrary.CustomModels
             public long Price { get; set; }
             public string PriceMenuTitle { get; set; }
             public string PriceMenuPicture { get; set; }
+            public string PriceMenuPictureOnlyPath { get; set; }
             public int SubMenu_ID { get; set; }
 
         }
@@ -272,8 +296,10 @@ namespace BusinessLayerLibrary.CustomModels
             public bool isActive { get; set; }
             public bool isVideo { get; set; }
             public string SliderTitle { get; set; }
+            public string SelectPage { get; set; }
             public string SliderDecription { get; set; }
             public string SliderImagePath { get; set; }
+            public HttpPostedFileBase tmStor_ImageFile { get; set; }
         }
 
         #endregion

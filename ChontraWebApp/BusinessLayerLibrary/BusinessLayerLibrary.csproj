@@ -43,9 +43,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,9 +78,6 @@
     <Compile Include="Admin_GetPriceMenu_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Admin_GetServiceDetails__ByServiceID_Result.cs">
-      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Branch.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
@@ -96,6 +96,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChontraEntityModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Combo_GetAllEventType_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Combo_GetAllHalls_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Combo_GetAllPriceMenu_ByPriceMenuID_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Combo_GetAllPriceMenu_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
@@ -112,16 +124,19 @@
     <Compile Include="EventTiming.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventTimingType.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventType.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GeEventByDate_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetAllUsers_Result.cs">
+    <Compile Include="GetAllEventTimingType_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetEventTimingDetails_Result.cs">
+    <Compile Include="GetAllUsers_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GetSideMenusByRoleID_Result.cs">
@@ -133,6 +148,8 @@
     <Compile Include="HallEventGallery.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ManagClass\MngCombo.cs" />
+    <Compile Include="ManagClass\MngEdit.cs" />
     <Compile Include="ManagClass\MngList.cs" />
     <Compile Include="membership_AuthenticateUser_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
@@ -163,7 +180,7 @@
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.cs">
+    <Compile Include="Services.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ServicesPicture.cs">
@@ -172,10 +189,13 @@
     <Compile Include="Slider.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Stage.cs">
+    <Compile Include="Stages.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SubMenu.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubServices.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModels.cs" />
@@ -195,6 +215,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseControl\MyCode.csproj">
+      <Project>{FE351B1A-5526-4B64-9B8C-D250A04D0BDF}</Project>
+      <Name>MyCode</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ChontraEntityModel.Context.tt">

@@ -1,64 +1,79 @@
-﻿<div class="container-fluid">
+﻿@model BusinessLayerLibrary.CustomModels.ClsMainModel.ClsCustomer
 
-    <div id="myModal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Create New</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+<form id="myEditForm">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h4 class="modal-title">Update Record</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+
+    <!-- Modal body -->
+    <div class="modal-body" style="color:GrayText">
+        <div class="row">
+            <label hidden class="CustomerID">@Model.CustomerID</label>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Cutomer Name</label>
+                    <input type="text" class="form-control" id="CustomerName" name="@Model.CustomerName"  Required>
                 </div>
-                <form id="AddCustomerForm">
-                    <!-- Modal Body -->
-                    <div class="modal-body " style="color:GrayText">
-                        <div class="row">
-                            <label hidden class="CustomerID">CustomerID</label>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Cutomer Name</label>
-                                    <input type="text" class="form-control" id="CustomerName" name="CustomerName" placeholder="Customer Name" Required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Contact</label>
-                                    <input type="text" class="form-control" id="CustomerConact" name="CustomerConact" placeholder="Contact" Required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">CNIC</label>
-                                    <input type="text" class="form-control" id="CustomerCNIC" name="CustomerCNIC" placeholder="CNIC">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Address</label>
-                                    <input type="text" class="form-control" id="CustomerAddress" name="CustomerAddress" placeholder="Address">
-                                </div>
-                            </div>
-
-
-
-                            <div class="alert alert-success" role="alert" id="SuccessModalMessage" style="display:none">
-                                Successfully Assigned Card To Patron
-                            </div>
-
-                            <div class="alert alert-danger" role="alert" id="FailedModalMessage" style="display:none">
-                                Failed To Assign Card
-                            </div>
-
-                        </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
-                            <button type="button" id="_submit" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")' class="btn btn-success">Save</button>
-                        </div>
-                    </div>
-                </form>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Contact</label>
+                    <input type="text" class="form-control" id="CustomerConact" name="@Model.CustomerConact"  Required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">CNIC</label>
+                    <input type="text" class="form-control" id="CustomerCNIC" name="@Model.CustomerCNIC" >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Address</label>
+                    <input type="text" class="form-control" id="CustomerAddress" name="@Model.CustomerAddress" >
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+        <button type="button" id="_submit" data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' class="btn btn-success">Update</button>
+    </div>
+
+</form>
+
+
+<script type="text/javascript">
+
+      $(document).ready(function () {
+
+          $("#_submit").click(function () {
+              var url = $('#_submit').data('url');
+              var myformdata = $("#myEditForm").serialize();
+              debugger
+              $.ajax({
+                  type: "POST",
+                  url: url,
+                  data: myformdata,
+                  datatype: "text/plain",
+                  success: function (response) {
+                      console.log(response);
+                      $("#myModal").modal('hide');
+                      window.location.href = "/Admin/ManageCustomer/ViewCustomer";
+                  }
+              });
+          });
+
+
+      });//ready
+
+</script>
+

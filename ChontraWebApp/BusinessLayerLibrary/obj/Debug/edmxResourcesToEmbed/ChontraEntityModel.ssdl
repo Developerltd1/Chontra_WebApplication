@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ChontraEntityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="ChontraEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Branch">
     <Key>
       <PropertyRef Name="BranchID" />
@@ -47,6 +47,7 @@
     <Property Name="EntryDate" Type="datetime" Nullable="false" />
     <Property Name="ModifiedByUser_ID" Type="int" />
     <Property Name="ModifiedByDateTime" Type="datetime" />
+    <Property Name="ReciptNo" Type="int" />
   </EntityType>
   <EntityType Name="CustomerEventOrder">
     <Key>
@@ -55,7 +56,7 @@
     <Property Name="CustomerEventDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Customer_ID" Type="int" Nullable="false" />
     <Property Name="Services_ID" Type="int" Nullable="false" />
-    <Property Name="ServicesPicture_ID" Type="int" Nullable="false" />
+    <Property Name="SubServices_ID" Type="int" Nullable="false" />
     <Property Name="EventType_ID" Type="int" Nullable="false" />
     <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
     <Property Name="CreatedByUser_ID" Type="int" Nullable="false" />
@@ -89,6 +90,14 @@
     <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
     <Property Name="ModifiedByUser_ID" Type="int" />
     <Property Name="ModifiedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EventTimingType">
+    <Key>
+      <PropertyRef Name="EventTimingTypeID" />
+    </Key>
+    <Property Name="EventTimingTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventTimingType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="EventType">
     <Key>
@@ -233,8 +242,7 @@
     <Property Name="ServicesPictureDescription" Type="varchar" MaxLength="350" />
     <Property Name="ServicesPicturePath" Type="varchar(max)" Nullable="false" />
     <Property Name="isActive" Type="bit" Nullable="false" />
-    <Property Name="Services_ID" Type="int" Nullable="false" />
-    <Property Name="EventType_ID" Type="int" Nullable="false" />
+    <Property Name="SubServices_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Slider">
     <Key>
@@ -270,6 +278,16 @@
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="PriceMenu_ID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="SubServices">
+    <Key>
+      <PropertyRef Name="SubServiceID" />
+    </Key>
+    <Property Name="SubServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubServiceTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="Service_ID" Type="int" Nullable="false" />
+    <Property Name="EventType_ID" Type="int" />
+  </EntityType>
   <Function Name="Admin_GetAllContactPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Admin_GetAllCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Admin_GetAllEventGallery__ByEventID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -290,7 +308,14 @@
   <Function Name="Admin_GetServiceDetails__ByServiceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ServiceID" Type="int" Mode="In" />
   </Function>
+  <Function Name="Combo_GetAllEventType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Combo_GetAllHalls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Combo_GetAllPriceMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Combo_GetAllPriceMenu_ByPriceMenuID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PriceMenuID" Type="int" Mode="In" />
+  </Function>
   <Function Name="GeEventByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAllEventTimingType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetEventTimingDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -318,13 +343,24 @@
   <Function Name="membership_GetRoleByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="RoleID" Type="int" Mode="In" />
   </Function>
-  <EntityContainer Name="ChontraEntityDBModelStoreContainer">
+  <Function Name="usp_InsertCustomerEventOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Customer_ID" Type="int" Mode="In" />
+    <Parameter Name="Services_ID" Type="int" Mode="In" />
+    <Parameter Name="SubServices_ID" Type="int" Mode="In" />
+    <Parameter Name="EventType_ID" Type="int" Mode="In" />
+    <Parameter Name="PriceMenu_ID" Type="int" Mode="In" />
+    <Parameter Name="CreatedByUser_ID" Type="int" Mode="In" />
+    <Parameter Name="Status" Type="bit" Mode="InOut" />
+    <Parameter Name="StatusDetails" Type="varchar" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="ChontraEntityModelStoreContainer">
     <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerEventOrder" EntityType="Self.CustomerEventOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Decoration" EntityType="Self.Decoration" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EventTiming" EntityType="Self.EventTiming" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventTimingType" EntityType="Self.EventTimingType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HallEvent" EntityType="Self.HallEvent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HallEventGallery" EntityType="Self.HallEventGallery" Schema="dbo" store:Type="Tables" />
@@ -339,5 +375,6 @@
     <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stages" EntityType="Self.Stages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubServices" EntityType="Self.SubServices" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

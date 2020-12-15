@@ -1,8 +1,11 @@
 ﻿using BusinessLayerLibrary;
 using BusinessLayerLibrary.CustomModels;
 using BusinessLayerLibrary.ViewModel;
+using MyCode;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +15,15 @@ namespace BusinessLayerLibrary
 {
     public class MngList
     {
-        private ChontraEntityModel objContext;
+        private Entities objContext;
+        public static string ExceptionMsg;
 
         # region Site
         public List<CustomModels.ClsMainModel.ClsPriceMenu> GetListofPriceMenuDistinct() 
         {
-            using(objContext = new ChontraEntityModel())
+            using(objContext = new Entities())
             {
-                var result = (from m in objContext.PriceMenus
+                var result = (from m in objContext.PriceMenu
                               where m.isActive == true
                               select new CustomModels.ClsMainModel.ClsPriceMenu
                               {
@@ -33,9 +37,9 @@ namespace BusinessLayerLibrary
         }
         public List<CustomModels.ClsMainModel.ClsSubMenu> GetListofSubMenu()
         {
-            using (objContext = new ChontraEntityModel())
+            using (objContext = new Entities())
             {
-                var result = (from sm in objContext.SubMenus
+                var result = (from sm in objContext.SubMenu
                               where sm.isActive == true
                               select new CustomModels.ClsMainModel.ClsSubMenu
                               {
@@ -49,7 +53,7 @@ namespace BusinessLayerLibrary
 
         public List<ClsMainModel.ClsServices> GetListofServices()
         { 
-            using (objContext = new ChontraEntityModel())
+            using (objContext = new Entities())
             {
                 return objContext.Services
                     .Where(dbr => dbr.isActive.Equals(true))
@@ -64,9 +68,9 @@ namespace BusinessLayerLibrary
         }
         public List<ClsMainModel.ClsServicesPicture> GetListofServicesPictures()
         {
-            using (objContext = new ChontraEntityModel())
+            using (objContext = new Entities())
             {
-                return objContext.ServicesPictures
+                return objContext.ServicesPicture
                     .Where(dbr => dbr.isActive.Equals(true))
                     .Select(dbr => new ClsMainModel.ClsServicesPicture
                     {
@@ -78,9 +82,9 @@ namespace BusinessLayerLibrary
         }
         public List<ClsMainModel.ClsServicesPicture> GetListofDistinctServicesPictures()
         {
-            using (objContext = new ChontraEntityModel())
+            using (objContext = new Entities())
             {
-                return objContext.ServicesPictures
+                return objContext.ServicesPicture
                     .Where(dbr => dbr.isActive.Equals(true))
                     .Select(dbr => new ClsMainModel.ClsServicesPicture
                     {
@@ -92,9 +96,9 @@ namespace BusinessLayerLibrary
 
         public static List<ClsMainModel.ClsEventType> GetListofEventType(int _EventTypeID)
         {
-            using (ChontraEntityModel  objContext = new ChontraEntityModel())
+            using (Entities  objContext = new Entities())
             {
-               var a = objContext.EventTypes
+               var a = objContext.EventType
                     .Where(dbr => dbr.isActive.Equals(true) && dbr.EventTypeID == _EventTypeID)
                     .Select(dbr => new ClsMainModel.ClsEventType
                     {
@@ -107,7 +111,7 @@ namespace BusinessLayerLibrary
         }
         public  List<ViewModel.MainViewModels.ServicesPicture_N_EventTypeViewModels> GetListofServicesPicture(int ServicessID)
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
                 #region Method1
                 //var result = (from sp in objContext.ServicesPictures
@@ -129,14 +133,14 @@ namespace BusinessLayerLibrary
 
                 #region Method2
 
-                var result = (from sp in objContext.ServicesPictures
-                              join et in objContext.EventTypes on sp.EventType_ID equals et.EventTypeID
-                              where sp.isActive == true && sp.Services_ID == ServicessID
+                var result = (from sp in objContext.ServicesPicture
+                             // join et in objContext.EventTypes on sp.EventType_ID equals et.EventTypeID
+                              where sp.isActive == true //&& sp.Services_ID == ServicessID
                               
                               select new ViewModel.MainViewModels.ServicesPicture_N_EventTypeViewModels
                               { 
-                                 EventType = et.EventType1,
-                                 EventType_ID = sp.EventType_ID,
+                                // EventType = et.EventType1,
+                                // EventType_ID = sp.EventType_ID,
                                  ServicesPictureID = sp.ServicesPictureID,
                                  ServicesPictureTitle = sp.ServicesPictureTitle,
                                  ServicesPictureDescription = sp.ServicesPictureDescription,
@@ -151,18 +155,18 @@ namespace BusinessLayerLibrary
 
         public List<ClsMainModel.ClsEventType> EventTypeDistinct(int ServicessID)
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
                 #region Method2
 
-                var result = (from sp in objContext.ServicesPictures
-                              join et in objContext.EventTypes on sp.EventType_ID equals et.EventTypeID
-                              where sp.isActive == true && sp.Services_ID == ServicessID
+                var result = (from sp in objContext.ServicesPicture
+                             // join et in objContext.EventTypes on sp.EventType_ID equals et.EventTypeID
+                              where sp.isActive == true //&& sp.Services_ID == ServicessID
 
                               select new ClsMainModel.ClsEventType
                               {
-                                 EventTypeID = sp.EventType_ID,
-                                 EventType  =et.EventType1
+                               //  EventTypeID = sp.EventType_ID,
+                                // EventType  =et.EventType1
                               })
                               .Distinct()
                               .ToList();
@@ -175,10 +179,10 @@ namespace BusinessLayerLibrary
 
         public List<ClsMainModel.ClsEvent> GetListofEvent()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
 
-                var result = objContext.HallEvents
+                var result = objContext.HallEvent
                              .Where(dbr => dbr.isActive.Equals(true))
                              .Select(dbr => new ClsMainModel.ClsEvent
                              {
@@ -192,11 +196,11 @@ namespace BusinessLayerLibrary
         }
         public List<MainViewModels.Gallery_N_GalleryDetilsViewModels> GetListofEventGalleryByEventID(int _EventID)
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
 
-                var result = (from eg in objContext.HallEventGalleries
-                              join e in objContext.HallEvents on eg.Event_ID equals e.EventID
+                var result = (from eg in objContext.HallEventGallery
+                              join e in objContext.HallEvent on eg.Event_ID equals e.EventID
                               where eg.isActive == true && eg.Event_ID == _EventID
                               select new ViewModel.MainViewModels.Gallery_N_GalleryDetilsViewModels
                               {
@@ -228,9 +232,9 @@ namespace BusinessLayerLibrary
         }
         public List<ClsMainModel.ClsSlider> GetListofSliderHome()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
-                var result = objContext.Sliders
+                var result = objContext.Slider
                              .Where(dbr => dbr.isActive.Equals(true) && dbr.SelecPage == "HomePage")
                              .Select(dbr => new ClsMainModel.ClsSlider
                              {
@@ -244,9 +248,9 @@ namespace BusinessLayerLibrary
         }
         public List<ClsMainModel.ClsSlider> GetListofSliderAboutPage()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
-                var result = objContext.Sliders
+                var result = objContext.Slider
                              .Where(dbr => dbr.isActive.Equals(true))
                              .Select(dbr => new ClsMainModel.ClsSlider
                              {
@@ -262,9 +266,9 @@ namespace BusinessLayerLibrary
         //StoreProcedure
         public List<GeEventByDate_Result> GetListofEventTiming()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
-                var data = objContext.Database.SqlQuery<GeEventByDate_Result>("GeEventByDate").ToList();
+                List<GeEventByDate_Result> data =null;// objContext.Database.SqlQuery<GeEventByDate_Result>("GeEventByDate").ToList();
                 return data;
             }
            
@@ -272,7 +276,7 @@ namespace BusinessLayerLibrary
 
         public List<MainViewModels.User_N_RoleViewModels> GetListofUsers()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
                 var result = (from u in objContext.Membership_Users
                               join r in objContext.Membership_RoleUsers on u.Role_ID equals r.RoleID
@@ -289,9 +293,9 @@ namespace BusinessLayerLibrary
         }
         public List<ClsMainModel.ClsContact> GetEmail_N_Contact()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
-                var result = objContext.Contacts
+                var result = objContext.Contact
                              .Where(dbr => dbr.isActive.Equals(true))
                              .Select(dbr => new ClsMainModel.ClsContact
                              {
@@ -304,9 +308,9 @@ namespace BusinessLayerLibrary
         }
         public ClsMainModel.ClsBranch GetListofBranch(int BranchID)
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
-                var result = objContext.Branches
+                var result = objContext.Branch
                              .Where(dbr => dbr.isActive.Equals(true) && dbr.BranchID == BranchID)
                              .Select(dbr => new  ClsMainModel.ClsBranch
                              {
@@ -322,9 +326,9 @@ namespace BusinessLayerLibrary
         }
         public ClsMainModel.ClsContact GetListofContact()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
-                var result = objContext.Contacts
+                var result = objContext.Contact
                              .Where(dbr => dbr.isActive.Equals(true))
                              .Select(dbr => new ClsMainModel.ClsContact
                              {
@@ -506,7 +510,7 @@ namespace BusinessLayerLibrary
         //StoreProcedure
         public List<Admin_GetAllCustomer_Result> Admin_GetAllCustomer()
         {
-            using (ChontraEntityModel objContext = new ChontraEntityModel())
+            using (Entities objContext = new Entities())
             {
                 var data = objContext.Database.SqlQuery<Admin_GetAllCustomer_Result>("Admin_GetAllCustomer").ToList();
                 return data;
@@ -514,6 +518,99 @@ namespace BusinessLayerLibrary
 
         }
 
+        public  DataTable Admin_GetCustomerInfoByReciptNo(int ReciptNo)
+        {
+
+            // DataTable Declaration
+            DataTable dt = new DataTable();
+
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            try
+            {
+                string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChontraConnectionString"].ToString();
+                conn = new SqlConnection(ConnectionString);
+                cmd = new SqlCommand("Admin_GetCustomerInfoByReciptNo", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+
+                cmd.Parameters.AddWithValue("@ReciptNo", ReciptNo);
+
+                conn.Open();
+                Adapter.Fill(dt);
+                conn.Close();
+
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                ExceptionMsg = ex.Message;
+                //Return Value
+                return dt;
+            }
+            finally
+            {
+                conn.Dispose();
+                cmd.Dispose();
+            }
+        }
+
+        public DataTable Admin_DisplaySlider()
+        {
+            string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChontraConnectionString"].ToString();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Slider", con);
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            Adapter.Fill(dt);
+            con.Close();
+
+            con.Dispose();
+            cmd.Dispose();
+
+            return dt;
+        }
+        public  List<ClsMainModel.ClsPriceMenu> Admin_GetPriceMenu()
+        {
+
+            List<ClsMainModel.ClsPriceMenu> lst = new List<ClsMainModel.ClsPriceMenu>();
+            // DataTable Declaration
+            DataTable dt = new DataTable();
+
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            try
+            {
+                string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChontraConnectionString"].ToString();
+                conn = new SqlConnection(ConnectionString);
+                cmd = new SqlCommand("Admin_GetPriceMenu", conn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+
+
+                conn.Open();
+                Adapter.Fill(dt);
+                conn.Close();
+               lst = Conversion.ConvertDataTable<ClsMainModel.ClsPriceMenu>(dt);
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                ExceptionMsg = ex.Message;
+                //Return Value
+                return lst;
+            }
+            finally
+            {
+                conn.Dispose();
+                cmd.Dispose();
+            }
+        }
 
         #endregion
 

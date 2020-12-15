@@ -14,6 +14,7 @@ namespace BusinessLayerLibrary
     public partial class Admin_GetAllCustomer_Result
     {
         public int CustomerID { get; set; }
+        public Nullable<int> ReciptNo { get; set; }
         public string CustomerName { get; set; }
         public string CustomerConact { get; set; }
         public string CustomerCNIC { get; set; }

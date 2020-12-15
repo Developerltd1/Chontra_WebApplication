@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad6d2997b7e64259ad3915cc68abfb28" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="ChontraEntityModel.Branch" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Customer" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.CustomerEventOrder" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.Decoration" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.EventTiming" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.EventTimingType" Width="1.5" PointX="4.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.HallEvent" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.HallEventGallery" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.SubMenu" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChontraEntityModel.SubService" Width="1.5" PointX="8.75" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

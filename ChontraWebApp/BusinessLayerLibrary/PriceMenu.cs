@@ -16,7 +16,7 @@ namespace BusinessLayerLibrary
     {
         public int PriceMenuID { get; set; }
         public string PriceMenuTitle { get; set; }
-        public long Price { get; set; }
+        public int Price { get; set; }
         public string PriceMenuPicture { get; set; }
         public bool isActive { get; set; }
         public int CreatedByUser_ID { get; set; }

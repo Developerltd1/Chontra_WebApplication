@@ -19,210 +19,306 @@
 <div class="page-content">
     <div class="container-fluid">
 
-   @*     @Html.Partial("EditCustomerPartial")*@
-
+        @*     @Html.Partial("EditCustomerPartial")*@
 
         <div class="row mt-4">
             <div class="col-sm-12">
-                <div class="card box-shadow">
-                   
-                     <h4 class="card-header"><!--Start_Modal-->
-                        <button data-toggle="modal" data-target="#myModal" class="btn btn-sm float-sm-right btn-success  _click" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")' ><i class="mdi mdi-plus"></i> Create New </button>
-                   
-                        <!--End_Modal-->
-                         
-                    <div id="ToggleId1"><h1>Check Toggle</h1></div>
 
-                        <i class="mdi mdi-account-clock-outline"></i> @ViewBag.TableHeaderName
-                    </h4>
-                   
-                     <div class="card-body">
-                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Customer Name</th>
-                                    <th>Conact</th>
-                                    <th>CNIC</th>
-                                    <th>Address</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                    <th>Details</th>
-                                </tr>
-                            </thead>
+                @{
+                    if (TempData["Statusdetailserror"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetailserror"]
+                        </div>
 
-                            <tbody>
-                            @{int increment = 0;
+                    }
+                    else if (TempData["Exception"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Exception"]
+                        </div>
+                    }
+                }
+
+
+
+
+                <div class="row mt-4">
+                    <div class="col-sm-12">
+                        <div class="card box-shadow">
+
+                            <h4 class="card-header">
+                                <!--Start_Modal-->
+                                <button data-toggle="modal" data-target="#myModal" class="btn btn-sm float-sm-right btn-success  _click" data-url='@Url.Action("AddCustomerPartial", "ManageCustomer")'><i class="mdi mdi-plus"></i> Create New </button>
+
+                                <!--End_Modal-->
+                                <div id="ToggleId1"><h3>Customer Table</h3></div>
+                            </h4>
+
+                            <div class="card-body">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Customer Name</th>
+                                            <th>Conact</th>
+                                            <th>CNIC</th>
+                                            <th>Address</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{int increment = 0;
                                 foreach (var item in Model)
                                 {
                                     increment++;
-                               <tr>
-                                   <td>@increment</td>
-                                   <td  @item.CustomerID>@item.CustomerName</td>
-                                   <td>@item.CustomerConact</td>
-                                   <td>@item.CustomerCNIC</td>
-                                   <td>@item.CustomerAddress</td>
-                                   <td>
-                                   @if (@item.isActive) { <span class="badge  badge-round badge-primary">Active</span> }
+                                        <tr>
+                                            <td>@increment</td>
+                                            <td>@item.CustomerName</td>
+                                            <td>@item.CustomerConact</td>
+                                            <td>@item.CustomerCNIC</td>
+                                            <td>@item.CustomerAddress</td>
+                                            <td>
+                                                @if (@item.isActive) { <span class="badge  badge-round badge-primary">Active</span> }
                                    else {  <span class="badge  badge-round badge-danger">Deactive</span> }
-                                   </td>
-                                   <td>
-                                      <a href="@Url.Action("EditCustomerPartial", "ManageCustomer", new {})"  onclick="EditbBtn(@item.CustomerID.ToString())" class="btn btn-warning btn-sm mdi mdi-pencil" title="Update">
-                                          <i class="fa fa-pencil-alt"></i>
-                                      </a>
-                                      <a class="btn btn-danger mdi mdi-close btn-sm" title="Delete" id="ShowRecord" >
-                                      </a>
-                                   </td>
-                                   <td>Details</td>
-                               </tr>
+                                            </td>
+                                            <td>
+                                                <a  data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@item.CustomerID.ToString()"   class="btn btn-warning btn-sm mdi mdi-pencil btnEdit" title="Update" >
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                                <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@item.CustomerID.ToString()" >
+                                                </a>
+
+                                            </td>
+                                            <td>Details</td>
+                                        </tr>
                                     }
-                                    }
-                            </tbody>
+                                        }
+                                    </tbody>
 
-                        </table>
-                    </div>
-                </div>
-            </div> <!-- end col -->
-        </div> <!-- end row -->
+                                </table>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
 
-
-    </div> <!-- container-fluid -->
-</div>
-<!-- End Page-content -->
-
-
-
-
-<!--=================MODAL=================-->
-<div class="modal fade" role="dialog" id="myModal">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content" id="myModalBodyDiv">
-            <!-- Modal Body -->
-            <div class="modal-body"  style="color:GrayText">
-                <!--Dynamicly PartialView Code by ID-->
             </div>
         </div>
-    </div>
-</div>
+    </div> <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+        <!--=================MODAL=================-->
+        <div class="modal fade" role="dialog" id="myModal">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content" id="myModalBodyDiv">
+                    <!-- Modal Body -->
+                    <div class="modal-body" style="color:GrayText">
+                        <!--Dynamicly PartialView Code by ID-->
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-@section Scripts {
+        @section Scripts {
 
-       <!-- Required datatable js -->
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<!-- Buttons examples -->
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/jszip/jszip.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/vfs_fonts.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-<!-- Responsive examples -->
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/datatables.init.js"></script>
-<script src="~/Areas/Admin/Contents/AdminContent/assets/js/bootbox.min.js"></script>
+            <!-- Required datatable js -->
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+            <!-- Buttons examples -->
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/jszip/jszip.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+            <!-- Responsive examples -->
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/datatables.init.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/js/bootbox.min.js"></script>
 
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+            <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/sweet-alerts.init.js"></script>
 
-    <script type="text/javascript">
+            <script type="text/javascript">
 
-     $(document).ready(function () {
-     //
-     //     $("._click").click(function () {
-     //         $("#ToggleId1").slideToggle()
-     //     });
-
+               
+               
 
 
-       $("._click").click(function () {
-           debugger;
-           var url = $('._click').data('url');
+                   // EditBtnFunction();
+                   //
+                   // debugger
+                   // $.ajax({
+                   //     type: "GET",
+                   //     url: url,
+                   //     data: {id: 2},
+                   //     datatype: "text/plain",
+                   //     success: function (response) {
+                   //         debugger
+                   //         console.log(response);
+                   //         $("#myModalBodyDiv").html(response);
+                   //         $("#myModal").show();
+                   //     }
+                   // });
+                //}
 
-          // var person = {}; // person.Name = $("#ToggleId1").val();
-           $.ajax({
-               type: "GET",
-               url: url,
-               data: {},
-               datatype: "text/plain",
-               success: function (response) {
-                   debugger;
-                   console.log(response);
-                  $("#myModalBodyDiv").html(response);
-                  $("#myModal").show();
-
-                   //   $("#showSuccessMsgDiv").show();
-               },
-                error: function (jqXHR, textStatus, error) {
-                    if (jqXHR && jqXHR.status == 401) {
-                    }
-                }
-           });
-       });
-
-
-       });//ready
+                //function EditBtnFunction(i) {
+                //    debugger
+                //    number = i;
+                //    alert(number);
+                //
+                //    //some callback to the Jquery in the ready doc?       
+                //}
 
 
+                $(document).ready(function () {
+                   
+
+                    //******Create**********//
+                    $("._click").click(function () {
+                        var url = $('._click').data('url');
+
+                        // var person = {}; // person.Name = $("#ToggleId1").val();
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            data: {},
+                            datatype: "text/plain",
+                            success: function (response) {
+                                console.log(response);
+                                alert(response);
+                                $("#myModalBodyDiv").html(response);
+                                $("#myModal").show();
+
+                                //   $("#showSuccessMsgDiv").show();
+                            }
+                        });
+                    });
+                    //******Update**********//
+
+
+                    $(".btnEdit").click(function () {
+                        debugger
+                        var url = $('.btnEdit').data('url');
+                        var number = $(this).data('id');
+                        
+                        $.ajax({
+                            type: "GET",
+                            url: url,
+                            data: { id: number },
+                            datatype: "text/plain",
+                            success: function (response) {
+                                alert(response);
+                                $("#myModalBodyDiv").html(response);
+                                $("#myModal").show();
+                            }
+                        });
+                    });
+
+                    //******Delete**********//
+                    $('a.btn-danger').on('click', function (e) {
+                        e.preventDefault();
+                        var url = $(this).attr('href');
+                        Swal.fire({
+                            title: "Attention",
+                            text: "Are you sure to Change  Status?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#34c38f",
+                            cancelButtonColor: "#f46a6a",
+                            confirmButtonText: "Yes, Change it!"
+                        }).then(function (result) {
+                            debugger
+
+                            if (result.value) {
+                                window.location.href = url;
+                                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                            }
+                        });
+                    });
 
 
 
 
 
 
-         //  //var url = "/Admin/ManageCustomer/EditCustomerPartial?id" + cid;
-         //  var url = "/Admin/ManageCustomer/EditCustomerPartial?id=" + cid;
-         //  debugger;
-         //  $("#myModalBodyDiv").load(url, function () {
-         //      debugger;
-         //      $("#myModal").show();
-         //      debugger;
-         //  });
+
+                });//ready
+
+
+
+
+
+                //     $("._click").click(function () {
+                //         $("#ToggleId1").slideToggle()
+                //     });
+
+
+
+                //  //var url = "/Admin/ManageCustomer/EditCustomerPartial?id" + cid;
+                //  var url = "/Admin/ManageCustomer/EditCustomerPartial?id=" + cid;
+                //  debugger;
+                //  $("#myModalBodyDiv").load(url, function () {
+                //      debugger;
+                //      $("#myModal").show();
+                //      debugger;
+                //  });
 
 
 
 
 
 
-            ///    var EditbBtn = function(id){
-            ///        debugger;
-            ///        $ajax({
-            ///            type: "POST",
-            ///
-            ///            data: data,
-            ///        success: function (response) {
-            ///            $('#myModalBodyDiv').html(response);
-            ///            $('#myModalBodyDiv').show();
-            ///
-            ///            $("#showSuccessMsgDiv").show();
-            ///
-            ///        }
-            ///    });
-            ///}
+                ///    var EditbBtn = function(id){
+                ///        debugger;
+                ///        $ajax({
+                ///            type: "POST",
+                ///
+                ///            data: data,
+                ///        success: function (response) {
+                ///            $('#myModalBodyDiv').html(response);
+                ///            $('#myModalBodyDiv').show();
+                ///
+                ///            $("#showSuccessMsgDiv").show();
+                ///
+                ///        }
+                ///    });
+                ///}
 
 
 
 
-     //       // ******** Click "CreateNew" Button Then Open Modal ********
-     //   $('._click').click(function () {
-     //           var url = $('#myModal').data('url');
-     //           $.get(url, function (data) {
-     //               $("#myModal").html(data);
-     //               $("#myModal").modal('show');
-     //
-     //           });
-     //   });
-     //       // ********* Click "CreateNew" Button Then Modal Close ***********
-     //   $('#btn-close').click(function () {
-     //       $('#myModal').modal('hide');
-     //   });// modalClose
+                //       // ******** Click "CreateNew" Button Then Open Modal ********
+                //   $('._click').click(function () {
+                //           var url = $('#myModal').data('url');
+                //           $.get(url, function (data) {
+                //               $("#myModal").html(data);
+                //               $("#myModal").modal('show');
+                //
+                //           });
+                //   });
+                //       // ********* Click "CreateNew" Button Then Modal Close ***********
+                //   $('#btn-close').click(function () {
+                //       $('#myModal').modal('hide');
+                //   });// modalClose
 
 
-    </script>
- 
-}
+            </script>
+
+        }
 
 
 
