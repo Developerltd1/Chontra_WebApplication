@@ -1,4 +1,4 @@
-﻿using BusinessLayerLibrary;
+﻿using BusinessLayerLibrary.ManagClass;
 using BusinessLayerLibrary.CustomModels;
 using System;
 using System.Collections.Generic;

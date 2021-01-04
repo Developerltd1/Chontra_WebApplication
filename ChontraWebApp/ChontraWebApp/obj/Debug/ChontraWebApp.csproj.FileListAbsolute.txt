@@ -1,3 +1,4 @@
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\obj\Debug\ChontraWebApp.csprojAssemblyReference.cache
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\roslyn\csc.exe
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -30,6 +31,7 @@ D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebAp
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\System.Web.Webpages.Razor.dll
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\MyCode.pdb
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\BusinessLayerLibrary.pdb
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\BusinessLayerLibrary.dll.config
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\EntityFramework.xml
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\EntityFramework.SqlServer.xml
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
@@ -40,6 +42,6 @@ D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebAp
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\System.Web.Webpages.Razor.xml
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\System.Web.Helpers.xml
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\bin\System.Web.Mvc.xml
-D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\obj\Debug\ChontraWebApp.csprojResolveAssemblyReference.cache
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\obj\Debug\ChontraWebApp.csproj.CopyComplete
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\obj\Debug\ChontraWebApp.dll
 D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\ChontraWebApp\obj\Debug\ChontraWebApp.pdb

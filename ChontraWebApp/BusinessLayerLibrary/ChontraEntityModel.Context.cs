@@ -272,5 +272,10 @@ namespace BusinessLayerLibrary
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertCustomerEventOrder", customer_IDParameter, services_IDParameter, subServices_IDParameter, eventType_IDParameter, priceMenu_IDParameter, createdByUser_IDParameter, status, statusDetails);
         }
+    
+        public virtual ObjectResult<GetSubServices_ForStage_Result> GetSubServices_ForStage()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSubServices_ForStage_Result>("GetSubServices_ForStage");
+        }
     }
 }

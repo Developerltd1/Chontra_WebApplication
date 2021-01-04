@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace BusinessLayerLibrary
+namespace BusinessLayerLibrary.ManagClass
 {
     public class MngList
     {
@@ -609,6 +609,18 @@ namespace BusinessLayerLibrary
             {
                 conn.Dispose();
                 cmd.Dispose();
+            }
+        }
+
+
+
+        //StoreProcedure
+        public List<GetSubServices_ForStage_Result> GetSubServices_ForStage()
+        {
+            using (Entities objContext = new Entities())
+            {
+                var data1 = objContext.Database.SqlQuery<GetSubServices_ForStage_Result>("GetSubServices_ForStage").ToList();
+                return data1;
             }
         }
 

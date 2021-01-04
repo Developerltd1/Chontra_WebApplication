@@ -1,5 +1,6 @@
 ﻿using BusinessLayerLibrary;
 using BusinessLayerLibrary.CustomModels;
+using BusinessLayerLibrary.ManagClass;
 using BusinessLayerLibrary.ViewModel;
 using System;
 using System.Collections.Generic;

@@ -266,6 +266,10 @@
     <EntitySetMapping Name="Slider">
       <EntityTypeMapping TypeName="ChontraEntityModel.Slider">
         <MappingFragment StoreEntitySet="Slider">
+          <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+          <ScalarProperty Name="ModifiedByDateTime" ColumnName="ModifiedByDateTime" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
           <ScalarProperty Name="SliderID" ColumnName="SliderID" />
           <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
           <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
@@ -524,5 +528,17 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_InsertCustomerEventOrder" FunctionName="ChontraEntityModel.Store.usp_InsertCustomerEventOrder" />
+    <FunctionImportMapping FunctionImportName="GetSubServices_ForStage" FunctionName="ChontraEntityModel.Store.GetSubServices_ForStage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChontraEntityModel.GetSubServices_ForStage_Result">
+          <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+          <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+          <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+          <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

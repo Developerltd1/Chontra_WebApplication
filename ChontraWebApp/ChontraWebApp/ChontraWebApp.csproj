@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -5562,6 +5563,9 @@
     <Content Include="Areas\Admin\Views\ManageFoodMenu\ViewFoodMenu.cshtml" />
     <Content Include="Areas\Admin\Views\ManageFoodMenu\AddFoodMenu.cshtml" />
     <Content Include="Areas\Admin\Views\ManageFoodMenu\AddSubFoodMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageServices\ViewServices.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageServices\AddNewServices.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageServices\ViewSubServices.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -5583,8 +5587,10 @@
     <Compile Include="Areas\Admin\Controllers\ManageEventOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageFoodMenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageRolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageServicesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
+    <Compile Include="Areas\Admin\ManageServicesController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />

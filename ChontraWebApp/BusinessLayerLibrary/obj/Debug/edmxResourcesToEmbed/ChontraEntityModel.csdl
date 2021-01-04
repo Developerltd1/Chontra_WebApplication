@@ -251,10 +251,14 @@
     <Property Name="SliderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SliderTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="SliderDecription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="SliderImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SliderImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="SelecPage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="isVideo" Type="Boolean" Nullable="false" />
+    <Property Name="EntryDateTime" Type="DateTime" Precision="3" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="ModifiedByDateTime" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedByUser_ID" Type="Int32" />
   </EntityType>
   <EntityType Name="Stages">
     <Key>
@@ -376,6 +380,7 @@
       <Parameter Name="Status" Mode="InOut" Type="Boolean" />
       <Parameter Name="StatusDetails" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetSubServices_ForStage" ReturnType="Collection(ChontraEntityModel.GetSubServices_ForStage_Result)" />
   </EntityContainer>
   <ComplexType Name="Admin_GetAllContactPage_Result">
     <Property Type="Int32" Name="ContactID" Nullable="false" />
@@ -508,5 +513,13 @@
   <ComplexType Name="membership_GetRoleByID_Result">
     <Property Type="Int32" Name="RoleID" Nullable="false" />
     <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GetSubServices_ForStage_Result">
+    <Property Type="Int32" Name="SubServiceID" Nullable="false" />
+    <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EventType" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
   </ComplexType>
 </Schema>

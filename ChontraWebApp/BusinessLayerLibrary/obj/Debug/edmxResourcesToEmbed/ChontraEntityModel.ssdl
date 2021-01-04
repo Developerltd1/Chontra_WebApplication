@@ -251,10 +251,14 @@
     <Property Name="SliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SliderTitle" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="SliderDecription" Type="varchar" MaxLength="800" Nullable="false" />
-    <Property Name="SliderImagePath" Type="varchar(max)" Nullable="false" />
+    <Property Name="SliderImagePath" Type="varchar(max)" />
     <Property Name="isActive" Type="bit" Nullable="false" />
     <Property Name="SelecPage" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="isVideo" Type="bit" Nullable="false" />
+    <Property Name="EntryDateTime" Type="datetime" />
+    <Property Name="User_ID" Type="int" />
+    <Property Name="ModifiedByDateTime" Type="datetime" />
+    <Property Name="ModifiedByUser_ID" Type="int" />
   </EntityType>
   <EntityType Name="Stages">
     <Key>
@@ -321,6 +325,7 @@
   <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="in_RoleID" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetSubServices_ForStage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="membership_AddRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="RoleID" Type="int" Mode="InOut" />
     <Parameter Name="RoleName" Type="varchar" Mode="In" />

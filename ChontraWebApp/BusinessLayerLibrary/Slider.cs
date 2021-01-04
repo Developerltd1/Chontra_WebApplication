@@ -21,5 +21,9 @@ namespace BusinessLayerLibrary
         public bool isActive { get; set; }
         public string SelecPage { get; set; }
         public bool isVideo { get; set; }
+        public Nullable<System.DateTime> EntryDateTime { get; set; }
+        public Nullable<int> User_ID { get; set; }
+        public Nullable<System.DateTime> ModifiedByDateTime { get; set; }
+        public Nullable<int> ModifiedByUser_ID { get; set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using BusinessLayerLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BusinessLayerLibrary.ManagClass;
 using System.Web.Mvc;
 
 namespace ChontraWebApp.Controllers

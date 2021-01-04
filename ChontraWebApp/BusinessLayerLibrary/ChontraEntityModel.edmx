@@ -256,10 +256,14 @@
           <Property Name="SliderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SliderTitle" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="SliderDecription" Type="varchar" MaxLength="800" Nullable="false" />
-          <Property Name="SliderImagePath" Type="varchar(max)" Nullable="false" />
+          <Property Name="SliderImagePath" Type="varchar(max)" />
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="SelecPage" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="isVideo" Type="bit" Nullable="false" />
+          <Property Name="EntryDateTime" Type="datetime" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="ModifiedByDateTime" Type="datetime" />
+          <Property Name="ModifiedByUser_ID" Type="int" />
         </EntityType>
         <EntityType Name="Stages">
           <Key>
@@ -326,6 +330,7 @@
         <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="in_RoleID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetSubServices_ForStage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="membership_AddRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleID" Type="int" Mode="InOut" />
           <Parameter Name="RoleName" Type="varchar" Mode="In" />
@@ -637,10 +642,14 @@
           <Property Name="SliderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SliderTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SliderDecription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SliderImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SliderImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="SelecPage" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="isVideo" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDateTime" Type="DateTime" Precision="3" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="ModifiedByDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUser_ID" Type="Int32" />
         </EntityType>
         <EntityType Name="Stages">
           <Key>
@@ -762,6 +771,7 @@
             <Parameter Name="Status" Mode="InOut" Type="Boolean" />
             <Parameter Name="StatusDetails" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetSubServices_ForStage" ReturnType="Collection(ChontraEntityModel.GetSubServices_ForStage_Result)" />
         </EntityContainer>
         <ComplexType Name="Admin_GetAllContactPage_Result">
           <Property Type="Int32" Name="ContactID" Nullable="false" />
@@ -894,6 +904,14 @@
         <ComplexType Name="membership_GetRoleByID_Result">
           <Property Type="Int32" Name="RoleID" Nullable="false" />
           <Property Type="String" Name="RoleName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetSubServices_ForStage_Result">
+          <Property Type="Int32" Name="SubServiceID" Nullable="false" />
+          <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EventType" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1166,6 +1184,10 @@
           <EntitySetMapping Name="Slider">
             <EntityTypeMapping TypeName="ChontraEntityModel.Slider">
               <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="ModifiedByUser_ID" ColumnName="ModifiedByUser_ID" />
+                <ScalarProperty Name="ModifiedByDateTime" ColumnName="ModifiedByDateTime" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
                 <ScalarProperty Name="SliderID" ColumnName="SliderID" />
                 <ScalarProperty Name="SliderTitle" ColumnName="SliderTitle" />
                 <ScalarProperty Name="SliderDecription" ColumnName="SliderDecription" />
@@ -1424,6 +1446,18 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_InsertCustomerEventOrder" FunctionName="ChontraEntityModel.Store.usp_InsertCustomerEventOrder" />
+          <FunctionImportMapping FunctionImportName="GetSubServices_ForStage" FunctionName="ChontraEntityModel.Store.GetSubServices_ForStage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetSubServices_ForStage_Result">
+                <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+                <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -142,6 +142,9 @@
     <Compile Include="GetSideMenusByRoleID_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetSubServices_ForStage_Result.cs">
+      <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HallEvent.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
     </Compile>
