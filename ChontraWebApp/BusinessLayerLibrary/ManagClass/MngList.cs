@@ -1,4 +1,5 @@
 ﻿using BusinessLayerLibrary;
+using BusinessLayerLibrary;
 using BusinessLayerLibrary.CustomModels;
 using BusinessLayerLibrary.ViewModel;
 using MyCode;
@@ -507,6 +508,20 @@ namespace BusinessLayerLibrary.ManagClass
 
         #region Admin
 
+        public ClsMainModel.ClsServices GetServiceIdForCheck(int id)
+        {
+            using (Entities objContext = new Entities())
+            {
+                var result = objContext.Services
+                             .Where(dbr => dbr.ServicesID.Equals(id))
+                             .Select(dbr => new ClsMainModel.ClsServices
+                             { ServicesID = dbr.ServicesID }
+                   )
+                   .SingleOrDefault();
+                return result;
+            }
+        }
+
         //StoreProcedure
         public List<Admin_GetAllCustomer_Result> Admin_GetAllCustomer()
         {
@@ -554,6 +569,30 @@ namespace BusinessLayerLibrary.ManagClass
             {
                 conn.Dispose();
                 cmd.Dispose();
+            }
+        }
+
+        public int CheckPictureIdValid(int id)
+        {
+            int value = 0;
+            string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChontraConnectionString"].ToString();
+            SqlConnection con = new SqlConnection(ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select Count(*) from ServicesPicture Where ServicesPictureID = "+ id + "", con);
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            Adapter.Fill(dt);
+            con.Close();
+            con.Dispose();
+            cmd.Dispose();
+            if (dt.Rows.Count > 0)
+            {
+                return value;
+            }
+            else
+            {
+                return 0;
             }
         }
 
@@ -614,6 +653,7 @@ namespace BusinessLayerLibrary.ManagClass
 
 
 
+
         //StoreProcedure
         public List<GetSubServices_ForStage_Result> GetSubServices_ForStage()
         {
@@ -623,7 +663,34 @@ namespace BusinessLayerLibrary.ManagClass
                 return data1;
             }
         }
-
+        //StoreProcedure
+        public List<GetSubServices_ForPhotography_Result> GetSubServices_ForPhotography()
+        {
+            using (Entities objContext = new Entities())
+            {
+                var data1 = objContext.Database.SqlQuery<GetSubServices_ForPhotography_Result>("GetSubServices_ForPhotography").ToList();
+                return data1;
+            }
+        }
+        //StoreProcedure
+        public List<GetSubServices_ForHall_Result> GetSubServices_ForHall()
+        {
+            using (Entities objContext = new Entities())
+            {
+                var data1 = objContext.Database.SqlQuery<GetSubServices_ForHall_Result>("GetSubServices_ForHall").ToList();
+                return data1;
+            }
+        }
+        
+        //StoreProcedure
+        public List<GetSubServices_ForWaiter_Result> GetSubServices_ForWaiter()
+        {
+            using (Entities objContext = new Entities())
+            {
+                var data1 = objContext.Database.SqlQuery<GetSubServices_ForWaiter_Result>("GetSubServices_ForWaiter").ToList();
+                return data1;
+            }
+        }
         #endregion
 
 

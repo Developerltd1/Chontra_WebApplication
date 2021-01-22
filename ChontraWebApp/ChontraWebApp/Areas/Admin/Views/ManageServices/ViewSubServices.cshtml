@@ -1,6 +1,8 @@
-﻿@{
+﻿@model dynamic
+@{
     ViewBag.Title = "ViewSubServices";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
 }
 
 @{
@@ -48,26 +50,31 @@
 
                 <!--StagesList-->
                 @{
-                    var _LstSubStage = _Lst.GetSubServices_ForStage();
+                    @Html.Partial("PartialView_SUBSERVICES_StageList")<!--Recently_Added-->
+                   
+                }
 
+                <!--PhotographyList-->
+                @{
+                    var _LstSubPhotography = _Lst.GetSubServices_ForPhotography();
                     <div class="row mt-4">
                         <div class="col-sm-12">
                             <div class="card box-shadow">
 
                                 <h4 class="card-header">
-                                    <button class="btn btn-sm float-sm-right btn-success ml-1" onclick="btnCustomerEventOrder()"><i class="mdi mdi-plus"></i> Create New </button>
-                                    @*<button class="btn btn-sm float-sm-right btn-success " onclick="btnCustomerEventOrder()"><i class="mdi mdi-plus "></i> New Services </button>*@
-                                    <div><h3>Stages List</h3></div>
+                                    @Html.ActionLink("Create New", "AddSubServices", "ManageServices", new { id = 4 }, new { @class = "btn btn-primary btn-sm mdi mdi-table-edit" })
+                                    @* <button class="btn btn-sm float-sm-right btn-success ml-1" href="@Url.Action("AddSubServices","ManageServices","Admin")"><i class="mdi mdi-plus"></i> Create New </button>*@
+                                    <div> Photography List </div>
                                 </h4>
 
                                 <div class="card-body">
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap  text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
-                                                <th>Services</th>
-                                                <th>Type</th>
-                                                <th>Stage Title</th>
+                                                <th>Package</th>
+                                                <th>Event Type</th>
+                                                <th>Package Image Name</th>
                                                 <th>Image</th>
                                                 <th>Action</th>
                                             </tr>
@@ -75,24 +82,78 @@
                                         <tbody>
                                             @{
                                                 int increment = 0;
-                                                foreach (var item in _LstSubStage)
+                                                foreach (var item in _LstSubPhotography)
                                                 {
                                                     increment++;
                                                     <tr>
                                                         <td>@increment</td>
-                                                        <td><a href="#" data-toggle="popover" data-target="hover">@item.ServicesTitle</a></td>
-                                                        <td>@item.EventType</td> <!--as SubServiceTitle-->
+                                                        <td>@item.SubServiceTitle</td> <!--as SubServiceTitle-->
+                                                        <td>@item.EventType</td>
                                                         <td>@item.ServicesPictureTitle</td>
-                                                        <td>@item.ServicesPicturePath</td>
+                                                        <td><img src="@item.ServicesPicturePath" alt="" height="40"></td>
                                                         <td>
                                                             <a @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@ class="btn btn-warning btn-sm mdi mdi-pencil btnEdit" title="Update">
                                                                 <i class="fa fa-pencil-alt"></i>
                                                             </a>
                                                             <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@>
                                                             </a>
-
                                                         </td>
                                                     </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+                }
+
+                <!--HallsList-->
+                @{
+                    var _LstSubHall = _Lst.GetSubServices_ForHall();
+
+                    <div class="row ">
+                        <div class="col-sm-12">
+                            <div class="card box-shadow">
+
+                                <h4 class="card-header">
+                                    @Html.ActionLink("Create New", "AddSubServices", "ManageServices", new { id = 1 }, new { @class = "btn btn-primary btn-sm mdi mdi-table-edit" })
+                                    @* <button class="btn btn-sm float-sm-right btn-success ml-1" href="@Url.Action("AddSubServices","ManageServices","Admin")"><i class="mdi mdi-plus"></i> Create New </button>*@
+                                    <div> Hall List </div>
+                                </h4>
+
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap  text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Hall Title</th>
+                                                <th>Image Name</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int increment2 = 0;
+                                                foreach (var item in _LstSubHall)
+                                                {
+                                                    increment2++;
+                                                                                        <tr>
+                                                                                            <td>@increment2</td>
+                                                                                            <td>@item.SubServiceTitle</td> <!--as SubServiceTitle-->
+                                                                                            <td>@item.ServicesPictureTitle</td>
+                                                                                            <td><img src="@item.ServicesPicturePath" alt="" height="40"></td>
+                                                                                            <td>
+                                                                                                <a @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@ class="btn btn-warning btn-sm mdi mdi-pencil btnEdit" title="Update">
+                                                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                                                </a>
+                                                                                                <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@>
+                                                                                                </a>
+
+                                                                                            </td>
+                                                                                        </tr>
                                                 }
                                             }
 
@@ -105,53 +166,50 @@
                     </div> <!-- end row -->
                 }
 
-                <!--PhotographyList-->
+                <!--WaiterList-->
                 @{
-                    var _LstSubStage2 = _Lst.GetSubServices_ForStage();
+                    var _LstSubWaiter = _Lst.GetSubServices_ForWaiter();
 
-                    <div class="row mt-4">
+                    <div class="row ">
                         <div class="col-sm-12">
                             <div class="card box-shadow">
 
                                 <h4 class="card-header">
-                                    <button class="btn btn-sm float-sm-right btn-success ml-1" onclick="btnCustomerEventOrder()"><i class="mdi mdi-plus"></i> Create New </button>
-                                    @*<button class="btn btn-sm float-sm-right btn-success " onclick="btnCustomerEventOrder()"><i class="mdi mdi-plus "></i> New Services </button>*@
-                                    <div><h3>Stages List</h3></div>
+                                    @Html.ActionLink("Create New", "AddSubServices", "ManageServices", new { id = 5 }, new { @class = "btn btn-primary btn-sm mdi mdi-table-edit" })
+                                    <div> Waiter List </div>
                                 </h4>
 
                                 <div class="card-body">
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap  text-center" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
-                                                <th>Services</th>
-                                                <th>Type</th>
-                                                <th>Stage Title</th>
+                                                <th>Title</th>
+                                                <th>Image Name</th>
                                                 <th>Image</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @{
-                                                int increment = 0;
-                                                foreach (var item in _LstSubStage)
+                                                int increment3 = 0;
+                                                foreach (var item in _LstSubWaiter)
                                                 {
-                                                    increment++;
-                                                    <tr>
-                                                        <td>@increment</td>
-                                                        <td><a href="#" data-toggle="popover" data-target="hover">@item.ServicesTitle</a></td>
-                                                        <td>@item.EventType</td> <!--as SubServiceTitle-->
-                                                        <td>@item.ServicesPictureTitle</td>
-                                                        <td>@item.ServicesPicturePath</td>
-                                                        <td>
-                                                            <a @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@ class="btn btn-warning btn-sm mdi mdi-pencil btnEdit" title="Update">
-                                                                <i class="fa fa-pencil-alt"></i>
-                                                            </a>
-                                                            <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@>
-                                                            </a>
+                                                    increment3++;
+                                                                                        <tr>
+                                                                                            <td>@increment3</td>
+                                                                                            <td>@item.SubServiceTitle</td> <!--as SubServiceTitle-->
+                                                                                            <td>@item.ServicesPictureTitle</td>
+                                                                                            <td><img src="@item.ServicesPicturePath" alt="" height="40"></td>
+                                                                                            <td>
+                                                                                                <a @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@ class="btn btn-warning btn-sm mdi mdi-pencil btnEdit" title="Update">
+                                                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                                                </a>
+                                                                                                <a class="btn btn-danger btn-sm mdi mdi-delete-off-outline" title="Change Status" @*data-url='@Url.Action("EditCustomerPartial", "ManageCustomer")' data-id="@rrrow["SliderID"]"*@>
+                                                                                                </a>
 
-                                                        </td>
-                                                    </tr>
+                                                                                            </td>
+                                                                                        </tr>
                                                 }
                                             }
 
@@ -195,7 +253,6 @@
     <script src="~/Areas/Admin/Contents/AdminContent/assets/js/pages/sweet-alerts.init.js"></script>
 
     <script type="text/javascript">
-
     $(document).ready(function () {
 
         $('[data-toggle="popover"]').popover({

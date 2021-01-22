@@ -22,6 +22,36 @@ namespace BusinessLayerLibrary.ViewModel
         public List<EventType_N_Services_N_ServicesPictureViewModels> vmListClsEventType_N_Services_N_ServicesPictureViewModels { get; set; }
 
 
+        public class SubService_N_Services_N_ServicesPicture_N_EventType_ViewModels
+        {
+            public int ServicesPictureID { get; set; }
+            public int Services_ID { get; set; }
+            public int EventType_ID { get; set; }
+            public bool isActive { get; set; }
+            public string ServicesPictureTitle { get; set; }
+            public string ServicesPictureDescription { get; set; }
+            public string ServicesPicturePath { get; set; }
+            public int SubServiceID { get; set; }
+            public bool isMain { get; set; }
+            public int Service_ID { get; set; }
+            public string SubServiceTitle { get; set; }
+            public int ServicesID { get; set; }
+            public int CreatedByUser_ID { get; set; }
+            public int ModifyByUser_ID { get; set; }
+            public DateTime CreatedDate { get; set; }
+            public DateTime ModifyDate { get; set; }
+            public string ServicesTitle { get; set; }
+            public string ServicesDescription { get; set; }
+            public string ServicesMainImage { get; set; }
+            public int EventTypeID { get; set; }
+       
+            public string EventType { get; set; }
+
+           
+
+        }
+
+
         public class ServicesNSubServicesNServicesPicture_ViewModels
         {
             public int PriceMenuID { get; set; }

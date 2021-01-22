@@ -12,6 +12,26 @@ namespace BusinessLayerLibrary.ManagClass
 {
     public class MngCombo
     {
+        public enum StagesEventType 
+        { MehndiStage, 
+            BaratStage, 
+            WalimaStage 
+        }
+
+        public struct ConvertEnum
+        {
+            public int Value
+            {
+                get;
+                set;
+            }
+            public String Text
+            {
+                get;
+                set;
+            }
+        }
+
         public List<DropDownModal> GetHallName()
         {
             // DataTable Declaration

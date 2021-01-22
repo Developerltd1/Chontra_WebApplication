@@ -10,8 +10,7 @@ namespace BusinessLayerLibrary
 {
     public class MngInsert
     {
-
-        public int  Admin_InsertAllCustomer(CustomModels.ClsMainModel.ClsCustomer m)
+        public int Admin_InsertAllCustomer(CustomModels.ClsMainModel.ClsCustomer m)
         {
             using (Entities objContext = new Entities())
             {
@@ -33,8 +32,64 @@ namespace BusinessLayerLibrary
 
         }
 
+        public  void usp_InsertSubServices(int Service_ID, string SubServiceTitle, string ServicesPictureTitle, string ServicesPictureDescription, string ServicesPicturePath,  bool isMain, int CreatedByUser_ID, out int SubServiceID, out bool Status, out string StatusDetails)
+        {
+            SubServiceID = 0;
+            Status = false;
+            StatusDetails = null;
 
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            try
+            {
+                string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ChontraConnectionString"].ToString();
+                conn = new SqlConnection(ConnectionString);
+                cmd = new SqlCommand("usp_InsertSubServices", conn);
 
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Service_ID", Service_ID);
+                cmd.Parameters.AddWithValue("@SubServiceTitle", SubServiceTitle);
+                cmd.Parameters.AddWithValue("@ServicesPictureTitle", ServicesPictureTitle);
+                cmd.Parameters.AddWithValue("@ServicesPictureDescription", ServicesPictureDescription);
+                cmd.Parameters.AddWithValue("@ServicesPicturePath", ServicesPicturePath);
+                cmd.Parameters.AddWithValue("@isMain", isMain);
+                cmd.Parameters.AddWithValue("@CreatedByUser_ID", CreatedByUser_ID);
+
+                SqlParameter SubServiceIDParm = new SqlParameter("@SubServiceID", SqlDbType.Int);
+                SubServiceIDParm.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(SubServiceIDParm);
+
+                SqlParameter StatusParm = new SqlParameter("@Status", SqlDbType.Bit);
+                StatusParm.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(StatusParm);
+
+                SqlParameter StatusDetailsParm = new SqlParameter("@StatusDetails", SqlDbType.VarChar, 200);
+                StatusDetailsParm.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(StatusDetailsParm);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+                SubServiceID = (int)SubServiceIDParm.Value;
+                Status = (bool)StatusParm.Value;
+                StatusDetails = (string)StatusDetailsParm.Value;
+            }
+            catch (Exception ex)
+            {
+                SubServiceID = 0;
+                Status = false;
+                StatusDetails = ex.Message;
+                return;
+            }
+            finally
+            {
+                conn.Dispose();
+                cmd.Dispose();
+            }
+        }
+      
         public void Admin_InsertCustomerEventOrder(int Customer_ID, int Services_ID, int SubServices_ID, int EventType_ID, int PriceMenu_ID, int CreatedByUser_ID, out bool Status, out string StatusDetails)
         {
             Status = false;
@@ -84,8 +139,6 @@ namespace BusinessLayerLibrary
                 cmd.Dispose();
             }
         }
-
-
         public void Admin_InsertSliderOnlyDetails(string SliderTitle, string SliderDecription, string SelecPage, bool isVideo, int User_ID, out bool _Status, out string _StatusDetails, out int SliderID)
         {
             _Status = false;
@@ -186,7 +239,6 @@ namespace BusinessLayerLibrary
                 cmd.Dispose();
             }
         }
-
         public void Admin_InsertFoodMenu(string PriceMenuTitle, long Price, string PriceMenuPicture, string PriceMenuPictureOnlyPath, int CreatedByUser_ID, out bool _Status, out string _StatusDetails)
         {
             _Status = false;
@@ -235,7 +287,5 @@ namespace BusinessLayerLibrary
                 cmd.Dispose();
             }
         }
-
-
     }
 }

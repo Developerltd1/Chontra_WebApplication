@@ -5566,6 +5566,9 @@
     <Content Include="Areas\Admin\Views\ManageServices\ViewServices.cshtml" />
     <Content Include="Areas\Admin\Views\ManageServices\AddNewServices.cshtml" />
     <Content Include="Areas\Admin\Views\ManageServices\ViewSubServices.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageServices\AddSubServices.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageServices\PartialView_SUBSERVICES_StageList.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageServices\PartialAddSub_Stage.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -5651,6 +5654,7 @@
   <ItemGroup>
     <Folder Include="AllPictures\FoodMenu\" />
     <Folder Include="AllPictures\Slider\" />
+    <Folder Include="AllPictures\SubServices\Stages\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Contents\AdminContent\assets\libs\chartist\scss\settings\" />
     <Folder Include="Areas\Admin\Models\" />

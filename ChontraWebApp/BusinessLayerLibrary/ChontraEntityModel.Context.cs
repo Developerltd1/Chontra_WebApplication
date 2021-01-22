@@ -277,5 +277,20 @@ namespace BusinessLayerLibrary
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSubServices_ForStage_Result>("GetSubServices_ForStage");
         }
+    
+        public virtual ObjectResult<GetSubServices_ForPhotography_Result> GetSubServices_ForPhotography()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSubServices_ForPhotography_Result>("GetSubServices_ForPhotography");
+        }
+    
+        public virtual ObjectResult<GetSubServices_ForHall_Result> GetSubServices_ForHall()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSubServices_ForHall_Result>("GetSubServices_ForHall");
+        }
+    
+        public virtual ObjectResult<GetSubServices_ForWaiter_Result> GetSubServices_ForWaiter()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSubServices_ForWaiter_Result>("GetSubServices_ForWaiter");
+        }
     }
 }

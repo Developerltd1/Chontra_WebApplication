@@ -1,0 +1,4 @@
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\bin\Release\MyCode.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\bin\Release\MyCode.pdb
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\obj\Release\MyCode.dll
+D:\Application\Web\ASP.NET\MVC\Chontra_WebApplication\ChontraWebApp\BaseControl\obj\Release\MyCode.pdb

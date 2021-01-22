@@ -21,7 +21,6 @@ namespace BusinessLayerLibrary.ManagClass
                m.isActive = false;
                return objContext.SaveChanges();
             }
-
         }
 
         public ClsMainModel.ClsCustomer UpdateCustomer(int id)
@@ -39,7 +38,6 @@ namespace BusinessLayerLibrary.ManagClass
                 m.CustomerAddress = dbm.CustomerAddress;
                 return m;
             }
-
         }
 
     }

@@ -59,9 +59,7 @@ namespace ChontraWebApp.Areas.Admin.Controllers
         public ActionResult EditCustomerPartial(int id)
         {
               ClsMainModel.ClsCustomer mdl = objEdit.UpdateCustomer(id);
-                  return PartialView(mdl);
-             
-           
+              return PartialView(mdl);
         }
      //   [HttpPost]
      //   public ActionResult EditCustomerPartial(int id)

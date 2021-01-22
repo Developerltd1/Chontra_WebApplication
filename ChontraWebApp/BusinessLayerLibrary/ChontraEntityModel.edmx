@@ -330,7 +330,10 @@
         <Function Name="GetSideMenusByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="in_RoleID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetSubServices_ForHall" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSubServices_ForPhotography" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetSubServices_ForStage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSubServices_ForWaiter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="membership_AddRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="RoleID" Type="int" Mode="InOut" />
           <Parameter Name="RoleName" Type="varchar" Mode="In" />
@@ -772,6 +775,9 @@
             <Parameter Name="StatusDetails" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetSubServices_ForStage" ReturnType="Collection(ChontraEntityModel.GetSubServices_ForStage_Result)" />
+          <FunctionImport Name="GetSubServices_ForPhotography" ReturnType="Collection(ChontraEntityModel.GetSubServices_ForPhotography_Result)" />
+          <FunctionImport Name="GetSubServices_ForHall" ReturnType="Collection(ChontraEntityModel.GetSubServices_ForHall_Result)" />
+          <FunctionImport Name="GetSubServices_ForWaiter" ReturnType="Collection(ChontraEntityModel.GetSubServices_ForWaiter_Result)" />
         </EntityContainer>
         <ComplexType Name="Admin_GetAllContactPage_Result">
           <Property Type="Int32" Name="ContactID" Nullable="false" />
@@ -910,6 +916,30 @@
           <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="EventType" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetSubServices_ForPhotography_Result">
+          <Property Type="Int32" Name="SubServiceID" Nullable="false" />
+          <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
+          <Property Type="String" Name="EventType" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="GetSubServices_ForHall_Result">
+          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="SubServiceID" Nullable="false" />
+          <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EventType" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetSubServices_ForWaiter_Result">
+          <Property Type="String" Name="ServicesTitle" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="SubServiceID" Nullable="false" />
+          <Property Type="String" Name="SubServiceTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EventType" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="ServicesPictureTitle" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="ServicesPicturePath" Nullable="false" />
         </ComplexType>
@@ -1453,6 +1483,42 @@
                 <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
                 <ScalarProperty Name="EventType" ColumnName="EventType" />
                 <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubServices_ForPhotography" FunctionName="ChontraEntityModel.Store.GetSubServices_ForPhotography">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetSubServices_ForPhotography_Result">
+                <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+                <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubServices_ForHall" FunctionName="ChontraEntityModel.Store.GetSubServices_ForHall">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetSubServices_ForHall_Result">
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+                <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
+                <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSubServices_ForWaiter" FunctionName="ChontraEntityModel.Store.GetSubServices_ForWaiter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChontraEntityModel.GetSubServices_ForWaiter_Result">
+                <ScalarProperty Name="ServicesTitle" ColumnName="ServicesTitle" />
+                <ScalarProperty Name="SubServiceID" ColumnName="SubServiceID" />
+                <ScalarProperty Name="SubServiceTitle" ColumnName="SubServiceTitle" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
                 <ScalarProperty Name="ServicesPictureTitle" ColumnName="ServicesPictureTitle" />
                 <ScalarProperty Name="ServicesPicturePath" ColumnName="ServicesPicturePath" />
               </ComplexTypeMapping>

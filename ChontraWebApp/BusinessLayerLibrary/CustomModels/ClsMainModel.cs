@@ -9,8 +9,7 @@ namespace BusinessLayerLibrary.CustomModels
 {
     public class ClsMainModel
     {
-
-
+       
         #region CustomerEventOrder Class
 
         public class ClsCustomerEventOrder
@@ -316,5 +315,17 @@ namespace BusinessLayerLibrary.CustomModels
 
         #endregion
 
+        #region SubServices Class
+
+        public class ClsSubServices
+        {
+            public int SubServiceID { get; set; }
+            public int Service_ID { get; set; }
+            public int EventType_ID { get; set; }
+            public bool isActive { get; set; }
+            public string SubServiceTitle { get; set; }
+        }
+
+        #endregion
     }
 }

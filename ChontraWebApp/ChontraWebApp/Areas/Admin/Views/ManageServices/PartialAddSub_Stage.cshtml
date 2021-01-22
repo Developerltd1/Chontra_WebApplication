@@ -1,0 +1,63 @@
+﻿@model BusinessLayerLibrary.ViewModel.MainViewModels.SubService_N_Services_N_ServicesPicture_N_EventType_ViewModels
+
+<div class="card">
+    <div class="card-header"> Add New Stage Details </div>
+    <div class="card-body">
+        <!-- your content-->
+        @using (Html.BeginForm("AddSubServices", "ManageServices", FormMethod.Post, new { enctype = "multipart/form-data", @onsubmit = "return validation()" }))
+        {
+
+            <div class="row">
+
+                <!--ServicesTitle Hidden-->
+                <div class="col-md-6" style="display:none">
+                    <div class="form-group">
+                        <label for="ServicesTitle"></label>
+                        <input type="text" class="form-control" id="Services_ID" name="Services_ID" value="@ViewBag.ServicesID" placeholder="Services_ID" >
+                    </div>
+                </div>
+
+                <!--SubServiceTitle-->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="SelecPage">Event Type</label>
+                        @{
+                            @Html.DropDownList("MySkills", new SelectList(ViewBag.MySkillEnum, "Text", "Text"), "Please Select", new { @class = "select2 form-control ", required = "required" })
+                            @*@Html.DropDownListFor(m => m.SubServiceID, EnumHelper.GetSelectList(typeof(enumStage)), "Text", "Text"), "Please Select", new { @class = "select2 form-control ", required = "required" })*@
+                        }
+                    </div>
+                </div>
+
+                <!--ServicesPictureDescription-->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="ServicesPictureDescription"></label>
+                        <input type="text" class="form-control" id="ServicesPictureDescription" name="ServicesPictureDescription" placeholder="Description" Required>
+                    </div>
+                </div>
+
+                <!--ImageOrVieoUpload-->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
+                        <input type="file" id="ServicesPicturePath" class="form-control filex" name="tmfiles" accept=".jpg, .jpeg, .png" multiple onchange="updateImageDisplay()" Required>
+                    </div>
+                    <div class="row">
+                        <div class="preview">
+                            <p>No files currently selected for upload</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <br />
+            <div class="card-footer text-sm-right">
+                <a title="Back" class="btn btn-primary mdi mdi-undo-variant" href="@Url.Action("Index", "Dashboard")">Cancel</a>
+                <input title="Save" type="submit" class="btn btn-success mdi mdi-content-save" value="Create">
+            </div>
+        }
+        <!--./your content-->
+    </div>
+</div><!--./end card -->

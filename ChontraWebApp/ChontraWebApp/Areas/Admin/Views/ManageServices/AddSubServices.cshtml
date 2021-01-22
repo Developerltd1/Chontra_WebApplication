@@ -1,0 +1,325 @@
+﻿@model  BusinessLayerLibrary.ViewModel.MainViewModels.SubService_N_Services_N_ServicesPicture_N_EventType_ViewModels
+@{
+    ViewBag.Title = "AddSubServices";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    BusinessLayerLibrary.ManagClass.MngCombo cb = new BusinessLayerLibrary.ManagClass.MngCombo();
+
+}
+@section styles{
+    <style>
+            form ol {
+                padding-left: 0;
+            }
+            form li, div > p {
+                background: white;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                list-style-type: none;
+                border: 1px solid black;
+            }
+            form img {
+                height: 50px;
+                order: 1;
+            }
+    </style>
+
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-12 ">
+                @{
+                    if (TempData["Statusdetails"] != null)
+                    {
+                        <div class="alert alert-success bg-success text-white border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetails"]
+                        </div>
+
+                    }
+                    else if (TempData["Statusdetailserror"] != null)
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @TempData["Statusdetailserror"]
+                        </div>
+                    }
+                }
+
+            </div>
+            <div class="col-lg-12">
+                <br />
+                @{
+                    if (Model.Services_ID == null || Model.Services_ID == 0 || Model.Services_ID == "")
+                    {
+                        <div class="alert alert-danger bg-danger text-white mb-0 border-0" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                           Service Value is Empty. Please Check
+                        </div>
+                    }
+                    <!--STAGE-->
+                    if (Model.Services_ID == 2)
+                    {
+                        @Html.Partial("PartialAddSub_Stage")
+                    }
+                    <!--PHOTOGRAPHY-->
+                    if (Model.Services_ID == 4)
+                    {
+                        <div class="card">
+                            <div class="card-header"> Add New Photography Package </div>
+                            <div class="card-body">
+                                <!-- your content-->
+                                @using (Html.BeginForm("AddSubServices", "ManageServices", FormMethod.Post, new { enctype = "multipart/form-data", @onsubmit = "return validation()" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+
+                                        <!--ServicesTitle-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="ServicesTitle"></label>
+                                                <input type="text" class="form-control" id="Service_ID" name="ServicesTitle" placeholder="Event Type Combo" Required>
+                                            </div>
+                                        </div>
+
+                                        <!--SubServiceTitle-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="SubServiceTitle"></label>
+                                                <input type="text" class="form-control" id="SubServiceID" name="SubServiceTitle" placeholder="Package Combo" Required>
+                                            </div>
+                                        </div>
+
+                                        <!--Decription-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="ServicesPictureTitle">Image Title</label>
+                                                <input type="text" class="form-control" id="ServicesPictureID" name="ServicesPictureTitle" placeholder="Picture Title" Required>
+                                            </div>
+                                        </div>
+
+                                        <!--ImageOrVieoUpload-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="SliderImagePath">Browse Image</label>
+                                                <input type="file" id="ServicesPicturePath" class="form-control  filex" name="tmfiles" accept="image/x-png,image/gif,image/jpeg" multiple onchange="updateImageDisplay()" Required>
+                                            </div>
+                                            <div class="row">
+                                                <div class="preview">
+                                                    <p>No files currently selected for upload</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <br />
+                                    <div class="card-footer text-sm-right">
+                                        <a title="Back" class="btn btn-primary mdi mdi-undo-variant" href="@Url.Action("Index", "Dashboard")">Cancel</a>
+                                        <input title="Save" type="submit" class="btn btn-success mdi mdi-content-save" value="Create">
+                                    </div>
+                                }
+                                <!--./your content-->
+                            </div>
+                        </div><!--./end card -->
+                    }
+                    <!--HALLS-->
+                    if (Model.Services_ID == 1)
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                Add New Services
+                            </div>
+                            <div class="card-body">
+                                <!-- your content-->
+                                @using (Html.BeginForm("AddSubServices", "ManageServices", FormMethod.Post, new { enctype = "multipart/form-data", @onsubmit = "return validation()" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+
+                                        <!--SubServiceTitle-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="SubServiceTitle"></label>
+                                                <input type="text" class="form-control" id="SubServiceID" name="SubServiceTitle" placeholder="Hall Name" Required>
+                                            </div>
+                                        </div>
+
+                                        <!--Decription-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="ServicesPictureTitle">Image Title</label>
+                                                <input type="text" class="form-control" id="ServicesPictureID" name="ServicesPictureTitle" placeholder="Picture Title" Required>
+                                            </div>
+                                        </div>
+
+
+                                        <!--ImageOrVieoUpload-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="SliderImagePath">Browse Image</label>
+                                                <input type="file" id="ServicesPicturePath" class="form-control  filex" name="tmfiles" accept="image/x-png,image/gif,image/jpeg" multiple onchange="updateImageDisplay()" Required>
+                                            </div>
+                                            <div class="row">
+                                                <div class="preview">
+                                                    <p>No files currently selected for upload</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="card-footer text-sm-right">
+                                        <a title="Back" class="btn btn-primary mdi mdi-undo-variant" href="@Url.Action("Index", "Dashboard")">Cancel</a>
+                                        <input title="Save" type="submit" class="btn btn-success mdi mdi-content-save" value="Create">
+                                    </div>
+                                }
+                                <!--./your content-->
+                            </div>
+                        </div><!--./end card -->
+                    }
+                    <!--WAITER-->
+                    if (Model.Services_ID == 5)
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                Add New Waiter
+                            </div>
+                            <div class="card-body">
+                                <!-- your content-->
+                                @using (Html.BeginForm("AddSubServices", "ManageServices", FormMethod.Post, new { enctype = "multipart/form-data", @onsubmit = "return validation()" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+
+                                        <!--SubServiceTitle-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="SubServiceTitle">Title</label>
+                                                <input type="text" class="form-control" id="SubServiceID" name="SubServiceTitle" placeholder="Decription" Required>
+                                            </div>
+                                        </div>
+
+                                        <!--ImageOrVieoUpload-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="SliderImagePath">Browse Image</label>
+                                                <input type="file" id="ServicesPicturePath" class="form-control  filex" name="tmfiles" accept="image/x-png,image/gif,image/jpeg" multiple onchange="updateImageDisplay()" Required>
+                                            </div>
+                                            <div class="row">
+                                                <div class="preview">
+                                                    <p>No files currently selected for upload</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="card-footer text-sm-right">
+                                        <a title="Back" class="btn btn-primary mdi mdi-undo-variant" href="@Url.Action("Index", "Dashboard")">Cancel</a>
+                                        <input title="Save" type="submit" class="btn btn-success mdi mdi-content-save" value="Create">
+                                    </div>
+                                }
+                                <!--./your content-->
+                            </div>
+                        </div><!--./end card -->
+                    }
+                }
+            </div><!--./end col-12 -->
+        </div> <!--./end row -->
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+
+<!-- End Page-content -->
+@section scripts{
+
+    <script type="text/javascript">
+
+        //
+        const input = document.querySelector('.filex');
+        const preview = document.querySelector('.preview');
+        debugger;
+        input.style.opacity = 0;
+
+        function updateImageDisplay() {
+          
+            while (preview.firstChild) {
+                preview.removeChild(preview.firstChild);
+            }
+            if (input != null) {
+                const curFiles = input.files;
+                  debugger;
+                if (curFiles.length === 0) {
+                    const para = document.createElement('p');
+                    para.textContent = 'No files currently selected for upload';
+                    preview.appendChild(para);
+                } else {
+                    const list = document.createElement('div');
+                    list.className = "row";
+                    preview.appendChild(list);
+
+                    for (const file of curFiles) {
+                        const listItem = document.createElement('div');
+                         listItem.className = "col-4 border";
+                        const para = document.createElement('p');
+                        const parasize = document.createElement('p');
+                        if (validFileType(file)) {
+                            para.textContent = `File Name ${file.name}.`;
+                            parasize.textContent = `File Size ${returnFileSize(file.size)}.`;
+                            const image = document.createElement('img');
+                            image.src = URL.createObjectURL(file);
+
+                            listItem.appendChild(image);
+                            listItem.appendChild(para);
+                            listItem.appendChild(parasize);
+                        } else {
+                            para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+                            listItem.appendChild(para);
+                        }
+
+                        list.appendChild(listItem);
+                    }
+                }
+            }
+        }
+        //https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+        const fileTypes = [
+            'image/apng',
+            'image/bmp',
+            'image/gif',
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/svg+xml',
+            'image/tiff',
+            'image/webp',
+            `image/x-icon`
+        ];
+
+        function validFileType(file) {
+            return fileTypes.includes(file.type);
+        }
+
+        function returnFileSize(number) {
+            if (number < 1024) {
+                return number + 'bytes';
+            } else if (number > 1024 && number < 1048576) {
+                return (number / 1024).toFixed(1) + 'KB';
+            } else if (number > 1048576) {
+                return (number / 1048576).toFixed(1) + 'MB';
+            }
+        }
+
+    </script>
+}
