@@ -59,156 +59,203 @@
   <ItemGroup>
     <Compile Include="Admin_GetAllContactPage_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Admin_GetAllCustomer_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Admin_GetAllEventType_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Admin_GetAllServices_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Admin_GetAllSlider_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Admin_GetPriceMenuPicture__ByPriceMenuID_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Admin_GetPriceMenu_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Branch.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ChontraEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChontraEntityModel.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ChontraEntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ChontraEntityModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChontraEntityModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Combo_GetAllEventType_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Combo_GetAllHalls_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Combo_GetAllPriceMenu_ByPriceMenuID_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Combo_GetAllPriceMenu_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Customer.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CustomerEventOrder.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="CustomModels\ClsMainModel.cs" />
     <Compile Include="Decoration.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="EventTiming.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="EventTimingType.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="EventType.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GeEventByDate_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetAllEventTimingType_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetAllUsers_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetSideMenusByRoleID_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetSubServices_ForHall_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetSubServices_ForPhotography_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetSubServices_ForStage_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="GetSubServices_ForWaiter_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="HallEvent.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="HallEventGallery.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ManagClass\MngCombo.cs" />
     <Compile Include="ManagClass\MngEdit.cs" />
     <Compile Include="ManagClass\MngList.cs" />
     <Compile Include="membership_AuthenticateUser_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="membership_GetAllRoles_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="membership_GetRoleByID_Result.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Membership_Rolepages.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Membership_RoleUsers.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Membership_Users.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Membership_Webpages.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Membership_Webpageurls.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="MngInsert.cs" />
     <Compile Include="PriceMenu.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ServicesPicture.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Slider.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Stages.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SubMenu.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="SubServices.cs">
       <DependentUpon>ChontraEntityModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ViewModel\MainViewModels.cs" />
   </ItemGroup>
@@ -219,9 +266,11 @@
     <EntityDeploy Include="ChontraEntityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ChontraEntityModel.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EntityDeploy>
     <None Include="ChontraEntityModel.edmx.diagram">
       <DependentUpon>ChontraEntityModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -239,11 +288,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ChontraEntityModel.edmx</DependentUpon>
       <LastGenOutput>ChontraEntityModel.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ChontraEntityModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ChontraEntityModel.edmx</DependentUpon>
       <LastGenOutput>ChontraEntityModel.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

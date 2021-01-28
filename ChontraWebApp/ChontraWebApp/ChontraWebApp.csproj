@@ -107,6 +107,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ChontraDB.mdf" />
+    <Content Include="App_Data\ChontraDB_log.ldf">
+      <DependentUpon>ChontraDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\Admin\Contents\AdminContent\assets\css\app.css" />
     <Content Include="Areas\Admin\Contents\AdminContent\assets\css\app.min.css" />
     <Content Include="Areas\Admin\Contents\AdminContent\assets\css\bootstrap.css" />
@@ -5655,7 +5659,6 @@
     <Folder Include="AllPictures\FoodMenu\" />
     <Folder Include="AllPictures\Slider\" />
     <Folder Include="AllPictures\SubServices\Stages\" />
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Contents\AdminContent\assets\libs\chartist\scss\settings\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\ComboBox\" />
